@@ -11,6 +11,7 @@ class DBManager
 	function Summary($DATEVARIABLE)
 	{
 	    $conn = ConnectionMaker::getConnection();
+		
 		//write the sql query
 		$sql = "SELECT * FROM USER, TRANSACTIONS, CART
 		WHERE TRANSACTIONS.Transaction_ID = USER.User_ID
@@ -34,39 +35,62 @@ class DBManager
 		}
 	} 
 
+	/* Summary of Login function
+	-Used for when user wants to log in 
+	-Checks if user exist, if user does then the login is performed
+	-If user does not exist, puts and error for password or email
+	*/
 	function Login($Username, $Password)
 	{
         $conn = ConnectionMaker::getConnection();
-		$sql = "SELECT Username, User_Password FROM USER
-		WHERE Username = $Username
-		And User_Password = $Password";
 		
+		//wrtie the sql query
+		$sql = "SELECT Username, User_Password FROM USER
+		WHERE Username = '$Username'
+		And User_Password = '$Password'";
+
+		//perfrom the query and store the results	
 		$result = $conn->query($sql);
 		
+		//check to see if there are any records returned
 		if($result->num_rows = 1)
 		{
-			
-			//perform the log in things over here
+			//put the username into a session 
+			$_SESSION["USERNAME"] = "$Username";
+			//send the user to the next page
+			header('Location: placeholder.url');
 		}
 		else{
 			echo "Username or password were incorrect";
 		}
 	}
 
+	/* Summary of Register function
+	-Used for when a user wants to create an account
+	-Checks if Username exists, if it does, give an error
+	-Checks if Email exists, if it does, give an error
+	-If Username and email do not exist, user account is created 
+	*/
 	function Register($Email, $FName, $LName, $Username, $Password, $User_Type, $Date)
 	{
         $conn = ConnectionMaker::getConnection();
+		
+		//write the query for creating the database
 		$sql = "INSERT INTO TABLE USER
 		VALUES ($Email, $FName, $LName, $Username, $Password, $User_Type, $Date)";
 		
+		//write the query for checking if Username Exists
 		$sqlCheckUsername = "SELECT Username FROM USER
 		WHERE Username = '$Username'";  
 									
+		//Write the query for checking if Email Exists							
 		$sqlCheckEmail = "SELECT Email User_Email FROM USER
 		WHERE User_Email = '$Email'"; 
 		
+		//get result from the user query
 		$resultUsername = $conn->query($sqlCheckUsername);
-		
+
+		//get result from email query 
 		$resultEmail = $conn->query($sqlCheckEmail);
 		
 		if($resultUsername->num_rows = 0)
@@ -76,6 +100,7 @@ class DBManager
 				if($conn->query($sql) === TRUE)
 				{
 					echo "You have Registered Successfully";
+					header('Location: placeholder.url');
 				}
 				else
 				{
