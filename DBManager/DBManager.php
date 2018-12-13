@@ -10,7 +10,7 @@ class DBManager
 
 	function Summary($DATEVARIABLE)
 	{
-	    $conn = connectionMaker::getConnection();
+	    $conn = ConnectionMaker::getConnection();
 		//write the sql query
 		$sql = "SELECT * FROM USER, TRANSACTIONS, CART
 		WHERE TRANSACTIONS.Transaction_ID = USER.User_ID
@@ -36,7 +36,7 @@ class DBManager
 
 	function Login($Username, $Password)
 	{
-        $conn = connectionMaker::getConnection();
+        $conn = ConnectionMaker::getConnection();
 		$sql = "SELECT Username, User_Password FROM USER
 		WHERE Username = $Username
 		And User_Password = $Password";
@@ -55,7 +55,7 @@ class DBManager
 
 	function Register($Email, $FName, $LName, $Username, $Password, $User_Type, $Date)
 	{
-        $conn = connectionMaker::getConnection();
+        $conn = ConnectionMaker::getConnection();
 		$sql = "INSERT INTO TABLE USER
 		VALUES ($Email, $FName, $LName, $Username, $Password, $User_Type, $Date)";
 		
@@ -92,8 +92,8 @@ class DBManager
 	}
 }
 
-?>
-=======
+
+
     
-}
->>>>>>> Stashed changes
+
+
