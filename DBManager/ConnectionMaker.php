@@ -6,16 +6,16 @@
  * Time: 9:59 AM
  */
 
-class Connector
+class ConnectionMaker
 {
-    private $serverName = "localhost";
-    private $username = "root";
-    private $password = "";
-    function getConnection()
+    private static $serverName = "localhost";
+    private static $username = "root";
+    private static $password = "";
+    static function getConnection()
     {
 
 
-        $conn = new mysqli($this->serverName, $this->username, $this->password);
+        $conn = new mysqli(serverName, username, password);
 
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
