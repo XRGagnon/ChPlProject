@@ -11,11 +11,12 @@ class ConnectionMaker
     private static $serverName = "localhost";
     private static $username = "root";
     private static $password = "";
+    private static $database = "champlainplasticsdb";
     static function getConnection()
     {
 
 
-        $conn = new mysqli(serverName, username, password);
+        $conn = new mysqli(serverName, username, password, database);
 
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);

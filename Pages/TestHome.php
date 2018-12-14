@@ -10,10 +10,11 @@
  * Time: 10:10 AM
  */
 include "../Models/Defaults.php";
+include "../Models/Security.php";
 DefaultHead();
 ?>
 
-<a href="Login.php">Login Link</a>
+<a href="Login.php">Login Link</a><br/>
 
 
 <?php
