@@ -38,18 +38,17 @@ class DBManager
 	{
         $conn = ConnectionMaker::getConnection();
 		$sql = "SELECT Username, User_Password FROM USER
-		WHERE Username = $Username
-		And User_Password = $Password";
+		WHERE Username = "+$Username+"
+		And User_Password = "+$Password+";";
 		
 		$result = $conn->query($sql);
 		
 		if($result->num_rows = 1)
 		{
-			
-			//perform the log in things over here
+			return true;
 		}
 		else{
-			echo "Username or password were incorrect";
+			return false;
 		}
 	}
 
