@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Contact us - Olympic Pool Accessories by Champlain Plastics, Inc.</title>
+        
+        <meta name="description" content="Contact us - Senseras"/>
+        <link rel="shortcut icon" href="../image/favicon.png" type="image/png"/>
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+        
+        <!-- Style -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="../css/main.css" type="text/css" />
+        <link rel="stylesheet" href="../css/blue.css" type="text/css" />
+    </head>
+
+    <body>
+
+        <!-- Navigation / START -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Show menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" id="logo" href="#">
+                        <img src="../image/Logo.png" class="mylogos" alt="Olympic by Champlain Plastics">
+                </div>
+
+
+                <div id="navbar" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav">
+                    
+                        <li class="drop active">
+                            <a href="#">
+                                Home
+                            </a>
+                      </li>
+
+                        <li class="drop">
+                            <a href="#">
+                                Products
+                            </a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li>
+                                        <a href="#">New Products</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Maintenance</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Vacuum Hoses</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Accessories</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Backwash Hoses</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Skimmers/Drains</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Plumbing</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Ladders/Steps</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Lights</a>
+                                    </li>
+                                     <li>
+                                        <a href="#">Cover Reels/Solar Rollers</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Games, Chairs and More</a>
+                                    </li>
+                                </ul>
+                            </div>
+                      </li>
+                        
+                        <li class="drop">
+                            <a href="#">
+                                Instruction Manuals
+                            </a>
+                      </li>
+
+                        <li class="drop">
+                            <a href="#">
+                                Contact us
+                            </a>
+                      </li>
+
+                        <li class="drop">
+                            <a href="#login">
+                                Dealer Login
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+                
+            </div>
+
+        </nav><!-- Navigation / END -->
+        
+        <!-- Page header / START -->
+            <div class="page-header">
+                <div class="container">
+                    
+                    <div class="row">
+                      <div class="col-xs-12 col-md-12 path-tree">
+                            <a href="#">Home</a> / 
+                            <a href="#">Path</a>
+                        </div>
+                    </div>
+
+                </div><!-- Container / END -->
+            </div><!-- Page header / END -->
+        
+        <div id="content">
+
+            <div class="container contact">
+
+                <section id="contact-info">
+                    <div class="row">
+                            
+                        <div class="col-xs-12 col-sm-6 col-lg-7">
+                        
+                            <div class="block">
+
+                                <form method="post">
+
+                                    <div class="form-group">
+                                        <div class="control-label">
+                                            Name
+                                        </div>
+                                        
+                                        <div class="controls">
+                                            <input type="text" class="form-control input"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="control-label">
+                                            Email
+                                        </div>
+                                        
+                                        <div class="controls">
+                                            <input type="text" class="form-control input"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="control-label">
+                                            Subject
+                                        </div>
+                                        
+                                        <div class="controls">
+                                            <input type="text" class="form-control input"/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="control-label">
+                                            Message
+                                        </div>
+                                        
+                                        <div class="controls">
+                                            <textarea class="form-control textarea"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <button class="btn btn-primary">Submit</button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-lg-5">
+                            
+                            <div class="block bg-gray company-info text-center">
+
+                                <div class="main-info">
+                                    <h1 class="name strong">Champlain Plastics, Inc.</h1></div>
+
+                                <div class="address datalist">
+                                    <p class="info">
+                                        <span class="key">Address:</span><br>
+                                        <span class="value">87 Pillsbury Road<br>
+Rouses Point, NY<br>
+12979 USA</span>
+                                    </p>
+                                    <p class="info">
+                                        <span class="key">Phone:</span><br>
+                                        <span class="value">1-800-660-4135</span>
+                                    </p>
+                                    
+                                    <p class="info">
+                                        <span class="key">E-mail:</span><br>
+                                        <span class="value">info@champlainplastics.net</span>
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div><!-- Row / END -->
+
+                    </div>
+                </section><!-- Contact / END -->
+
+                <!-- Our team / START -->
+                <section id="team">
+                    <div class="lg-block text-center">
+
+                        <div class="title-big">
+                            <h1>Contact a Rep</h1>
+                        </div>
+
+                        
+
+                    </div><!-- Our team / END -->
+
+                    <div class="block team no-margin-bottom">
+
+                        <div class="row">
+
+                            <div class="col-xs-6 col-md-4">
+
+                                <!-- Team member / START -->
+                                <div class="member">
+                                  <div class="info">
+                                <div class="name">Sylvain Vézina</div>
+                                        <div class="position">Cell : 514-891-9444<br>
+Vezina.intl@sympatico.ca<br>
+Fax : 450-359-0536
+</div>
+                                        <div class="description">
+                                            Québec, Maritimes
+                                      </div>
+                                    </div>
+
+                                </div><!-- Team member / END -->
+
+                            </div>
+
+                            <div class="col-xs-6 col-md-4">
+
+                                <!-- Team member / START -->
+                                <div class="member">
+                                  <div class="info">
+                                <div class="name">François Bruneau</div>
+                                        <div class="position">Cell : 514-895-1609<br>
+fbruneau@bruneauintl.com<br>
+Fax : 450-492-5209
+</div>
+                                        <div class="description">
+                                            Québec
+                                      </div>
+                                    </div>
+
+                                </div><!-- Team member / END -->
+
+                            </div>
+
+                            <div class="col-xs-6 col-md-4">
+
+                                <!-- Team member / START -->
+                                <div class="member">
+                                  <div class="info">
+                                <div class="name">Larry McGregor</div>
+                                        <div class="position">Cell : 416-948-6408<br>
+Office: 905-847-9878<br>
+larrymcgregor@cogeco.ca<br>
+larrymcgregor44@gmail.com<br>
+Fax : 905-847-5683
+</div>
+                                        <div class="description">
+                                            Ontario, Western Canada
+                                      </div>
+                                    </div>
+
+                                </div><!-- Team member / END -->
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section><!-- Team / END-->
+
+
+            </div><!-- Container / END -->
+
+        </div><!-- Content / END -->
+    
+    
+           <!-- Footer / START -->
+        <footer class="footer">
+            <div class="container">
+                
+                <span class="copyright">
+                    Copyright 2018. Champlain Plastics Inc. All rights served.
+                </span>
+                
+                <span class="links">
+                    <a href="#">Terms of service</a>
+                    <a href="#">Privacy policy</a>
+                </span>
+                
+            </div>
+        </footer><!-- Footer / END -->
+    
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="../js/main.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+             function initMap(){
+                latitude = parseFloat(44.985933);
+                longitude = parseFloat(-73.37889189999999);
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 14,
+                    center: {lat: latitude, lng: longitude},
+                    scrollwheel: false,
+                    mapTypeControlOptions: {
+                        mapTypeIds: []
+                    }
+                });
+
+                var marker = new google.maps.Marker({
+                    position: {lat: latitude, lng: longitude},
+                    map: map,
+                    title: 'We are located here!'
+                });
+
+                
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+        
+    </body>
+</html>
