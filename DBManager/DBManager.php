@@ -43,11 +43,10 @@ class DBManager
 	function Login($Username, $Password)
 	{
         $conn = ConnectionMaker::getConnection();
-		
-		//wrtie the sql query
+
 		$sql = "SELECT Username, User_Password FROM USER
-		WHERE Username = '$Username'
-		And User_Password = '$Password'";
+		WHERE Username = "+$Username+"
+		And User_Password = "+$Password+";";
 
 		//perfrom the query and store the results	
 		$result = $conn->query($sql);
@@ -55,13 +54,12 @@ class DBManager
 		//check to see if there are any records returned
 		if($result->num_rows = 1)
 		{
-			//put the username into a session 
-			$_SESSION["USERNAME"] = "$Username";
-			//send the user to the next page
-			header('Location: placeholder.url');
+
+			return true;
+
 		}
 		else{
-			echo "Username or password were incorrect";
+			return false;
 		}
 	}
 
