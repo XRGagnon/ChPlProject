@@ -8,6 +8,9 @@
 class DBManager
 {
 
+	///////////////////////// Reports Section ///////////////////////////////////////
+	// This includes Summary, Detail and Exception 
+
 	/*
 	Summary of the Summary Report
 	- Retrieves information from users wh registered by the specified date
@@ -168,8 +171,6 @@ class DBManager
 		{
 			echo "There were no records returned for the specified date";
 		}
-		
-
 	}
 	
 	/* Summary of Login function
@@ -177,6 +178,9 @@ class DBManager
 	-Checks if user exist, if user does then the login is performed
 	-If user does not exist, puts and error for password or email
 	*/
+	
+	//////////////////////////////// Procedures section ////////////////////////////////////
+	// This includes Login, Register 
 	
 	function Login($Username, $Password)
 	{
@@ -249,6 +253,96 @@ class DBManager
 		}
 		else{
 			echo "That Username already exists";
+		}
+	}
+	
+	function Cart($USERVARIABLE)
+	{
+		$conn = ConnectionMaker::getConnection();
+		
+		$sql = "SELECT Item_Name, Item_Qty, Item_Price * Item_Qty AS “Cost” FROM CART_ITEM, CART, ITEM, USER
+		WHERE USER.User_ID = CART.User_ID
+		And CART.Cart_ID = CART_ITEM.Cart_ID
+		And CART_ITEM.Item_ID = ITEM.Item_ID
+		And USER.User_ID = ". $USERVARIABLE . ";";
+		
+		$result = $conn->query($sql);
+		
+		if($result -> num_rows > 0)
+		{
+			echo "$row";
+		}
+		else{
+			echo "you do not have anything in your cart";
+		}
+	}
+	
+	function Add_Item($Item_NameVariable, $Item_PriceVariable, $Date, $Cat_ID)
+	{
+		$conn = ConnectionMaker::getConnection();
+		
+		$sql = "INSERT INTO TABLE ITEM 
+		VALUES (".$Item_NameVariable.", ".$Item_PriceVariable.", ".$Date.", ".Cat_ID.");";
+		
+		if($conn->query($sql) === true)
+		{
+			echo "Item Added Successfully";
+		}
+		else{
+			echo "Something went wrong, try again later";
+		}
+	}
+	
+	function Update_Item($ItemNameVariable, $PriceVariable, $ItemIdVariable)
+	{
+		$conn = ConnectionMaker::getConnection();
+		
+		$sql = "Update ITEM
+		Set Item_Name = ".$ItemNameVariable.", Item_Price = ".$PriceVariable." 
+		Where Item_ID = ".Item_IDVariable.";";
+		
+		if($conn->query($sql) === true)
+		{
+			echo "Item has been successfully updated";
+		}
+		else{
+			echo "Something went wrong, please try again another time";
+		}
+	}
+	
+	function Remove_Item($ItemIdVariable)
+	{
+		$conn = ConnectionMaker::getConnection();
+		
+		$sql = "DELETE FROM ITEM
+		SWhere 
+		Item_ID = ".$ItemIdVariable.";";
+		
+		if($conn->query($sql) === true)
+		{
+			echo "Item has been successfully updated";
+		}
+		else{
+			echo "Something went wrong, please try again another time";
+		}
+	}
+	
+	// This Function needs a little review, not sure in what context this is used
+	function View_Items()
+	{
+		$conn = ConnectionMaker::getConnection();
+		
+		$sql = "SELECT Item_Name, Item_Price 
+		FROM ITEMS;";
+		
+		$result = $conn->query($sql);
+		
+		if($result -> num_rows > 0)
+		{
+			echo "$row"
+		}
+		else{
+			echo "Nothing could be displayed at this time, try agin later";
 		}
 	}
 }
