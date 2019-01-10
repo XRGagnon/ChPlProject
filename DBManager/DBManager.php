@@ -7,6 +7,39 @@
  */
 class DBManager
 {
+	function Detail($DATEVARIABLE)
+	{
+	    $conn = ConnectionMaker::getConnection();
+		
+		//write the sql query
+		$sql = "SELECT * FROM USER, TRANSACTIONS, CART
+		WHERE TRANSACTIONS.Transaction_ID = USER.User_ID
+		And TRANSACTIONS.Cart_ID = CART.Cart_Id
+		And TRANSACTIONS.Transaction_Date >". $DATEVARIABLE; 
+		
+		$sql2 = "SELECT * FROM USER";
+		
+		$sql3 = "SELECT * FROM CHANGES, USER, ITEM
+		WHERE CHANGES.Item_ID = ITEM.Item_ID
+		AND CHANGES.User_ID = USER.User_ID
+		AND CHANGES.Change_Date >". $DATEVARIABLE;
+
+		//get the result form the sql query
+		$result = $conn->query($sql);
+
+		//check to see if there are any rows returned from the query
+		if($result->num_rows > 0)
+		{
+			while($row = $result->fetch_assoc())
+			{
+				echo "$row";
+			}
+		}
+		else
+		{
+			echo "There were no records returned for the specified date";
+		}
+	} 
 
 	function Summary($DATEVARIABLE)
 	{
@@ -48,7 +81,7 @@ class DBManager
 		WHERE Username = "+$Username+"
 		And User_Password = "+$Password+";";
 
-		//perfrom the query and store the results	
+		//perfrom the query and store the results
 		$result = $conn->query($sql);
 		
 		//check to see if there are any records returned
@@ -79,16 +112,16 @@ class DBManager
 		
 		//write the query for checking if Username Exists
 		$sqlCheckUsername = "SELECT Username FROM USER
-		WHERE Username = '$Username'";  
+		WHERE Username = '$Username'"; 
 									
-		//Write the query for checking if Email Exists							
+		//Write the query for checking if Email Exists
 		$sqlCheckEmail = "SELECT Email User_Email FROM USER
-		WHERE User_Email = '$Email'"; 
+		WHERE User_Email = '$Email'";
 		
 		//get result from the user query
 		$resultUsername = $conn->query($sqlCheckUsername);
 
-		//get result from email query 
+		//get result from email query
 		$resultEmail = $conn->query($sqlCheckEmail);
 		
 		if($resultUsername->num_rows = 0)
@@ -113,6 +146,8 @@ class DBManager
 			echo "That Username already exists";
 		}
 	}
+	
+	
 }
 
 
