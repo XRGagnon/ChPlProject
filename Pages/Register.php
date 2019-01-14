@@ -1,9 +1,13 @@
+<!-- include the models for easy access to the fucntions-->
 <?php
-include_once "../Models/Defaults.php";
-include_once "../Models/Partials.php";
+
+include "../Models/Defaults.php";
+include "../Models/Partials.php";
+//call the default header 
 DefaultHead();
 ?>
 <h2>Register Page</h2><br>
+<!-- form collection-->
 <form action="../Controllers/RegisterController.php" method="POST">
 	<table>
 		<tr>
@@ -70,6 +74,8 @@ DefaultHead();
 	<table>
 	
 </form>
+<!-- End of form collection -->
 <?php
+//calling the default footer
 DefaultFoot();
 ?>

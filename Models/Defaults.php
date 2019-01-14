@@ -55,7 +55,10 @@ function DefaultHead()
                     <ul class="nav navbar-nav">
                     
                         <li class="drop active">
+
                             <a href="../Pages/TestHome.php">
+
+
                                 Home
                             </a>
                         </li>
@@ -122,8 +125,14 @@ function DefaultHead()
                         </li>
 
                         <li class="drop">
-                            <a href="#login">
+                            <a href="../Pages/Login.php">
                                 Dealer Login
+                            </a>
+                        </li>
+						
+						<li class="drop">
+                            <a href="../Pages/Register.php">
+                                Dealer Register
                             </a>
                         </li>
 
