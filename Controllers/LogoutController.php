@@ -5,8 +5,8 @@
  * Date: 14/12/2018
  * Time: 10:22 AM
  */
-include "../Models/Security.php";
-include "../DBManager/DBManager.php";
+include_once "../Models/Security.php";
+include_once "../DBManager/DBManager.php";
 sec_session_start();
 
 // Unset all session values

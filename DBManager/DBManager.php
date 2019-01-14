@@ -5,6 +5,8 @@
  * Date: 13/12/2018
  * Time: 10:27 AM
  */
+
+include_once "../DBManager/ConnectionMaker.php";
 class DBManager
 {
 
@@ -34,8 +36,9 @@ class DBManager
 			echo "There were no records returned for the specified date";
 		}
 	}
+
     //Secure login
-    function Login($user, $password) {
+    static function Login($user, $password) {
         $conn = ConnectionMaker::getConnection();
         // Using prepared statements means that SQL injection is not possible.
         if ($stmt = $conn->prepare("SELECT User_ID, Username, User_Password 
@@ -55,7 +58,8 @@ class DBManager
                     // Check if the password in the database matches
                     // the password the user submitted. We are using
                     // the password_verify function to avoid timing attacks.
-                    if (password_verify($password, $db_password)) {
+                    $pEq = ($password == $db_password);
+                    if ($pEq){
                         // Password is correct!
                         // Get the user-agent string of the user.
                         $user_browser = $_SERVER['HTTP_USER_AGENT'];

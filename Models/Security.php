@@ -5,7 +5,8 @@
  * Date: 14/12/2018
  * Time: 9:44 AM
  */
-include "../DBManager/DBManager.php";
+include_once "../DBManager/DBManager.php";
+define("SECURE", FALSE);    // FOR DEVELOPMENT ONLY!!!!
 function sec_session_start() {
     $session_name = 'sec_session_id';   // Set a custom session name
     $secure = SECURE;
@@ -40,9 +41,9 @@ function Login_Check() {
         // Get the user-agent string of the user.
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
 
-        if ($stmt = $conn->prepare("SELECT password 
-                                      FROM members 
-                                      WHERE id = ? LIMIT 1")) {
+        if ($stmt = $conn->prepare("SELECT User_Password
+                                      FROM user 
+                                      WHERE User_ID = ? LIMIT 1")) {
             // Bind "$user_id" to parameter.
             $stmt->bind_param('i', $user_id);
             $stmt->execute();   // Execute the prepared query.

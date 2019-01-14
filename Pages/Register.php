@@ -1,6 +1,6 @@
 <?php
-include "../Models/Defaults.php";
-include "../Models/Partials.php";
+include_once "../Models/Defaults.php";
+include_once "../Models/Partials.php";
 DefaultHead();
 ?>
 <h2>Register Page</h2><br>
@@ -58,8 +58,14 @@ DefaultHead();
 			<td>
 			</td>
 			<td align="right">
-				<input type="submit" value="Register Account">
-			</td>
+                <input type="button"
+                       value="Register"
+                       onclick="return regformhash(this.form,
+                                   this.form.username,
+                                   this.form.email,
+                                   this.form.password,
+                                   this.form.ConfirmPass);" />
+            </td>
 		</tr>
 	<table>
 	
