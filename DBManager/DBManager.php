@@ -5,6 +5,8 @@
  * Date: 13/12/2018
  * Time: 10:27 AM
  */
+
+include_once "../DBManager/ConnectionMaker.php";
 class DBManager
 {
 	function Detail($DATEVARIABLE)
@@ -73,6 +75,68 @@ class DBManager
 		{
 			echo "There were no records returned for the specified date";
 		}
+
+	}
+  //////////////////////////////// Procedures section ////////////////////////////////////
+	// This includes Login, Register 
+    //Secure login
+  	/* Summary of Login function
+	-Used for when user wants to log in 
+	-Checks if user exist, if user does then the login is performed
+	-If user does not exist, puts and error for password or email
+	*/
+    static function Login($user, $password) {
+        $conn = ConnectionMaker::getConnection();
+        // Using prepared statements means that SQL injection is not possible.
+        if ($stmt = $conn->prepare("SELECT User_ID, Username, User_Password 
+        FROM user
+       WHERE Username = ?
+        LIMIT 1")) {
+            $stmt->bind_param('s', $user);  // Bind "$user" to parameter.
+            $stmt->execute();    // Execute the prepared query.
+            $stmt->store_result();
+
+            // get variables from result.
+            $stmt->bind_result($user_id, $username, $db_password);
+            $stmt->fetch();
+
+            if ($stmt->num_rows == 1) {
+
+                    // Check if the password in the database matches
+                    // the password the user submitted. We are using
+                    // the password_verify function to avoid timing attacks.
+                    $pEq = ($password == $db_password);
+                    if ($pEq){
+                        // Password is correct!
+                        // Get the user-agent string of the user.
+                        $user_browser = $_SERVER['HTTP_USER_AGENT'];
+                        // XSS protection as we might print this value
+                        $user_id = preg_replace("/[^0-9]+/", "", $user_id);
+                        $_SESSION['user_id'] = $user_id;
+                        // XSS protection as we might print this value
+                        $username = preg_replace("/[^a-zA-Z0-9_\-]+/",
+                            "",
+                            $username);
+                        $_SESSION['username'] = $username;
+                        $_SESSION['login_string'] = hash('sha512',
+                            $db_password . $user_browser);
+                        // Login successful.
+                        return true;
+                    } else {
+                        // Password is not correct
+                        return false;
+                    }
+
+            } else {
+                // No user exists.
+                return false;
+            }
+        }
+    }
+
+
+
+
 	} 
 	
 	/* Summary of Detail Report
@@ -206,37 +270,9 @@ class DBManager
 		}
 	}
 	
-	/* Summary of Login function
-	-Used for when user wants to log in 
-	-Checks if user exist, if user does then the login is performed
-	-If user does not exist, puts and error for password or email
-	*/
-	
-	//////////////////////////////// Procedures section ////////////////////////////////////
-	// This includes Login, Register 
-	
-	function Login($Username, $Password)
-	{
-        $conn = ConnectionMaker::getConnection();
 
-		$sql = "SELECT Username, User_Password FROM USER
-		WHERE Username = ".$Username."
-		And User_Password = ".$Password.";";
 
-		//perfrom the query and store the results
-		$result = $conn->query($sql);
-		
-		//check to see if there are any records returned
-		if($result->num_rows = 1)
-		{
 
-			return true;
-
-		}
-		else{
-			return false;
-		}
-	}
 
 	/* Summary of Register function
 	-Used for when a user wants to create an account

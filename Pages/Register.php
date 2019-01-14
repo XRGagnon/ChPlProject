@@ -1,5 +1,6 @@
 <!-- include the models for easy access to the fucntions-->
 <?php
+
 include "../Models/Defaults.php";
 include "../Models/Partials.php";
 //call the default header 
@@ -61,8 +62,14 @@ DefaultHead();
 			<td>
 			</td>
 			<td align="right">
-				<input type="submit" value="Register Account">
-			</td>
+                <input type="button"
+                       value="Register"
+                       onclick="return regformhash(this.form,
+                                   this.form.username,
+                                   this.form.email,
+                                   this.form.password,
+                                   this.form.ConfirmPass);" />
+            </td>
 		</tr>
 	<table>
 	
