@@ -32,7 +32,7 @@ function DefaultHead()
         <link rel="stylesheet" type="text/css" href="../css/Bootstrap/bootstrap-reboot.css">-->
         <!--JS Includes for Form security -->
         <script type="text/JavaScript" src="../js/sha512.js"></script>
-        <script type="text/JavaScript" src="../js/forms.js"></script>
+        <script type="text/JavaScript" src="../js/forms.js"></script>-
     </head>
     <body>
     <!-- Navigation / START -->

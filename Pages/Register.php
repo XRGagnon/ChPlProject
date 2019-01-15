@@ -64,7 +64,11 @@ DefaultHead();
 			<td align="right">
                 <input type="button"
                        value="Register"
-                       onclick=" <?php echo("Vive la France");?>" />
+                       onclick=" return regformhash(this.form,
+                                   this.form.username,
+                                   this.form.email,
+                                   this.form.password,
+                                   this.form.ConfirmPass);" />
             </td>
 		</tr>
 	<table>
@@ -75,8 +79,4 @@ DefaultHead();
 //calling the default footer
 DefaultFoot();
 ?>
-<!-- return regformhash(this.form,
-                                   this.form.username,
-                                   this.form.email,
-                                   this.form.password,
-                                   this.form.ConfirmPass); -->
+<!--  -->
