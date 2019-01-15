@@ -17,8 +17,13 @@ DefaultHead();
 ?>
 
 <a href="Login.php">Login Link</a><br/>
-<div><?php echo($_GET["error"]); ?></div>
+<a href="Register.php">Register Link</a><br/>
+
 
 <?php
+if (Login_Check())
+{
+    echo "Welcime, ".$_SESSION["username"];
+}
 DefaultFoot();
 
