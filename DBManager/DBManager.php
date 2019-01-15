@@ -280,13 +280,14 @@ class DBManager
     {
         $conn = ConnectionMaker::getConnection();
 
-        $sql = "INSERT INTO TABLE ITEM 
-		VALUES (" . $Item_No . ", " . $Cat_ID . ", " . $Sub_Cat_ID . ", " . $Availability 
-		. ", " . $New . ", ". $Colors . ", " . $Title_English . ", " . $Description_English	
-		. ", " . $Title_French . ", " . $Description_French . ", " . $Country_Of_Origin
-		. ", " . $Spare_Parts . ", " . $Large_Image . ", " . $Large_Image_Text 
-		. ", " . $Small_Image . ", " . $Small_Image_Text . ", " . $Instructions 
-		. ", " . $Price . ");";
+        $sql = $conn->prepare("INSERT INTO TABLE ITEM 
+		VALUES ( ? , ? , ? , ? , ? , ? , ? , ?	, ? , ? , ?
+		, ? , ? , ? , ? , ? , ? , ? );");
+		
+		$sql->bind_param("ssssisssssssbsbssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
+					$Title_English, $Description_English, $Title_French, $Description_French, 
+					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
+					$Small_Image_Text, $Instructions, $Price)
 		
 		$Check_For_ItemNo = "SELECT Item_No FROM ITEM
 							WHERE Item_No = ". $Item_No . ";";
@@ -297,7 +298,6 @@ class DBManager
 		$Check_For_Title_French = "SELECT Title_French FROM ITEM
 							WHERE Title_French = ". $Title_French . ";";	
 
-		$result1 = $conn->query($sql);
 		$result2 = $conn->query($Check_For_ItemNo);
 		$result3 = $conn->query($Check_For_Title_English);
 		$result4 = $conn->query($Check_For_Title_French);
@@ -305,7 +305,7 @@ class DBManager
 		if ($result2->num_rows == 0) {
 			if ($result3->num_rows == 0) {
 				if ($result4->num_rows == 0) {
-					if ($conn->query($sql) === true) {
+					if ($sql->execute()) {
 						echo "Item Added Successfully";
 					}
 					else {
@@ -326,7 +326,7 @@ class DBManager
 		}
     }
 
-    function Update_Item($Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
+    function Update_Item($Old_Item_No,$Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
 					$Small_Image_Text, $Instructions, $Price)
@@ -334,15 +334,20 @@ class DBManager
         $conn = ConnectionMaker::getConnection();
 
         $sql = "Update ITEM
-		Set Item_No = " . $Item_No . ", Category = " . $Cat_ID . ", SubCategory = " . $Sub_Cat_ID 
-		. ", Availability = " . $Availability .", New = " . $New . ", Colors = " . $Colors 
-		. ", Title_English = " . $Title_English . ", Description_English = " . $Description_English 
-		. ", Title_French = " . $Title_French . ", Description_French = " . $Description_French 
-		. ", Country_Of_Origin = " . $Country_Of_Origin . ", Spare_Parts = " . $Spare_Parts 
-		. ", Large_Image = " . $Large_Image . ", Large_Image_Text = " . $Large_Image_Text 
-		. ", Small_Image = " . $Small_Image . ", Small_Image_Text = " . $Small_Image_Text
-		. ", Instructions = " . $Instructions . ", Price = " . $Price 
-		. " Where Item_No = " . $Item_No . ";";
+		Set Item_No = ? , Category = ? , SubCategory = ? 
+		, Availability = ? , New = ? , Colors = ? 
+		, Title_English = ? , Description_English = ? 
+		, Title_French = ? , Description_French = ? 
+		, Country_Of_Origin = ? , Spare_Parts = ? 
+		, Large_Image = ? , Large_Image_Text = ? 
+		, Small_Image = ? , Small_Image_Text = ?
+		, Instructions = ? , Price = ? 
+		Where Item_No =  " . $Old_Item_No ." ;";
+		
+		$sql->bind_param("ssssisssssssbsbssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
+					$Title_English, $Description_English, $Title_French, $Description_French, 
+					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
+					$Small_Image_Text, $Instructions, $Price)
 
 		$Check_For_ItemNo = "SELECT Item_No FROM ITEM
 							WHERE Item_No = ". $Item_No . ";";
@@ -353,7 +358,6 @@ class DBManager
 		$Check_For_Title_French = "SELECT Title_French FROM ITEM
 							WHERE Title_French = ". $Title_French . ";";	
 
-		$result1 = $conn->query($sql);
 		$result2 = $conn->query($Check_For_ItemNo);
 		$result3 = $conn->query($Check_For_Title_English);
 		$result4 = $conn->query($Check_For_Title_French);
@@ -361,7 +365,7 @@ class DBManager
 		if ($result2->num_rows == 0) {
 			if ($result3->num_rows == 0) {
 				if ($result4->num_rows == 0) {
-					if ($conn->query($sql) === true) {
+					if ($sql->execute()) {
 						echo "Item Added Successfully";
 					}
 					else {
