@@ -256,7 +256,7 @@ class DBManager
     {
         $conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT Item_Name, Item_Qty, Item_Price * Item_Qty AS Cost FROM CART_ITEM, CART, ITEM, USER
+        $sql = "SELECT Item_No, Title_English, Title_French, Item_Qty, Item_Price * Item_Qty AS Cost FROM CART_ITEM, CART, ITEM, USER
 		WHERE USER.User_ID = CART.User_ID
 		And CART.Cart_ID = CART_ITEM.Cart_ID
 		And CART_ITEM.Item_ID = ITEM.Item_ID
@@ -392,7 +392,7 @@ class DBManager
 
         $sql = "DELETE FROM ITEM
 		SWhere 
-		Item_ID = " . $ItemIdVariable . ";";
+		Item_No = " . $ItemIdVariable . ";";
 
         if ($conn->query($sql) === true) {
             echo "Item has been successfully updated";
@@ -406,7 +406,7 @@ class DBManager
     {
         $conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT Item_Name, Item_Price 
+        $sql = "SELECT Item_No, Price 
 		FROM ITEMS;";
 
         $result = $conn->query($sql);
@@ -416,7 +416,7 @@ class DBManager
                 echo "$row";
             }
         } else {
-            echo "Nothing could be displayed at this time, try agin later";
+            echo "Nothing could be displayed at this time, try again later";
         }
     }
 
