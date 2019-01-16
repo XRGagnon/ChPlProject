@@ -406,15 +406,19 @@ class DBManager
     {
         $conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT Item_No, Price 
+        $sql = "SELECT * 
 		FROM ITEMS;";
 
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
+			echo "<table>"
             while ($row = $result->fetch_assoc()) {
+				echo "<tr>";
                 echo "$row";
+				echo "</tr>";
             }
+			echo "</table>"
         } else {
             echo "Nothing could be displayed at this time, try again later";
         }

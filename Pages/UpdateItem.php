@@ -3,7 +3,7 @@ include "../Models/Defaults.php";
 include "../Models/Partials.php";
 DefaultHead();
 ?>
-<h2>Add Item Page</h2><br>
+<h2>Update Item Page</h2><br>
 <form action="../Controllers/RegisterController.php" method="POST">
 	<table>
 		<tr>
