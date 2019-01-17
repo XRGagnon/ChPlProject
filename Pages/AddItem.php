@@ -3,7 +3,7 @@ include "../Models/Defaults.php";
 include "../Models/Partials.php";
 DefaultHead();
 ?>
-<h2>Add Item Page</h2><br>
+<h2>Add Item Page</h2>
 <form action="../Controllers/RegisterController.php" method="POST">
 	<table>
 		<tr>
@@ -101,14 +101,6 @@ DefaultHead();
 				<input type="text" name="Description_French" id="Description_French"><br>
 			</td>
 		</tr>	
-		<tr>
-			<td style="text-align: right; margin-left: 10px;">
-				<label for="Country_Of_Origin">Country of Origin</label>
-			</td>
-			<td>
-				<input type="text" name="Country_Of_Origin" id="Country_Of_Origin"><br>
-			</td>
-		</tr>
 		<tr>
 			<td style="text-align: right; margin-left: 10px;">
 				<label for="Country_Of_Origin">Country of Origin</label>

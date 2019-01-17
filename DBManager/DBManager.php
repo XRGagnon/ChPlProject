@@ -7,6 +7,7 @@
  */
 
 include_once "../DBManager/ConnectionMaker.php";
+include_once "../Models/Defaults.php";
 class DBManager
 {
 
@@ -287,7 +288,7 @@ class DBManager
 		$sql->bind_param("ssssisssssssbsbssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
-					$Small_Image_Text, $Instructions, $Price)
+					$Small_Image_Text, $Instructions, $Price);
 		
 		$Check_For_ItemNo = "SELECT Item_No FROM ITEM
 							WHERE Item_No = ". $Item_No . ";";
@@ -347,7 +348,7 @@ class DBManager
 		$sql->bind_param("ssssisssssssbsbssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
-					$Small_Image_Text, $Instructions, $Price)
+					$Small_Image_Text, $Instructions, $Price);
 
 		$Check_For_ItemNo = "SELECT Item_No FROM ITEM
 							WHERE Item_No = ". $Item_No . ";";
@@ -391,7 +392,7 @@ class DBManager
         $conn = ConnectionMaker::getConnection();
 
         $sql = "DELETE FROM ITEM
-		SWhere 
+		Where 
 		Item_No = " . $ItemIdVariable . ";";
 
         if ($conn->query($sql) === true) {
@@ -402,23 +403,58 @@ class DBManager
     }
 
     // This Function needs a little review, not sure in what context this is used
-    function View_Items()
+    static function View_Items()
     {
         $conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT * 
-		FROM ITEMS;";
+        $sql = "SELECT * FROM ITEM;";
 
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-			echo "<table>"
+			echo "<table id='viewall'>";	
+			echo "<tr>";
+				echo "<th>Item_No</th>";
+				echo "<th>Category</th>";
+				echo "<th>Sub Category</th>";
+				echo "<th>Availability</th>";
+				echo "<th>New</th>";
+				echo "<th>Colors</th>";
+				echo "<th>Title_English</th>";
+				echo "<th>Description_English</th>";
+				echo "<th>Title French</th>";
+				echo "<th>Description French</th>";
+				echo "<th>Country Of Origin</th>";
+				echo "<th>Spare Parts</th>";
+				echo "<th>Large Image</th>";
+				echo "<th>Large Image Text</th>";
+				echo "<th>Small Image</th>";
+				echo "<th>Small Image Text</th>";
+				echo "<th>Instructions</th>";
+				echo "<th>Price</th>";
+				echo "<th></th><th></th>";
+			echo "</tr>";		
             while ($row = $result->fetch_assoc()) {
+
 				echo "<tr>";
-                echo "$row";
+				foreach($row as $val)
+				{
+					echo "<td>";
+					if(!isset($val))
+					{
+						print_r('');
+					}
+					else
+					{
+						print_r($val);
+					}
+					echo "</td>";
+				}
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a><td>'; 
 				echo "</tr>";
             }
-			echo "</table>"
+			echo "</table>";
         } else {
             echo "Nothing could be displayed at this time, try again later";
         }

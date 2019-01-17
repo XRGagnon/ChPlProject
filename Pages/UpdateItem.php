@@ -111,14 +111,6 @@ DefaultHead();
 		</tr>
 		<tr>
 			<td style="text-align: right; margin-left: 10px;">
-				<label for="Country_Of_Origin">Country of Origin</label>
-			</td>
-			<td>
-				<input type="text" name="Country_Of_Origin" id="Country_Of_Origin"><br>
-			</td>
-		</tr>
-		<tr>
-			<td style="text-align: right; margin-left: 10px;">
 				<label for="Spare_Parts">Spare Parts</label>
 			</td><br><br>
 			<td>

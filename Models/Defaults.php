@@ -27,6 +27,7 @@ function DefaultHead()
         <link rel="stylesheet" href="../css/main.css" type="text/css" />
         <link rel="stylesheet" href="../css/blue.css" type="text/css" />
 		<link rel="stylesheet" href="../css/Forms.css" type="text/css" />
+		<link rel="stylesheet" href="../css/AdminForms.css" type="text/css" />
         <!--<link rel="stylesheet" type="text/css" href="../css/Bootstrap/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../css/Bootstrap/bootstrap-grid.css">
         <link rel="stylesheet" type="text/css" href="../css/Bootstrap/bootstrap-reboot.css">-->

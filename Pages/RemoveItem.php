@@ -1,8 +1,8 @@
 <?php
-include "../Models/Defaults.php";
-include "../Models/Partials.php";
-include "../DBManager/DBManager.php";
-include "../DBManager/ConnectionMaker.php";
+include_once "../Models/Defaults.php";
+include_once "../Models/Partials.php";
+include_once "../DBManager/DBManager.php";
+include_once "../DBManager/ConnectionMaker.php";
 DefaultHead();
 ?>
 
@@ -36,7 +36,7 @@ DefaultHead();
 
 <?php
 
-$conn = ConnectionMaker::getConne
+$conn = ConnectionMaker::getConnection();
 
 $ViewItems = DBManager::View_Items();
 
