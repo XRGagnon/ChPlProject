@@ -10,8 +10,8 @@ DefaultHead();
 
 <p>Select a Category to narrow your search</p>
 
-<from>
-	<select name="category">
+<form method="POST" action="../Controllers/RemoveItemController.php">
+	<select name="Category" id="Category">
 		<option value="1">New Products</option>
 		<option value="2">Maintenance</option>
 		<option value="3">Vacuum Hoses</option>
@@ -24,22 +24,32 @@ DefaultHead();
 		<option value="10">Cover Reels & Solar Rollers</option>
 		<option value="11">Games, Chairs & More</option>
 	</select>
-	<input type="submit" value="Search Category">
+	<input type="submit" value="Search Category" name="CategoryForm">
 </form>
 
-<form>
+<form method="post" action="../Controllers/RemoveItemController.php">
 
 	<input type="text" name="Item_No" id="Item_No">
 	
-	<input type="submit" value="Search Item">
+	<input type="submit" value="Search Item" name="ItemNoForm">
 </form>
 
 <?php
 
 $conn = ConnectionMaker::getConnection();
 
-$ViewItems = DBManager::View_Items();
-
+if(isset($_SESSION['CAT'])
+{
+	$ViewItems = DBManager::Category($_SESSION['CAT']);
+}
+else if(isset($_SESSION['Item'])
+{
+	$ViewItems = DBManager::View_One_Item($_SESSION['Item']);
+}
+else
+{
+	$ViewItems = DBManager::View_Items();
+}
 ?>
 
 <?php

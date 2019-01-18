@@ -412,6 +412,7 @@ class DBManager
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
+			echo "<div style='overflow-x:auto'>";
 			echo "<table id='viewall'>";	
 			echo "<tr>";
 				echo "<th>Item_No</th>";
@@ -432,7 +433,7 @@ class DBManager
 				echo "<th>Small Image Text</th>";
 				echo "<th>Instructions</th>";
 				echo "<th>Price</th>";
-				echo "<th></th><th></th>";
+				echo "<th>Remove Item</th><th>Edit Item</th>";
 			echo "</tr>";		
             while ($row = $result->fetch_assoc()) {
 
@@ -455,10 +456,134 @@ class DBManager
 				echo "</tr>";
             }
 			echo "</table>";
-        } else {
+			echo "</div>";
+        } else 
+		{
             echo "Nothing could be displayed at this time, try again later";
         }
     }
+	
+	function View_One_Item($Item_ID)
+	{
+		$conn = ConnectionMaker::getConnection();
+
+        $sql = "SELECT * FROM ITEM
+		WHERE Item_No = " . $Item_ID . ";";
+
+        $result = $conn->query($sql);
+		
+        if ($result->num_rows > 0) {
+			echo "<div style='overflow-x:auto'>";
+			echo "<table id='viewall'>";	
+			echo "<tr>";
+				echo "<th>Item_No</th>";
+				echo "<th>Category</th>";
+				echo "<th>Sub Category</th>";
+				echo "<th>Availability</th>";
+				echo "<th>New</th>";
+				echo "<th>Colors</th>";
+				echo "<th>Title_English</th>";
+				echo "<th>Description_English</th>";
+				echo "<th>Title French</th>";
+				echo "<th>Description French</th>";
+				echo "<th>Country Of Origin</th>";
+				echo "<th>Spare Parts</th>";
+				echo "<th>Large Image</th>";
+				echo "<th>Large Image Text</th>";
+				echo "<th>Small Image</th>";
+				echo "<th>Small Image Text</th>";
+				echo "<th>Instructions</th>";
+				echo "<th>Price</th>";
+				echo "<th>Remove Item</th><th>Edit Item</th>";
+			echo "</tr>";		
+            while ($row = $result->fetch_assoc()) {
+
+				echo "<tr>";
+				foreach($row as $val)
+				{
+					echo "<td>";
+					if(!isset($val))
+					{
+						print_r('');
+					}
+					else
+					{
+						print_r($val);
+					}
+					echo "</td>";
+				}
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a><td>'; 
+				echo "</tr>";
+            }
+			echo "</table>";
+			echo "</div>";
+        } else 
+		{
+            echo "There are no items with that Item_No";
+        }
+	}
+	
+	function Category($CAT)
+	{
+		$conn = ConnectionMaker::getConnection();
+
+        $sql = "SELECT * FROM ITEM
+		WHERE Category = " . $CAT . ";";
+
+        $result = $conn->query($sql);
+		
+        if ($result->num_rows > 0) {
+			echo "<div style='overflow-x:auto'>";
+			echo "<table id='viewall'>";	
+			echo "<tr>";
+				echo "<th>Item_No</th>";
+				echo "<th>Category</th>";
+				echo "<th>Sub Category</th>";
+				echo "<th>Availability</th>";
+				echo "<th>New</th>";
+				echo "<th>Colors</th>";
+				echo "<th>Title_English</th>";
+				echo "<th>Description_English</th>";
+				echo "<th>Title French</th>";
+				echo "<th>Description French</th>";
+				echo "<th>Country Of Origin</th>";
+				echo "<th>Spare Parts</th>";
+				echo "<th>Large Image</th>";
+				echo "<th>Large Image Text</th>";
+				echo "<th>Small Image</th>";
+				echo "<th>Small Image Text</th>";
+				echo "<th>Instructions</th>";
+				echo "<th>Price</th>";
+				echo "<th>Remove Item</th><th>Edit Item</th>";
+			echo "</tr>";		
+            while ($row = $result->fetch_assoc()) {
+
+				echo "<tr>";
+				foreach($row as $val)
+				{
+					echo "<td>";
+					if(!isset($val))
+					{
+						print_r('');
+					}
+					else
+					{
+						print_r($val);
+					}
+					echo "</td>";
+				}
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a><td>'; 
+				echo "</tr>";
+            }
+			echo "</table>";
+			echo "</div>";
+        } else 
+		{
+            echo "There are no items in that category";
+        }
+	}
 
 
 }
