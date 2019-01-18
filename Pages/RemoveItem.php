@@ -38,11 +38,11 @@ DefaultHead();
 
 $conn = ConnectionMaker::getConnection();
 
-if(isset($_SESSION['CAT'])
+if(isset($_SESSION['CAT']))
 {
 	$ViewItems = DBManager::Category($_SESSION['CAT']);
 }
-else if(isset($_SESSION['Item'])
+else if(isset($_SESSION['Item']))
 {
 	$ViewItems = DBManager::View_One_Item($_SESSION['Item']);
 }

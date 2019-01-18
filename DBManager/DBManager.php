@@ -5,7 +5,8 @@
  * Date: 13/12/2018
  * Time: 10:27 AM
  */
-
+session_start();
+ 
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Defaults.php";
 class DBManager
@@ -463,12 +464,11 @@ class DBManager
         }
     }
 	
-	function View_One_Item($Item_ID)
+	static function View_One_Item($Item_ID)
 	{
 		$conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT * FROM ITEM
-		WHERE Item_No = " . $Item_ID . ";";
+        $sql = "SELECT * FROM ITEM WHERE Item_No = " . $Item_ID . ";";
 
         $result = $conn->query($sql);
 		
@@ -522,9 +522,11 @@ class DBManager
 		{
             echo "There are no items with that Item_No";
         }
+		unset($_SESSION['CAT']);
+		unset($_SESSION['Item']);
 	}
 	
-	function Category($CAT)
+	static function Category($CAT)
 	{
 		$conn = ConnectionMaker::getConnection();
 
@@ -583,6 +585,8 @@ class DBManager
 		{
             echo "There are no items in that category";
         }
+		unset($_SESSION['CAT']);
+		unset($_SESSION['Item']);
 	}
 
 
