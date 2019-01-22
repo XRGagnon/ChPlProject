@@ -6,7 +6,8 @@ include_once "../DBManager/ConnectionMaker.php";
 DefaultHead();
 ?>
 
-<h2>Remove Item</h2>
+<div style="Margin: 30px;">
+<h2>View All Items Page</h2>
 
 <p>Select a Category to narrow your search</p>
 
@@ -27,6 +28,7 @@ DefaultHead();
 	<input type="submit" value="Search Category" name="CategoryForm">
 </form>
 
+<p>Search for an Item by Item_No, sub Category or by title</p>
 <form method="post" action="../Controllers/ViewItemsController.php">
 
 	<input type="text" name="Item_No" id="Item_No">
@@ -35,13 +37,14 @@ DefaultHead();
 	
 </form>
 
+<p>Reset Changes </p>
 <form method="post" action="../Controllers/ViewItemsController.php">
 
 	<input type="submit" value="Reset" name="Reset">
 	
 </form>
 
-
+</div>
 
 <?php
 

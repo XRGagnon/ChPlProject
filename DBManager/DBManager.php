@@ -465,16 +465,27 @@ class DBManager
         }
     }
 	
-	static function View_One_Item($Item_ID)
+	static function View_One_Item($SEARCH)
 	{
 		$conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT * FROM ITEM WHERE Item_No = '" . $Item_ID . "';";
+        $sql = "SELECT * FROM ITEM WHERE Item_No = '" . $SEARCH . "';";
+		$sql2 = "SELECT * FROM ITEM WHERE Title_English = '" . $SEARCH . "';";
+		$sql3 = "SELECT * FROM ITEM WHERE Title_French = '" . $SEARCH . "';";
+		$sql4 = "SELECT * FROM ITEM,CATEGORY 
+				WHERE ITEM.SubCategory = CATEGORY.Category
+				AND CATEGORY.EnglishCat = '" . $SEARCH . "';";
+		$sql5 = "SELECT * FROM ITEM,CATEGORY 
+				WHERE ITEM.SubCategory = CATEGORY.Category
+				AND CATEGORY.FrenchCat = '" . $SEARCH . "';";				
 
         $result = $conn->query($sql);
+		$result2 = $conn->query($sql2);
+		$result3 = $conn->query($sql3);
+		$result4 = $conn->query($sql4);
+		$result5 = $conn->query($sql5);		
 		
-        if ($result->num_rows > 0) {
-			echo "<div style='overflow-x:auto'>";
+		echo "<div style='overflow-x:auto'>";
 			echo "<table id='viewall'>";	
 			echo "<tr>";
 				echo "<th>Item_No</th>";
@@ -496,7 +507,9 @@ class DBManager
 				echo "<th>Instructions</th>";
 				echo "<th>Price</th>";
 				echo "<th>Remove Item</th><th>Edit Item</th>";
-			echo "</tr>";		
+			echo "</tr>";
+        if ($result->num_rows > 0) {
+		
             while ($row = $result->fetch_assoc()) {
 
 				echo "<tr>";
@@ -517,14 +530,112 @@ class DBManager
 				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a><td>'; 
 				echo "</tr>";
             }
-			echo "</table>";
-			echo "</div>";
         } else 
-		{
+		if ($result2->num_rows > 0) {
+		
+            while ($row = $result->fetch_assoc()) {
+
+				echo "<tr>";
+				foreach($row as $val)
+				{
+					echo "<td>";
+					if(!isset($val))
+					{
+						print_r('');
+					}
+					else
+					{
+						print_r($val);
+					}
+					echo "</td>";
+				}
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a><td>'; 
+				echo "</tr>";
+            }
+
+        } else 
+		if ($result3->num_rows > 0) {
+		
+            while ($row = $result->fetch_assoc()) {
+
+				echo "<tr>";
+				foreach($row as $val)
+				{
+					echo "<td>";
+					if(!isset($val))
+					{
+						print_r('');
+					}
+					else
+					{
+						print_r($val);
+					}
+					echo "</td>";
+				}
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a><td>'; 
+				echo "</tr>";
+            }
+
+        } else
+		if ($result4->num_rows > 0) {
+		
+            while ($row = $result->fetch_assoc()) {
+
+				echo "<tr>";
+				foreach($row as $val)
+				{
+					echo "<td>";
+					if(!isset($val))
+					{
+						print_r('');
+					}
+					else
+					{
+						print_r($val);
+					}
+					echo "</td>";
+				}
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a><td>'; 
+				echo "</tr>";
+            }
+
+        } else
+		if ($result5->num_rows > 0) {
+		
+            while ($row = $result->fetch_assoc()) {
+
+				echo "<tr>";
+				foreach($row as $val)
+				{
+					echo "<td>";
+					if(!isset($val))
+					{
+						print_r('');
+					}
+					else
+					{
+						print_r($val);
+					}
+					echo "</td>";
+				}
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a><td>'; 
+				echo "</tr>";
+            }
+
+        } else	
+		{		
             echo "There are no items with that Item_No";
-        }
+        }			
+		echo "</table>";
+		echo "</div>";
 		unset($_SESSION['CAT']);
-		unset($_SESSION['Item']);
+		unset($_SESSION['Item']);	
+		
+
 	}
 	
 	static function Category($CAT)
