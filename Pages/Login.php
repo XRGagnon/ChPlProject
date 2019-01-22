@@ -21,33 +21,20 @@ if (Login_Check())
 }
 ?>
 
-<br/>
-<form action="../Controllers/LoginController.php" method="POST">
-	<table>
-		<tr>
-			<td>
-				<label for="username">Username: </label>
-			</td>    
-			<td>
-				<input type="text" name="username" /><br/>
-			</td>
-		</tr>
-		<tr>
-			<td>    
-				<label for="password">Password: </label>
-			</td>
-			<td>    
-				<input type="password" name="password" /><br/>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			</td>
-			<td>    
-				<input type="submit" value="Login" />
-			</td>
-		</tr>		
-	</table>
+<?php
+if (isset($_GET['error'])) {
+    echo '<p class="error">Error Logging In!</p>';
+}
+?>
+<form action="../Controllers/LoginController.php" method="post" name="login_form">
+    Username: <input type="text" name="username" /><br/>
+    Password: <input type="password"
+                     name="password"
+                     id="password"/><br/>
+    <input type="button"
+           value="Login"
+           onclick="formhash(this.form, this.form.password);" />
+</form>
 
 
 

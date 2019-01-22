@@ -42,6 +42,7 @@ class DBManager
 
     }
 
+
     /* Summary of Detail Report
     - Used for when a detail report wants to be printed
     - Prints out user info with their transactions made and cart info
