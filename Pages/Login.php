@@ -21,25 +21,16 @@ if (Login_Check())
 }
 ?>
 
-
-
-
-
-
-
-
-
-
 <?php
 if (isset($_GET['error'])) {
     echo '<p class="error">Error Logging In!</p>';
 }
 ?>
-<form action="includes/process_login.php" method="post" name="login_form">
-    Email: <input type="text" name="email" />
+<form action="../Controllers/LoginController.php" method="post" name="login_form">
+    Username: <input type="text" name="username" /><br/>
     Password: <input type="password"
                      name="password"
-                     id="password"/>
+                     id="password"/><br/>
     <input type="button"
            value="Login"
            onclick="formhash(this.form, this.form.password);" />

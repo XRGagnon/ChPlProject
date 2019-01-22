@@ -70,7 +70,7 @@ class DBManager
                 // Check if the password in the database matches
                 // the password the user submitted. We are using
                 // the password_verify function to avoid timing attacks.
-                $pEq = ($password == $db_password);
+                $pEq = (password_verify($password,$db_password));
                 if ($pEq) {
                     // Password is correct!
                     // Get the user-agent string of the user.

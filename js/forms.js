@@ -16,7 +16,6 @@ function formhash(form, password) {
 }
 
 function regformhash(form, uid, email, password, conf) {
-    alert("asdf");
 
     // Check each field has a value
     if (uid.value == ''         ||
@@ -29,8 +28,18 @@ function regformhash(form, uid, email, password, conf) {
     }
 
     // Check the username
+    alert("asdf1");
+    try
+    {
+        var re = /^\w+$/;
+    }
+    catch(e)
+    {
+        alert(e.message)
+    }
 
-    var re = /^\w+$/;
+
+
     if(!re.test(form.username.value)) {
         alert("Username must contain only letters, numbers and underscores. Please try again");
         form.username.focus();

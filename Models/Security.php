@@ -6,7 +6,9 @@
  * Time: 9:44 AM
  */
 include_once "../DBManager/DBManager.php";
+
 define("SECURE", FALSE);    // FOR DEVELOPMENT ONLY!!!!
+
 function sec_session_start() {
     $session_name = 'sec_session_id';   // Set a custom session name
     $secure = SECURE;
@@ -22,7 +24,7 @@ function sec_session_start() {
     session_set_cookie_params($cookieParams["lifetime"], $cookieParams["path"], $cookieParams["domain"], $secure, $httponly);
     // Sets the session name to the one set above.
     session_name($session_name);
-    session_start();            // Start the PHP session
+    $activeSession = session_start();            // Start the PHP session
     session_regenerate_id();    // regenerated the session, delete the old one.
 }
 

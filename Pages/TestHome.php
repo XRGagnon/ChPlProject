@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 /**
  * Created by PhpStorm.
@@ -11,6 +7,7 @@
  */
 include_once "../Models/Defaults.php";
 include_once "../Models/Security.php";
+sec_session_start();
 DefaultHead();
 
 
@@ -18,12 +15,18 @@ DefaultHead();
 
 <a href="Login.php">Login Link</a><br/>
 <a href="Register.php">Register Link</a><br/>
-
+<?php
+if (Login_Check())
+{echo("
+    <a href=\"../Controllers/LogoutController.php\">Logout</a>
+    <div>Welcome, ".$_SESSION["username"]."</div>");
+}
+?>
 
 <?php
 if (Login_Check())
 {
-    echo "Welcime, ".$_SESSION["username"];
+    echo "Welcome, ".$_SESSION["username"];
 }
 DefaultFoot();
 

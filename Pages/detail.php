@@ -1,16 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: xavie
- * Date: 13/12/2018
- * Time: 10:14 AM
- */
-include_once "../Models/Security.php";
-function DefaultHead()
-{
-    ?>
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html lang="en-GB">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -27,16 +16,11 @@ function DefaultHead()
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="../css/main.css" type="text/css" />
         <link rel="stylesheet" href="../css/blue.css" type="text/css" />
-		<link rel="stylesheet" href="../css/Forms.css" type="text/css" />
-        <!--<link rel="stylesheet" type="text/css" href="../css/Bootstrap/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="../css/Bootstrap/bootstrap-grid.css">
-        <link rel="stylesheet" type="text/css" href="../css/Bootstrap/bootstrap-reboot.css">-->
-        <!--JS Includes for Form security -->
-        <script type="text/JavaScript" src="../js/sha512.js"></script>
-        <script type="text/JavaScript" src="../js/forms.js"></script>
     </head>
-    <body>
-    <!-- Navigation / START -->
+
+    <body>  
+
+        <!-- Navigation / START -->
         <nav class="navbar navbar-default">
             <div class="container">
 
@@ -59,17 +43,8 @@ function DefaultHead()
                     <ul class="nav navbar-nav">
                     
                         <li class="drop active">
-
-                            <a href="../Pages/TestHome.php">
-
-
+                            <a href="#">
                                 Home
-                            </a>
-                        </li>
-
-                        <li class="drop active">
-                            <a href="../Pages/Login.php">
-                                Login
                             </a>
                         </li>
 
@@ -117,7 +92,7 @@ function DefaultHead()
                         </li>
                         
                         <li class="drop">
-                            <a href="index.php">
+                            <a href="#">
                                 Instruction Manuals
                             </a>
                         </li>
@@ -129,16 +104,11 @@ function DefaultHead()
                         </li>
 
                         <li class="drop">
-                            <a href="../Pages/Login.php">
+                            <a href="#login">
                                 Dealer Login
                             </a>
                         </li>
-						
-						<li class="drop">
-                            <a href="../Pages/Register.php">
-                                Dealer Register
-                            </a>
-                        </li>
+
                     </ul>
 
                 </div>
@@ -146,13 +116,101 @@ function DefaultHead()
             </div>
 
         </nav><!-- Navigation / END -->
-<?php
-}
+        
+         <div id="content">
 
-function DefaultFoot()
-{
-    ?>
-		<footer class="footer">
+             <!-- Page header / START -->
+            <div class="page-header">
+                <div class="container">
+                    
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6 title">
+                            <h2>Cleaners</h2>
+                            
+                        </div>
+
+                        <div class="col-xs-12 col-md-6 path-tree">
+                            <a href="#">Home</a> / 
+                            <a href="#">Path</a>
+                        </div>
+                    </div>
+
+                </div><!-- Container / END -->
+            </div><!-- Page header / END -->
+
+            <div class="container">
+
+                <div class="row">
+
+                    <section id="shop-detail">
+
+                        <div class="col-xs-12 col-md-8 col-lg-9 shop-detail content-with-sidebar">
+
+                            <!-- Shop item / START -->
+                            <div class="shop-item">
+
+                                <div class="title">
+                                    <span>ACM-846 Automatic Pool Vacuum Cleaner</span>
+                                  
+
+                                    <div class="clear"></div>
+                                </div>
+
+                                <div id="image" class="gallery carousel slide" data-wrap="false">
+                                    <div class="carousel-outer">
+                                    
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner">
+                                            <div class="item active">
+                                                <img src="../image/lg/ACM846.jpg" alt="Automatic Pool Vacuum Cleaner"/>
+                                            </div>
+                                         
+                                        </div>
+                                    </div>
+                                    
+                                   
+                         
+
+                                    
+                                </div><!-- Row / END -->
+
+                 
+
+                            </div><!-- Shop item / END -->
+
+                        </div><!-- Shop detail / END -->
+
+                    </section>
+
+                   <div class="col-xs-12 col-md-4 col-lg-3 sidebar">
+  
+                              <div class="page-subheader">
+                                 <h1>Automatic pool vacuum cleaner with 12 hose sections of 3'</h1>
+                                    
+<h3> See catalog for spare parts.</h3>
+                                    
+                                <div class="btn btn-primary btn-circle sm-margin-top"><a href="#">Download Instruction Manual</a></div>
+                               
+  
+                                <div class="panel panel-light panel-default sm-margin-top">
+                       
+                        <div class="panel-body">Colours available: Red/Grey</div>
+                        
+                    </div>
+ </div>
+                       
+
+                        
+
+                    </div>
+
+                </div><!-- Row / END -->
+
+            </div><!-- Container / END -->
+
+        </div><!-- Content / END -->
+        <!-- Footer / START -->
+        <footer class="footer">
             <div class="container">
                 
                 <span class="copyright">
@@ -172,9 +230,8 @@ function DefaultFoot()
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <script src="../js/main.js"></script>
+        <script src="file:///Macintosh HD/Users/user/Sites/Olympic2019/js/main.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        
     </body>
-    </html>
-    <?php
-}
+</html>
