@@ -41,63 +41,6 @@ class DBManager
         }
 
     }
-    //////////////////////////////// Procedures section ////////////////////////////////////
-    // This includes Login, Register
-    //Secure login
-    /* Summary of Login function
-  -Used for when user wants to log in
-  -Checks if user exist, if user does then the login is performed
-  -If user does not exist, puts and error for password or email
-  */
-    static function Login($user, $password)
-    {
-        $conn = ConnectionMaker::getConnection();
-        // Using prepared statements means that SQL injection is not possible.
-        if ($stmt = $conn->prepare("SELECT User_ID, Username, User_Password 
-        FROM user
-       WHERE Username = ?
-        LIMIT 1")) {
-            $stmt->bind_param('s', $user);  // Bind "$user" to parameter.
-            $stmt->execute();    // Execute the prepared query.
-            $stmt->store_result();
-
-            // get variables from result.
-            $stmt->bind_result($user_id, $username, $db_password);
-            $stmt->fetch();
-
-            if ($stmt->num_rows == 1) {
-
-                // Check if the password in the database matches
-                // the password the user submitted. We are using
-                // the password_verify function to avoid timing attacks.
-                $pEq = (password_verify($password,$db_password));
-                if ($pEq) {
-                    // Password is correct!
-                    // Get the user-agent string of the user.
-                    $user_browser = $_SERVER['HTTP_USER_AGENT'];
-                    // XSS protection as we might print this value
-                    $user_id = preg_replace("/[^0-9]+/", "", $user_id);
-                    $_SESSION['user_id'] = $user_id;
-                    // XSS protection as we might print this value
-                    $username = preg_replace("/[^a-zA-Z0-9_\-]+/",
-                        "",
-                        $username);
-                    $_SESSION['username'] = $username;
-                    $_SESSION['login_string'] = hash('sha512',
-                        $db_password . $user_browser);
-                    // Login successful.
-                    return true;
-                } else {
-                    // Password is not correct
-                    return false;
-                }
-
-            } else {
-                // No user exists.
-                return false;
-            }
-        }
-    }
 
 
     /* Summary of Detail Report
@@ -189,7 +132,7 @@ class DBManager
         }
 
         //check to see if anything is returned ---------Result 2
-        if ($result->num_rows > 0) {
+        if ($result2->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "$row";
             }
@@ -198,7 +141,7 @@ class DBManager
         }
 
         //check to see if anything is returned ---------Result 3
-        if ($result->num_rows > 0) {
+        if ($result3->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "$row";
             }
@@ -206,7 +149,64 @@ class DBManager
             echo "There were no records returned for the specified date";
         }
     }
+	
+//////////////////////////////// Procedures section ////////////////////////////////////
+    // This includes Login, Register
+    //Secure login
+    /* Summary of Login function
+  -Used for when user wants to log in
+  -Checks if user exist, if user does then the login is performed
+  -If user does not exist, puts and error for password or email
+  */
+    static function Login($user, $password)
+    {
+        $conn = ConnectionMaker::getConnection();
+        // Using prepared statements means that SQL injection is not possible.
+        if ($stmt = $conn->prepare("SELECT User_ID, Username, User_Password 
+        FROM user
+       WHERE Username = ?
+        LIMIT 1")) {
+            $stmt->bind_param('s', $user);  // Bind "$user" to parameter.
+            $stmt->execute();    // Execute the prepared query.
+            $stmt->store_result();
 
+            // get variables from result.
+            $stmt->bind_result($user_id, $username, $db_password);
+            $stmt->fetch();
+
+            if ($stmt->num_rows == 1) {
+
+                // Check if the password in the database matches
+                // the password the user submitted. We are using
+                // the password_verify function to avoid timing attacks.
+                $pEq = ($password == $db_password);
+                if ($pEq) {
+                    // Password is correct!
+                    // Get the user-agent string of the user.
+                    $user_browser = $_SERVER['HTTP_USER_AGENT'];
+                    // XSS protection as we might print this value
+                    $user_id = preg_replace("/[^0-9]+/", "", $user_id);
+                    $_SESSION['user_id'] = $user_id;
+                    // XSS protection as we might print this value
+                    $username = preg_replace("/[^a-zA-Z0-9_\-]+/",
+                        "",
+                        $username);
+                    $_SESSION['username'] = $username;
+                    $_SESSION['login_string'] = hash('sha512',
+                        $db_password . $user_browser);
+                    // Login successful.
+                    return true;
+                } else {
+                    // Password is not correct
+                    return false;
+                }
+
+            } else {
+                // No user exists.
+                return false;
+            }
+        }
+    }
 
     /* Summary of Register function
     -Used for when a user wants to create an account
@@ -274,33 +274,113 @@ class DBManager
         }
     }
 
-    function Add_Item($Item_NameVariable, $Item_PriceVariable, $Date, $Cat_ID)
+    function Add_Item($Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
+					$Title_English, $Description_English, $Title_French, $Description_French, 
+					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
+					$Small_Image_Text, $Instructions, $Price)
     {
         $conn = ConnectionMaker::getConnection();
 
         $sql = "INSERT INTO TABLE ITEM 
-		VALUES (" . $Item_NameVariable . ", " . $Item_PriceVariable . ", " . $Date . ", " . Cat_ID . ");";
+		VALUES (" . $Item_No . ", " . $Cat_ID . ", " . $Sub_Cat_ID . ", " . $Availability 
+		. ", " . $New . ", ". $Colors . ", " . $Title_English . ", " . $Description_English	
+		. ", " . $Title_French . ", " . $Description_French . ", " . $Country_Of_Origin
+		. ", " . $Spare_Parts . ", " . $Large_Image . ", " . $Large_Image_Text 
+		. ", " . $Small_Image . ", " . $Small_Image_Text . ", " . $Instructions 
+		. ", " . $Price . ");";
+		
+		$Check_For_ItemNo = "SELECT Item_No FROM ITEM
+							WHERE Item_No = ". $Item_No . ";";
+							
+		$Check_For_Title_English = "SELECT Title_English FROM ITEM
+							WHERE Title_English = ". $Title_English . ";";
+							
+		$Check_For_Title_French = "SELECT Title_French FROM ITEM
+							WHERE Title_French = ". $Title_French . ";";	
 
-        if ($conn->query($sql) === true) {
-            echo "Item Added Successfully";
-        } else {
-            echo "Something went wrong, try again later";
-        }
+		$result1 = $conn->query($sql);
+		$result2 = $conn->query($Check_For_ItemNo);
+		$result3 = $conn->query($Check_For_Title_English);
+		$result4 = $conn->query($Check_For_Title_French);
+
+		if ($result2->num_rows == 0) {
+			if ($result3->num_rows == 0) {
+				if ($result4->num_rows == 0) {
+					if ($conn->query($sql) === true) {
+						echo "Item Added Successfully";
+					}
+					else {
+						echo "Something went wrong, try again later";
+					}					
+				}
+				else
+				{
+					echo "There is already an Item that has that French Title";
+				}
+			}
+			else{
+				echo "There is already an Item that has that English Title";
+			}			
+		}
+		else{
+			echo "There is already an Item with that Item Number";
+		}
     }
 
-    function Update_Item($ItemNameVariable, $PriceVariable, $ItemIdVariable)
+    function Update_Item($Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
+					$Title_English, $Description_English, $Title_French, $Description_French, 
+					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
+					$Small_Image_Text, $Instructions, $Price)
     {
         $conn = ConnectionMaker::getConnection();
 
         $sql = "Update ITEM
-		Set Item_Name = " . $ItemNameVariable . ", Item_Price = " . $PriceVariable . " 
-		Where Item_ID = " . Item_IDVariable . ";";
+		Set Item_No = " . $Item_No . ", Category = " . $Cat_ID . ", SubCategory = " . $Sub_Cat_ID 
+		. ", Availability = " . $Availability .", New = " . $New . ", Colors = " . $Colors 
+		. ", Title_English = " . $Title_English . ", Description_English = " . $Description_English 
+		. ", Title_French = " . $Title_French . ", Description_French = " . $Description_French 
+		. ", Country_Of_Origin = " . $Country_Of_Origin . ", Spare_Parts = " . $Spare_Parts 
+		. ", Large_Image = " . $Large_Image . ", Large_Image_Text = " . $Large_Image_Text 
+		. ", Small_Image = " . $Small_Image . ", Small_Image_Text = " . $Small_Image_Text
+		. ", Instructions = " . $Instructions . ", Price = " . $Price 
+		. " Where Item_No = " . $Item_No . ";";
 
-        if ($conn->query($sql) === true) {
-            echo "Item has been successfully updated";
-        } else {
-            echo "Something went wrong, please try again another time";
-        }
+		$Check_For_ItemNo = "SELECT Item_No FROM ITEM
+							WHERE Item_No = ". $Item_No . ";";
+							
+		$Check_For_Title_English = "SELECT Title_English FROM ITEM
+							WHERE Title_English = ". $Title_English . ";";
+							
+		$Check_For_Title_French = "SELECT Title_French FROM ITEM
+							WHERE Title_French = ". $Title_French . ";";	
+
+		$result1 = $conn->query($sql);
+		$result2 = $conn->query($Check_For_ItemNo);
+		$result3 = $conn->query($Check_For_Title_English);
+		$result4 = $conn->query($Check_For_Title_French);
+
+		if ($result2->num_rows == 0) {
+			if ($result3->num_rows == 0) {
+				if ($result4->num_rows == 0) {
+					if ($conn->query($sql) === true) {
+						echo "Item Added Successfully";
+					}
+					else {
+						echo "Something went wrong, try again later";
+					}					
+				}
+				else
+				{
+					echo "There is already an Item that has that French Title";
+				}
+			}
+			else{
+				echo "There is already an Item that has that English Title";
+			}			
+		}
+		else{
+			echo "There is already an Item with that Item Number";
+		}
     }
 
     function Remove_Item($ItemIdVariable)
