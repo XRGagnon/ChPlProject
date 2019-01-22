@@ -468,7 +468,7 @@ class DBManager
 	{
 		$conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT * FROM ITEM WHERE Item_No = " . $Item_ID . ";";
+        $sql = "SELECT * FROM ITEM WHERE Item_No = '" . $Item_ID . "';";
 
         $result = $conn->query($sql);
 		

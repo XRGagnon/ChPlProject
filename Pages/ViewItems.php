@@ -10,7 +10,7 @@ DefaultHead();
 
 <p>Select a Category to narrow your search</p>
 
-<form method="POST" action="../Controllers/RemoveItemController.php">
+<form method="POST" action="../Controllers/ViewItemsController.php">
 	<select name="Category" id="Category">
 		<option value="1">New Products</option>
 		<option value="2">Maintenance</option>
@@ -27,12 +27,21 @@ DefaultHead();
 	<input type="submit" value="Search Category" name="CategoryForm">
 </form>
 
-<form method="post" action="../Controllers/RemoveItemController.php">
+<form method="post" action="../Controllers/ViewItemsController.php">
 
 	<input type="text" name="Item_No" id="Item_No">
 	
 	<input type="submit" value="Search Item" name="ItemNoForm">
+	
 </form>
+
+<form method="post" action="../Controllers/ViewItemsController.php">
+
+	<input type="submit" value="Reset" name="Reset">
+	
+</form>
+
+
 
 <?php
 
