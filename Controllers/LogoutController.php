@@ -25,4 +25,4 @@ setcookie(session_name(),
 
 // Destroy session
 session_destroy();
-header('Location: ..Pages/TestHome.php');
+header('Location: ../Pages/index.php');

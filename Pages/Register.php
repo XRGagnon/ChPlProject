@@ -1,8 +1,10 @@
 <!-- include the models for easy access to the fucntions-->
 <?php
 
-include "../Models/Defaults.php";
-include "../Models/Partials.php";
+include_once "../Models/Defaults.php";
+include_once "../Models/Partials.php";
+include_once "../Models/Security.php";
+sec_session_start();
 //call the default header 
 DefaultHead();
 ?>
@@ -47,7 +49,7 @@ DefaultHead();
 				<label for="password">Password: </label>
 			</td>
 			<td>
-				<input type="password" name="pass" id="pass"><br>
+				<input type="password" name="password" id="password"><br>
 			</td>
 		</tr>
 		<tr>
@@ -64,7 +66,7 @@ DefaultHead();
 			<td align="right">
                 <input type="button"
                        value="Register"
-                       onclick="return regformhash(this.form,
+                       onclick=" return regformhash(this.form,
                                    this.form.username,
                                    this.form.email,
                                    this.form.password,
@@ -76,6 +78,12 @@ DefaultHead();
 </form>
 <!-- End of form collection -->
 <?php
+if (isset($_SESSION["errorMsg"]))
+{
+    echo $_SESSION["errorMsg"];
+    $_SESSION["errorMsg"] = null;
+}
 //calling the default footer
 DefaultFoot();
 ?>
+<!--  -->

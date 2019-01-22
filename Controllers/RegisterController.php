@@ -6,6 +6,8 @@
  * Time: 10:39 AM
  */
 include_once "../DBManager/ConnectionMaker.php";
+include_once "../Models/Security.php";
+sec_session_start();
 $error_msg = "";
 $conn = ConnectionMaker::getConnection();
 if (isset($_POST['username'], $_POST['email'], $_POST['firstname'],$_POST['lastname'],$_POST['password'])) {
@@ -21,7 +23,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['firstname'],$_POST['lastn
         $error_msg .= '<p class="error">The email address you entered is not valid</p>';
     }
 
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $password = filter_input(INPUT_POST, 'p', FILTER_SANITIZE_STRING);
     if (strlen($password) != 128) {
         // The hashed pwd should be 128 characters long.
         // If it's not, something really odd has happened
@@ -79,15 +81,21 @@ if (isset($_POST['username'], $_POST['email'], $_POST['firstname'],$_POST['lastn
         // This function salts it with a random salt and can be verified with
         // the password_verify function.
         $password = password_hash($password, PASSWORD_BCRYPT);
-
+        $date = date("Y-m-d");
+        $defType = "Customer";
         // Insert the new user into the database
-        if ($insert_stmt = $conn->prepare("INSERT INTO user (Username, User_Email, User_Password, User_Fname, User_Lname) VALUES (?, ?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('sss', $username, $email, $password, $firstname, $lastname);
+        if ($insert_stmt = $conn->prepare("INSERT INTO user (Username, User_Email, User_Password, User_Fname, User_Lname, User_Type, Date_Added) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+            $insert_stmt->bind_param('sssssss', $username, $email, $password, $firstname, $lastname, $defType, $date);
             // Execute the prepared query.
             if (! $insert_stmt->execute()) {
-                header('Location: ../error.php?err=Registration failure: INSERT');
+                header('Location: ../Pages/Register.php?err=Registration failure: INSERT');
             }
         }
-        header('Location: ./register_success.php');
+        header('Location: ../Pages/index.php');
+    }
+    else
+        {
+        $_SESSION["errorMsg"] = $error_msg;
+        header("Location: ../Pages/Register.php");
     }
 }

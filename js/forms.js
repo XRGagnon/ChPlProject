@@ -16,19 +16,30 @@ function formhash(form, password) {
 }
 
 function regformhash(form, uid, email, password, conf) {
+
     // Check each field has a value
     if (uid.value == ''         ||
         email.value == ''     ||
         password.value == ''  ||
         conf.value == '') {
 
-        alert('You must provide all the requested details. Please try again');
+        alert('You must provide all the requested details. Please try again my friend');
         return false;
     }
 
     // Check the username
+    alert("asdf1");
+    try
+    {
+        var re = /^\w+$/;
+    }
+    catch(e)
+    {
+        alert(e.message)
+    }
 
-    re = /^\w+$/;
+
+
     if(!re.test(form.username.value)) {
         alert("Username must contain only letters, numbers and underscores. Please try again");
         form.username.focus();
@@ -47,7 +58,7 @@ function regformhash(form, uid, email, password, conf) {
     // At least one number, one lowercase and one uppercase letter
     // At least six characters
 
-    var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!re.test(password.value)) {
         alert('Passwords must contain at least one number, one lowercase and one uppercase letter.  Please try again');
         return false;
