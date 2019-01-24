@@ -538,6 +538,7 @@ class DBManager
 				echo "<tr>";
 				foreach($row as $val)
 				{
+					echo "TEST";
 					echo "<td>";
 					if(!isset($val))
 					{
@@ -562,6 +563,7 @@ class DBManager
 				echo "<tr>";
 				foreach($row as $val)
 				{
+					echo "TEST";
 					echo "<td>";
 					if(!isset($val))
 					{
