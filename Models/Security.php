@@ -7,7 +7,7 @@
  */
 include_once "../DBManager/DBManager.php";
 
-define("SECURE", FALSE);    // FOR DEVELOPMENT ONLY!!!!
+define("SECURE", TRUE);    // FOR DEVELOPMENT ONLY!!!!
 
 function sec_session_start() {
     $session_name = 'sec_session_id';   // Set a custom session name
@@ -15,8 +15,9 @@ function sec_session_start() {
     // This stops JavaScript being able to access the session id.
     $httponly = true;
     // Forces sessions to only use cookies.
-    if (ini_set('session.use_only_cookies', 1) === FALSE) {
-        header("Location: ../error.php?err=Could not initiate a safe session (ini_set)");
+    $sec = ini_set('session.use_only_cookies', 1);
+    if ($sec === FALSE) {
+        //header("Location: ../error.php?err=Could not initiate a safe session (ini_set)");
         exit();
     }
     // Gets current cookies params.
