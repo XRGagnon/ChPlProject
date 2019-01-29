@@ -108,7 +108,7 @@ class Display
                         </div><!-- Offers / END -->";
 
 
-            if ($subCats->num_rows > 0)
+            if ($subCats)
             {
                 while($row = $subCats->fetch_assoc())
                 {
@@ -137,10 +137,9 @@ class Display
             {
                 $emptySC = true;
             }
-            //TODO: fix items not displaying
-//TODO: fix display of subcategories
 
-            if ($items->num_rows > 0)
+            //TODO:Bug Fixing
+            if ($items)
             {
                 while($row = $items->fetch_assoc())
                 {
@@ -163,6 +162,7 @@ class Display
                                 </div>
                             </section><!-- Shop item / END -->
                     ";
+                    $ada = 123;
                 }
             }
             else

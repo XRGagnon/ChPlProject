@@ -34,11 +34,12 @@ class Retrieval
     {
         $conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT * FROM CATEGORY WHERE PARENT_CATEGORY = ".$parentCat.";";
+        $sql = "SELECT * FROM Category WHERE Parent_Category = ".$parentCat.";";
+
 
         $result = $conn->query($sql);
 
-        if ($result->num_rows > 0)
+        if ($result)
         {
             return $result;
         }
@@ -57,7 +58,7 @@ class Retrieval
 
         $result = $conn->query($sql);
 
-        if ($result->num_rows > 0)
+        if ($result)
         {
             return $result;
         }
@@ -71,7 +72,7 @@ class Retrieval
     {
         $conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT * FROM CATEGORY WHERE CATEGORY = ".$cat." LIMIT 1;";
+        $sql = "SELECT * FROM CATEGORY WHERE CATEGORY = '".$cat."' LIMIT 1;";
 
         $result = $conn->query($sql);
 
