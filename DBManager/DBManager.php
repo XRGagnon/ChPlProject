@@ -389,13 +389,12 @@ class DBManager
 		}
     }
 
-    function Remove_Item($ItemIdVariable)
+    static function Remove_Item($ItemId)
     {
         $conn = ConnectionMaker::getConnection();
 
         $sql = "DELETE FROM ITEM
-		Where 
-		Item_No = " . $ItemIdVariable . ";";
+		WHERE Item_No = '" . $ItemId . "';";
 
         if ($conn->query($sql) === true) {
             echo "Item has been successfully updated";
@@ -538,15 +537,17 @@ class DBManager
 				echo "<tr>";
 				foreach($row as $val)
 				{
-					echo "TEST";
+					
 					echo "<td>";
 					if(!isset($val))
 					{
 						print_r('');
+						print_r("TEST");
 					}
 					else
 					{
 						print_r($val);
+						print_r("TEST");
 					}
 					echo "</td>";
 				}
@@ -630,7 +631,7 @@ class DBManager
 
         } else	
 		{		
-            echo "There are no items with that Item_No";
+            echo "There are no items with that description";
         }			
 		echo "</table>";
 		echo "</div>";
