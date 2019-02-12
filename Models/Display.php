@@ -76,8 +76,86 @@ class Display
         $cat = Retrieval::getCategory($parentCategory);
         $items = Retrieval::getCatItems($parentCategory);
         $subCats = Retrieval::getCatSubs($parentCategory);
+        $catArray = array();
+        $itemArray = array();
+        $displayPerPage = 2;
+        $pageIndex = 0;
         $emptySC = false;
         $emptyItems = false;
+
+        //SQL into Array
+        if($subCats)
+        {
+            while($row = $subCats->fetch_array())
+            {
+                array_push($catArray,$row);
+            }
+        }
+        else
+        {
+            $emptySC = true;
+        }
+
+        if($items)
+        {
+            while($row = $items->fetch_array())
+            {
+                array_push($itemArray,$row);
+            }
+        }
+        else
+        {
+            $emptyItems = true;
+        }
+
+        //Calculations for separating items into pages
+        $itemCount = sizeof($itemArray) + sizeof($catArray);
+        $maxIndex = floor($itemCount / $displayPerPage);
+        if (isset($_GET["index"]))
+        {
+            $pageIndex = $_GET["index"];
+        }
+        else
+        {
+            $pageIndex = 0;
+        }
+
+        //Determine Which Items to Display
+
+        $startIndex = ($pageIndex) * $displayPerPage;
+
+        $displaySub = false;
+        $displayItem = false;
+        $arrayDisplayStartItem = 0;
+        $arrayDisplayEndItem = sizeof($itemArray);
+        $arrayDisplayStartSub = 0;
+        $arrayDisplayEndSub = sizeof($catArray);
+        if ($startIndex + $displayPerPage <= sizeof($catArray))
+        {
+            $arrayDisplayStartSub = $startIndex;
+            $arrayDisplayEndSub = $startIndex + $displayPerPage;
+            $displaySub = true;
+        }
+        else if ($startIndex >= sizeof($catArray))
+        {
+            $arrayDisplayStartItem = $startIndex - sizeof($catArray);
+            $displayItem = true;
+        }
+        else if ($startIndex < sizeof($catArray) && ($startIndex + $displayPerPage) > sizeof($catArray))
+        {
+            $arrayDisplayStartSub = $startIndex;
+            $arrayDisplayEndItem = $displayPerPage - (sizeof($cat) - $startIndex);
+            $displaySub = true;
+            $displayItem = true;
+        }
+        else
+        {
+            $emptyItems = true;
+            $emptySC = true;
+        }
+
+
+        //Display Content
         if($cat)
         {
             echo "
@@ -108,67 +186,65 @@ class Display
                         </div><!-- Offers / END -->";
 
 
-            if ($subCats)
-            {
-                while($row = $subCats->fetch_assoc())
-                {
+                if ($displaySub) {
+                    for ($i = $arrayDisplayStartSub; $i < $arrayDisplayEndSub; $i++) {
+                        $row = $catArray[$i];
+                        if ($i < sizeof($catArray)) {
 
-                    echo "
+
+                            echo "
                             <section>
                                 <div class=\"shop-grid-item col-sm-3 col-xs-6\">
 
                                     <div class=\"image\">
-                                        <a href=\"catGridView.php?catId=".$row["Category"]."\">
-                                            <img src=\"..".$row["Image"]."\" alt=\"Alt text from database\"/>
+                                        <a href=\"catGridView.php?catId=" . $row["Category"] . "\">
+                                            <img src=\".." . $row["Image"] . "\" alt=\"Alt text from database\"/>
                                         </a>
                                   </div>
 
                                     <div class=\"title text-center\">
-                                        <h3><a href=\"#\">".$row["EnglishCat"]."</a></h3>
+                                        <h3><a href=\"#\">" . $row["EnglishCat"] . "</a></h3>
                                     </div>
                                   
 
                                 </div>
                             </section><!-- Shop item / END -->
                     ";
+                        }
+                    }
                 }
-            }
-            else
-            {
-                $emptySC = true;
-            }
 
-            //TODO:Bug Fixing
-            if ($items)
-            {
-                while($row = $items->fetch_assoc())
-                {
 
-                    echo "
+                if ($displayItem) {
+                    for($i = $arrayDisplayStartItem; $i < $arrayDisplayEndItem; $i++)
+                    {
+                        if ($i < sizeof($itemArray)) {
+
+
+                            $row = $itemArray[$i];
+
+                            echo "
                             <section>
                                 <div class=\"shop-grid-item col-sm-3 col-xs-6\">
 
                                     <div class=\"image\">
-                                        <a href=\"itemView.php?catId=".$row["Item_No"]."\">
-                                            <img src=\"..".$row["Large_Image"]."\" alt=\"Alt text from database\"/>
+                                        <a href=\"detail.php?catId=" . $cat["Category"] . "&itemId=" . $row["Item_No"] . "\">
+                                            <img src=\".." . $row["Large_Image"] . "\" alt=\"Alt text from database\"/>
                                         </a>
                                   </div>
 
                                     <div class=\"title text-center\">
-                                        <h3><a href=\"itemView.php?catId=".$row["Item_No"]."\">".$row["Title_English"]."</a></h3>
+                                        <h3><a href=\"detail.php?catId=" . $cat["Category"] . "&itemId=" . $row["Item_No"] . "\">" . $row["Title_English"] . "</a></h3>
                                     </div>
                                   
 
                                 </div>
                             </section><!-- Shop item / END -->
                     ";
-                    $ada = 123;
+                        }
+                    }
                 }
-            }
-            else
-            {
-                $emptyItems = true;
-            }
+
 
             if ($emptyItems && $emptySC)
             {
@@ -177,8 +253,157 @@ class Display
 
             echo "</div><!-- Container / END -->
 
-        </div><!-- Content / END -->";
+        </div><!-- Content / END -->
+
+        <div class=\"xs-block bg-gray quick-search\">";
+
+        self::pageSelector($maxIndex,$pageIndex,$parentCategory);
+
+        echo "</div>
+
+           <!-- Container / END -->";
+        }
+    }
+
+    static function displayItem($itemNo)
+    {
+        $item = Retrieval::getItem($itemNo);
+        if ($item) {
+        $title = $item["Title_English"];
+        $img = $item["Large_Image"];
+        $altImg = $item["Large_Image_Text"];
+        $desc = $item["Description_English"];
+        $spareAvail = $item["Spare_Parts"];
+        $spareMsg = "";
+        $colors =  self::colorString($item["Colors"]);
+        if ($spareAvail)
+        {
+            $spareMsg = "See catalog for spare parts";
+        }
+        else
+        {
+            $spareMsg = "No spare parts available";
+        }
+        echo "<div class=\"container\">
+
+                <div class=\"row\">
+
+                    <section id=\"shop-detail\">
+
+                        <div class=\"col-xs-12 col-md-8 col-lg-9 shop-detail content-with-sidebar\">
+
+                            <!-- Shop item / START -->
+                            <div class=\"shop-item\">
+
+                                <div class=\"title\">
+                                    <span>".$title."</span>
+                                  
+
+                                    <div class=\"clear\"></div>
+                                </div>
+
+                                <div id=\"image\" class=\"gallery carousel slide\" data-wrap=\"false\">
+                                    <div class=\"carousel-outer\">
+                                    
+                                        <!-- Wrapper for slides -->
+                                        <div class=\"carousel-inner\">
+                                            <div class=\"item active\">
+                                                <img src=\"..".$img."\" alt=\"".$altImg."\"/>
+                                            </div>
+                                         
+                                        </div>
+                                    </div>
+                                    
+                                   
+                         
+
+                                    
+                                </div><!-- Row / END -->
+
+                 
+
+                            </div><!-- Shop item / END -->
+
+                        </div><!-- Shop detail / END -->
+
+                    </section>
+
+                   <div class=\"col-xs-12 col-md-4 col-lg-3 sidebar\">
+  
+                              <div class=\"page-subheader\">
+                                 <h1>".$desc."</h1>
+
+                                  <h3> ".$spareMsg."</h3>
+                                    
+                                <div class=\"btn btn-primary btn-circle sm-margin-top\"><a href=\"#\">Download Instruction Manual</a></div>
+                               
+  
+                                <div class=\"panel panel-light panel-default sm-margin-top\">
+                       
+                                <div class=\"panel-body\">Colours available: ".$colors."</div>
+                        
+                                </div>
+                              </div>
+                    </div>
+
+                </div><!-- Row / END -->
+
+            </div><!-- Container / END -->";
 
         }
+        else{
+            echo "Nothing to Display";
+        }
+    }
+
+    static function colorString($colors)
+    {
+        $chart = array("Green ", "Blue", "Grey ","White ","Gold ","Mocha ","Light Grey", "Black ","Red/Grey ");
+        $cArray = explode(", ",$colors);
+        $cstring = "";
+        foreach($cArray as $color)
+        {
+            if (is_numeric($color))
+            {
+                $cstring .= $chart[$color];
+            }
+        }
+        return $cstring;
+    }
+    //TODO: Add page select for item grid << < 1 2 3 > >>
+
+    static function pageSelector($maxIndex, $currentIndex,$catId)
+    {
+
+        $goFirst = "<a class=\"paginate_button \" href=".self::paginationCraftUrl(0,$catId).">First </a>";
+
+        $goLast = "<a class=\"paginate_button \" href=".self::paginationCraftUrl($maxIndex,$catId).">Last </a>";
+
+            echo $goFirst;
+            if ($currentIndex > 0)
+            {
+                echo "<a class=\"paginate_button\" href=".self::paginationCraftUrl($currentIndex-1,$catId).">Previous </a>";;
+            }
+
+            for ($x = 0; $x <= $maxIndex; $x++)
+            {
+
+                echo "<a class=\"paginate_button \" href=".self::paginationCraftUrl($x,$catId).">".($x+1)." </a>";
+            }
+            if ($currentIndex < $maxIndex)
+            {
+
+                echo "<a class=\"paginate_button \" href=".self::paginationCraftUrl($currentIndex+1,$catId).">Next </a>";;
+            }
+            echo $goLast;
+
+
+    }
+
+    static function paginationCraftUrl($index,$catId)
+    {
+        $currentURL = $_SERVER["SCRIPT_NAME"];
+        $currentURL .= "?catId=".$catId."&index=".$index;
+        return $currentURL;
     }
 }

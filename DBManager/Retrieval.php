@@ -19,7 +19,7 @@ class Retrieval
 
         $result = $conn->query($sql);
 
-        if ($result->num_rows > 0)
+        if ($result)
         {
             return $result;
         }
@@ -76,7 +76,26 @@ class Retrieval
 
         $result = $conn->query($sql);
 
-        if ($result->num_rows > 0)
+        if ($result)
+        {
+
+            return $result->fetch_assoc();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    static function getItem($item)
+    {
+        $conn = ConnectionMaker::getConnection();
+
+        $sql = "SELECT * FROM ITEM WHERE ITEM_NO = '".$item."' LIMIT 1;";
+
+        $result = $conn->query($sql);
+
+        if ($result)
         {
 
             return $result->fetch_assoc();

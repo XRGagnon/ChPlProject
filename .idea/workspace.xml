@@ -4,7 +4,11 @@
     <list default="true" id="3c6fa617-1f88-478c-b1e5-165afd4a9e27" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DBManager/Retrieval.php" beforeDir="false" afterPath="$PROJECT_DIR$/DBManager/Retrieval.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Defaults.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Defaults.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/Display.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Display.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/catGridView.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/catGridView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,19 +33,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1292">
-              <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pages/catGridView.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+            <state relative-caret-position="323">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -49,8 +44,33 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Models/Display.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="140" column="29" selection-start-line="140" selection-start-column="29" selection-end-line="140" selection-end-column="29" />
+            <state relative-caret-position="552">
+              <caret line="257" column="7" selection-start-line="257" selection-start-column="7" selection-end-line="257" selection-end-column="7" />
+              <folding>
+                <element signature="n#displayCategories#0;n#Display#0;n#!!top" />
+                <element signature="n#displayItem#0;n#Display#0;n#!!top" />
+                <element signature="n#colorString#0;n#Display#0;n#!!top" />
+                <element signature="n#pageSelector#0;n#Display#0;n#!!top" />
+                <element signature="n#paginationCraftUrl#0;n#Display#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1632">
+              <caret line="96" column="15" selection-start-line="96" selection-start-column="15" selection-end-line="96" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/en/detail_poles_Paginated.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="9724">
+              <caret line="572" column="15" selection-start-line="572" selection-start-column="15" selection-end-line="572" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -58,8 +78,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DBManager/Retrieval.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+            <state relative-caret-position="272">
+              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -85,6 +105,8 @@
       <find>session</find>
       <find>catego</find>
       <find>shop-grid</find>
+      <find>$arrayDispalyEndItem</find>
+      <find>mod_version</find>
     </findStrings>
   </component>
   <component name="FrameworkCommandLineHistory">
@@ -115,15 +137,19 @@
         <option value="$PROJECT_DIR$/Controllers/RegisterController.php" />
         <option value="$PROJECT_DIR$/Controllers/LogoutController.php" />
         <option value="$PROJECT_DIR$/Controllers/LoginController.php" />
-        <option value="$PROJECT_DIR$/Models/Defaults.php" />
         <option value="$PROJECT_DIR$/Models/Security.php" />
         <option value="$PROJECT_DIR$/Pages/Storing html" />
         <option value="$PROJECT_DIR$/DBManager/DBManager.php" />
-        <option value="$PROJECT_DIR$/Pages/index.php" />
         <option value="$PROJECT_DIR$/Pages/Storing html.php" />
-        <option value="$PROJECT_DIR$/Pages/catGridView.php" />
+        <option value="$PROJECT_DIR$/Pages/detail_plumbing.php" />
+        <option value="$PROJECT_DIR$/Models/Defaults.php" />
         <option value="$PROJECT_DIR$/DBManager/Retrieval.php" />
+        <option value="$PROJECT_DIR$/Pages/detail.php" />
+        <option value="$PROJECT_DIR$/Pages/index.php" />
+        <option value="$PROJECT_DIR$/Pages/catGridView.php" />
+        <option value="$PROJECT_DIR$/en/detail_poles_Paginated.html" />
         <option value="$PROJECT_DIR$/Models/Display.php" />
+        <option value="$PROJECT_DIR$/../../../bin/apache/apache2.4.35/conf/httpd.conf" />
       </list>
     </option>
   </component>
@@ -298,12 +324,27 @@
       <workItem from="1548791534911" duration="242000" />
       <workItem from="1548792017850" duration="121000" />
       <workItem from="1548792416219" duration="333000" />
-      <workItem from="1548792823203" duration="1715000" />
+      <workItem from="1548792823203" duration="1984000" />
+      <workItem from="1548796538019" duration="1677000" />
+      <workItem from="1548966659704" duration="450000" />
+      <workItem from="1548967138549" duration="2251000" />
+      <workItem from="1548969598628" duration="147000" />
+      <workItem from="1548969875562" duration="36000" />
+      <workItem from="1548969974802" duration="56000" />
+      <workItem from="1548988061147" duration="939000" />
+      <workItem from="1549393471384" duration="7240000" />
+      <workItem from="1549679730821" duration="470000" />
+      <workItem from="1549827723196" duration="598000" />
+      <workItem from="1549926577622" duration="7129000" />
+      <workItem from="1549937596659" duration="3508000" />
+      <workItem from="1549987277154" duration="2320000" />
+      <workItem from="1549998411147" duration="1905000" />
+      <workItem from="1550003456922" duration="41000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74295000" />
+    <option name="totallyTimeSpent" value="103331000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -316,20 +357,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.25692964" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.1444563" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50159913" side_tool="true" weight="0.3997833" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5021322" side_tool="true" weight="0.42470205" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32936078" />
       <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Run" order="7" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Debug" order="8" sideWeight="0.49840087" visible="true" weight="0.3997833" />
+      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.4978678" weight="0.33586133" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" weight="0.32936078" />
@@ -511,13 +551,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Models/Defaults.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Models/Security.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -568,38 +601,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../apps/phpmyadmin4.8.3/index.php">
+    <entry file="file://$PROJECT_DIR$/Pages/detail_plumbing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="42" column="26" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+        <state relative-caret-position="391">
+          <caret line="119" column="9" selection-start-line="119" selection-start-column="9" selection-end-line="138" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/index.php">
+    <entry file="file://$PROJECT_DIR$/Models/Defaults.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
+        <state relative-caret-position="416">
+          <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../apps/phpmyadmin4.8.3/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/detail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../bin/apache/apache2.4.35/conf/httpd.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="189" selection-start-line="189" selection-end-line="189" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pages/catGridView.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+        <state relative-caret-position="323">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="96" column="15" selection-start-line="96" selection-start-column="15" selection-end-line="96" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/detail_poles_Paginated.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9724">
+          <caret line="572" column="15" selection-start-line="572" selection-start-column="15" selection-end-line="572" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DBManager/Retrieval.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+        <state relative-caret-position="272">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Models/Display.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="140" column="29" selection-start-line="140" selection-start-column="29" selection-end-line="140" selection-end-column="29" />
+        <state relative-caret-position="552">
+          <caret line="257" column="7" selection-start-line="257" selection-start-column="7" selection-end-line="257" selection-end-column="7" />
+          <folding>
+            <element signature="n#displayCategories#0;n#Display#0;n#!!top" />
+            <element signature="n#displayItem#0;n#Display#0;n#!!top" />
+            <element signature="n#colorString#0;n#Display#0;n#!!top" />
+            <element signature="n#pageSelector#0;n#Display#0;n#!!top" />
+            <element signature="n#paginationCraftUrl#0;n#Display#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
