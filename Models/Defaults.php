@@ -5,7 +5,7 @@
  * Date: 13/12/2018
  * Time: 10:14 AM
  */
-include_once "../Models/Security.php";
+
 function DefaultHead()
 {
     ?>
@@ -61,7 +61,7 @@ function DefaultHead()
                     
                         <li class="drop active">
 
-                            <a href="../Pages/TestHome.php">
+                            <a href="../Pages/index.php">
 
 
                                 Home
@@ -75,7 +75,7 @@ function DefaultHead()
                         </li>
 
                         <li class="drop">
-                            <a href="#">
+                            <a href="index.php">
                                 Products
                             </a>
                             <div class="dropdown">
@@ -147,6 +147,7 @@ function DefaultHead()
             </div>
 
         </nav><!-- Navigation / END -->
+
 <?php
 }
 

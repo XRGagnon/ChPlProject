@@ -5,7 +5,7 @@
  * Date: 13/12/2018
  * Time: 10:27 AM
  */
-session_start();
+
  
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Defaults.php";
@@ -589,6 +589,8 @@ class DBManager
 		unset($_SESSION['CAT']);
 		unset($_SESSION['Item']);
 	}
+
+
 
 
 }
