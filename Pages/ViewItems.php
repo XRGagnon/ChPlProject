@@ -3,11 +3,17 @@ include_once "../Models/Defaults.php";
 include_once "../Models/Partials.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
+unset($_SESSION['id']);
 DefaultHead();
 ?>
 
 <div style="Margin: 30px;">
 <h2>View All Items Page</h2>
+<p>If you want to add an item, click the link below</p>
+
+<form method="POST" action="../Pages/AddItemForm.php">
+	<input type="submit" value="Add an Item">
+</form><br>
 
 <p>Select a Category to narrow your search</p>
 

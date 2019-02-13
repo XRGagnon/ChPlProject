@@ -5,20 +5,21 @@ include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
 DefaultHead();
 unset($_SESSION['id']);
-$_Session['id'] = $_GET['id'];
+$_SESSION['id'] = $_GET['id'];
 ?>
 
+<div style="Margin: 30px;">
 <h2>Remove Item</h2>
 
 <p> Are you sure you want to remove this item? </p>
 
 
 <form method="POST" action="../Controllers/RemoveItemController.php">
-	<input type="submit" value="Yes" name="YES">
+	<input type="submit" value="YES" name="YES">
 </for>
 
 <form method="POST" action="../Controllers/RemoveItemController.php">
-	<input type="submit" value="No" name="NO">
+	<input type="submit" value="NO" name="NO">
 </form>
 
 <?php
@@ -26,7 +27,7 @@ $_Session['id'] = $_GET['id'];
 $ViewItems = DBManager::View_One_Item($_GET['id']);
 
 ?>
-
+</div>
 <?php
 DefaultFoot();
 ?>

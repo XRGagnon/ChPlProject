@@ -21,6 +21,7 @@ DefaultHead();
 
                                     <a href="Login.php">Login Link</a><br/>
                                     <a href="Register.php">Register Link</a><br/>
+									<a href="ViewItems.php">Admin Page</a><br/>
                                     <?php
                                     if (Login_Check())
                                     {echo("
