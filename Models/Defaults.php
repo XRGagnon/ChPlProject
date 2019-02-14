@@ -62,15 +62,7 @@ function DefaultHead()
                         <li class="drop active">
 
                             <a href="../Pages/index.php">
-
-
                                 Home
-                            </a>
-                        </li>
-
-                        <li class="drop active">
-                            <a href="../Pages/Login.php">
-                                Login
                             </a>
                         </li>
 
@@ -81,47 +73,47 @@ function DefaultHead()
                             <div class="dropdown">
                                 <ul>
                                     <li>
-                                        <a href="#">New Products</a>
+                                        <a href="../Pages/catGridView.php?catId=1">New Products</a>
                                     </li>
                                     <li>
-                                        <a href="#">Maintenance</a>
+                                        <a href="../Pages/catGridView.php?catId=2">Maintenance</a>
                                     </li>
                                     <li>
-                                        <a href="#">Vacuum Hoses</a>
+                                        <a href="../Pages/catGridView.php?catId=3">Vacuum Hoses</a>
                                     </li>
                                     <li>
-                                        <a href="#">Accessories</a>
+                                        <a href="../Pages/catGridView.php?catId=4">Accessories</a>
                                     </li>
                                     <li>
-                                        <a href="#">Backwash Hoses</a>
+                                        <a href="../Pages/catGridView.php?catId=5">Backwash Hoses</a>
                                     </li>
                                     <li>
-                                        <a href="#">Skimmers/Drains</a>
+                                        <a href="../Pages/catGridView.php?catId=6">Skimmers/Drains</a>
                                     </li>
                                     <li>
-                                        <a href="#">Plumbing</a>
+                                        <a href="../Pages/catGridView.php?catId=7">Plumbing</a>
                                     </li>
                                     <li>
-                                        <a href="#">Ladders/Steps</a>
+                                        <a href="../Pages/catGridView.php?catId=8">Ladders/Steps</a>
                                     </li>
                                     <li>
-                                        <a href="#">Lights</a>
+                                        <a href="../Pages/catGridView.php?catId=9">Lights</a>
                                     </li>
                                      <li>
-                                        <a href="#">Cover Reels/Solar Rollers</a>
+                                        <a href="../Pages/catGridView.php?catId=10">Cover Reels/Solar Rollers</a>
                                     </li>
                                     <li>
-                                        <a href="#">Games, Chairs and More</a>
+                                        <a href="../Pages/catGridView.php?catId=11">Games, Chairs and More</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-                        
-                        <li class="drop">
+                        <!--To be added when we actually have instruction manuals -->
+                        <!--<li class="drop">
                             <a href="index.php">
                                 Instruction Manuals
                             </a>
-                        </li>
+                        </li>-->
 
                         <li class="drop">
                             <a href="#">

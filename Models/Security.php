@@ -17,7 +17,7 @@ function sec_session_start() {
     // Forces sessions to only use cookies.
     $sec = ini_set('session.use_only_cookies', 1);
     if ($sec === FALSE) {
-        //header("Location: ../error.php?err=Could not initiate a safe session (ini_set)");
+        header("Location: ../error.php?err=Could not initiate a safe session (ini_set)");
         exit();
     }
     // Gets current cookies params.

@@ -7,7 +7,7 @@
  */
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
-sec_session_start();
+session_start();
 $error_msg = "";
 $conn = ConnectionMaker::getConnection();
 if (isset($_POST['username'], $_POST['email'], $_POST['firstname'],$_POST['lastname'],$_POST['password'])) {

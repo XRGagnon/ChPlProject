@@ -5,14 +5,14 @@ include_once "../Models/Display.php";
 session_start();
 DefaultHead();
 
-$cat = "";
-if (isset($_GET["catId"])) {
-    $cat = $_GET["catId"];
+$query = "";
+if (isset($_GET["query"])) {
+    $query = $_GET["query"];
 }
 
 
 
-if ($cat)
+if ($query)
 {
 echo "<div id=\"content\">
                     <!-- Page header / START -->
@@ -23,7 +23,7 @@ echo "<div id=\"content\">
                               <div class=\"col-xs-12 col-md-12 path-tree\">
                                     <a href=\"index.php\">Home</a> / 
                                     <a href=\"index.php\">Categories</a> /
-                                    <a href=\"catGridView.php?catId=".$cat."\">".Retrieval::getCategory($cat)["EnglishCat"]."</a>
+                                    <a href=\"searchResult.php.php?query=\">".$query."</a>
                                 </div>
                             </div>
         
@@ -31,7 +31,7 @@ echo "<div id=\"content\">
                     </div><!-- Page header / END -->";
 
 
-    Display::displayCategoryGrid($cat);
+                    Display::displaySearchResult($query);
 }
 else
 {

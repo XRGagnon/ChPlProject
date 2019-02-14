@@ -2,7 +2,7 @@
 include_once "../Models/Defaults.php";
 include_once "../Models/Security.php";
 include_once "../Models/Display.php";
-sec_session_start();
+session_start();
 DefaultHead();
 
 ?>
@@ -76,66 +76,12 @@ DefaultHead();
 
                 <?php Display::displayCategories(); ?>
 
-                 <div class="col-xs-12  sidebar sm-margin-top">
-
-                        <div class="xs-block bg-gray quick-search">
-
-                            <form method="post">
-
-                                <div class="form-group">                                    
-                                    <div class="controls">
-                                        <input placeholder="Search word" type="text" class="form-control input"/>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <button class="btn btn-primary btn-block">Search</button>
-                                </div>
-
-                            </form>
-
-                        </div></div>
+          <?php Display::searchBar(); ?>
 
 
             </div><!-- Container / END -->
             
-             <!-- Headline / START -->
-             <div id="login"> 
-            <div class="block headline">
 
-                <div class="container">
-                    
-                    <div class="contents">
-
-                        <div class="row">
-
-                            <div class="col-xs-12 col-sm-12 col-md-5">
-
-                                <h2 class="strong upper">Promotions and Pricing</h2>
-                              <p class="description">Contact us to receive your login credentials<br>
-                              <a href="mailto:#">somebody@champlainplastics.com</a><br>
-or Login to see our promotions and price list</p>
-
-                            </div>
-
-                            <div class="col-xs-12 col-sm-12 col-md-7 text-right">
-
-                                <div class="actions">
-
-                                    <a href="#" class="btn btn-lg btn-primary">
-                                        Login
-                                    </a>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        
-                    </div>
-
-                </div>
-
-            </div></div><!-- Headline / END -->
             
             
             </div><!-- Container / END -->

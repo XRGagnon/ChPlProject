@@ -3,9 +3,15 @@ include_once "../Models/Defaults.php";
 include_once "../Models/Partials.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
-unset($_SESSION["UpdateItemError"]);
+include_once "../Models/Security.php";
+include_once "../DBManager/Retrieval.php";
+session_start();
 DefaultHead();
+$_SESSION["asdf"] = "asdf";
+unset($_SESSION["UpdateItemError"]);
 
+$id = $_SESSION['id'];
+$item = Retrieval::getItem($id);
 ?>
 <div style="Margin: 30px;">
 <!-- This is the form for the update item-->
@@ -88,7 +94,7 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="Description_English">Description English</label>
 			</td>
 			<td>
-				<input type="text" name="Description_English" id="Description_English"><br>
+				<input type="text" name="Description_English" id="Description_English" value="<?php echo $item["Description_English"] ?>"><br>
 			</td>
 		</tr>	
 		<tr>

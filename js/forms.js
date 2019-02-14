@@ -23,12 +23,12 @@ function regformhash(form, uid, email, password, conf) {
         password.value == ''  ||
         conf.value == '') {
 
-        alert('You must provide all the requested details. Please try again my friend');
+        alert('You must provide all the requested details. Please try again');
         return false;
     }
 
     // Check the username
-    alert("asdf1");
+
     try
     {
         var re = /^\w+$/;

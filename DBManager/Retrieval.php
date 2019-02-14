@@ -49,12 +49,12 @@ class Retrieval
         }
     }
 
-    //This method returs all items contained in the parent category
+    //This method returns all items contained in the parent category
     static function getCatItems($parentCat)
     {
         $conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT * FROM ITEM WHERE CATEGORY = ".$parentCat.";";
+        $sql = "SELECT * FROM ITEM WHERE CATEGORY = '".$parentCat."' OR SUBCATEGORY = '".$parentCat."';";
 
         $result = $conn->query($sql);
 
@@ -99,6 +99,39 @@ class Retrieval
         {
 
             return $result->fetch_assoc();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    static function getSearchResult($searchString)
+    {
+        $conn = ConnectionMaker::getConnection();
+
+        $queryString = explode("+",$searchString);
+
+        $count = 0;
+        $sql = "SELECT * FROM ITEM WHERE";
+        foreach ($queryString as $searchVar)
+        {
+            if ($count != 0)
+            {
+                $sql .= " AND ";
+
+            }
+            $sql .= " Item_no like '%".$searchVar."%' OR Title_English like '%".$searchVar."%'";
+            $count++;
+        }
+        $sql .= ";";
+
+        $result = $conn->query($sql);
+
+        if ($result)
+        {
+
+            return $result;
         }
         else
         {

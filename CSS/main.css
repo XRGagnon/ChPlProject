@@ -1554,6 +1554,13 @@ ul.gallery li.item .controls {
     background: #f7f7f7;
     padding: 35px 25px 35px 25px;
 }
+.quick-search2 {
+	background: #f7f7f7;
+	padding-top: 35px;
+	padding-right: 100px;
+	padding-bottom: 35px;
+	padding-left: 100px;
+}
 
 .shop-options {
     margin-bottom: 50px;
@@ -1701,6 +1708,12 @@ ul.gallery li.item .controls {
     float: right;
 }
 
+.underline {
+    border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #F0F;
+}
+
 /* Mobile */
 @media(max-width: 768px) {
     .shop-detail .title .price {
@@ -1783,9 +1796,11 @@ ul.gallery li.item .controls {
 ------------------------------------------------------------------ */
 .gallery
 {
-    width: 100%;
-
-    margin-bottom: 50px;
+	width: 100%;
+	margin-bottom: 50px;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #1C3D92;
 }
 
 .gallery .carousel-indicators 

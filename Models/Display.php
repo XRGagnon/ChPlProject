@@ -78,7 +78,7 @@ class Display
         $subCats = Retrieval::getCatSubs($parentCategory);
         $catArray = array();
         $itemArray = array();
-        $displayPerPage = 2;
+        $displayPerPage = 10;
         $pageIndex = 0;
         $emptySC = false;
         $emptyItems = false;
@@ -110,7 +110,7 @@ class Display
 
         //Calculations for separating items into pages
         $itemCount = sizeof($itemArray) + sizeof($catArray);
-        $maxIndex = floor($itemCount / $displayPerPage);
+        $maxIndex = ceil($itemCount / $displayPerPage);
         if (isset($_GET["index"]))
         {
             $pageIndex = $_GET["index"];
@@ -159,21 +159,9 @@ class Display
         if($cat)
         {
             echo "
-                <div id=\"content\">
+                
         
-                     <!-- Page header / START -->
-                    <div class=\"page-header\">
-                        <div class=\"container\">
-                            
-                            <div class=\"row\">
-                              <div class=\"col-xs-12 col-md-12 path-tree\">
-                                    <a href=\"#\">Home</a> / 
-                                    <a href=\"#\">Path</a>
-                                </div>
-                            </div>
-        
-                        </div><!-- Container / END -->
-                    </div><!-- Page header / END -->
+                     
                     <div class=\"container block md-margin-top\">
         
                         <!-- Offers/ START -->
@@ -218,7 +206,9 @@ class Display
                 if ($displayItem) {
                     for($i = $arrayDisplayStartItem; $i < $arrayDisplayEndItem; $i++)
                     {
-                        if ($i < sizeof($itemArray)) {
+
+                            if ($i < sizeof($itemArray))
+                            {
 
 
                             $row = $itemArray[$i];
@@ -250,18 +240,8 @@ class Display
             {
                 echo "Nothing to Display";
             }
+            self::pageSelector($maxIndex,$pageIndex,$parentCategory);
 
-            echo "</div><!-- Container / END -->
-
-        </div><!-- Content / END -->
-
-        <div class=\"xs-block bg-gray quick-search\">";
-
-        self::pageSelector($maxIndex,$pageIndex,$parentCategory);
-
-        echo "</div>
-
-           <!-- Container / END -->";
         }
     }
 
@@ -269,6 +249,7 @@ class Display
     {
         $item = Retrieval::getItem($itemNo);
         if ($item) {
+        $code = $item["Item_No"];
         $title = $item["Title_English"];
         $img = $item["Large_Image"];
         $altImg = $item["Large_Image_Text"];
@@ -284,7 +265,7 @@ class Display
         {
             $spareMsg = "No spare parts available";
         }
-        echo "<div class=\"container\">
+        echo "
 
                 <div class=\"row\">
 
@@ -336,6 +317,8 @@ class Display
                                   <h3> ".$spareMsg."</h3>
                                     
                                 <div class=\"btn btn-primary btn-circle sm-margin-top\"><a href=\"#\">Download Instruction Manual</a></div>
+                                
+                                <div class=\"btn btn-primary btn-circle sm-margin-top\"><a href='https://www.romancart.com/cart.asp?storeid=66654&itemcode=$code'>Add to Cart</a></div>
                                
   
                                 <div class=\"panel panel-light panel-default sm-margin-top\">
@@ -348,7 +331,7 @@ class Display
 
                 </div><!-- Row / END -->
 
-            </div><!-- Container / END -->";
+            ";
 
         }
         else{
@@ -365,7 +348,7 @@ class Display
         {
             if (is_numeric($color))
             {
-                $cstring .= $chart[$color];
+                $cstring .= $chart[$color-1];
             }
         }
         return $cstring;
@@ -375,27 +358,28 @@ class Display
     static function pageSelector($maxIndex, $currentIndex,$catId)
     {
 
-        $goFirst = "<a class=\"paginate_button \" href=".self::paginationCraftUrl(0,$catId).">First </a>";
+        $goFirst = "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl(0,$catId).">First </a></li>";
 
-        $goLast = "<a class=\"paginate_button \" href=".self::paginationCraftUrl($maxIndex,$catId).">Last </a>";
-
+        $goLast = "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl($maxIndex-1,$catId).">Last </a></li>";
+            echo "<ul style='text-align:center' class=\"pagination rounded-pagination no-margin col-sm-12\">";
             echo $goFirst;
             if ($currentIndex > 0)
             {
-                echo "<a class=\"paginate_button\" href=".self::paginationCraftUrl($currentIndex-1,$catId).">Previous </a>";;
+                echo "<li class=\"paginate_button  \"><a class=\"paginate_button\" href=".self::paginationCraftUrl($currentIndex-1,$catId).">Previous </a></li>";;
             }
 
-            for ($x = 0; $x <= $maxIndex; $x++)
+            for ($x = 0; $x < $maxIndex; $x++)
             {
 
-                echo "<a class=\"paginate_button \" href=".self::paginationCraftUrl($x,$catId).">".($x+1)." </a>";
+                echo "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl($x,$catId).">".($x+1)." </a></li>";
             }
-            if ($currentIndex < $maxIndex)
+            if ($currentIndex < $maxIndex-1)
             {
 
-                echo "<a class=\"paginate_button \" href=".self::paginationCraftUrl($currentIndex+1,$catId).">Next </a>";;
+                echo "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl($currentIndex+1,$catId).">Next </a></li>";;
             }
             echo $goLast;
+            echo "</ul>";
 
 
     }
@@ -404,6 +388,180 @@ class Display
     {
         $currentURL = $_SERVER["SCRIPT_NAME"];
         $currentURL .= "?catId=".$catId."&index=".$index;
+        return $currentURL;
+    }
+
+    static function searchBar()
+    {
+        echo "<div class=\"col-xs-12  sidebar sm-margin-top\">
+
+                        <div class=\"xs-block bg-gray quick-search\">
+
+                            <form method=\"get\" action=\"searchResult.php\">
+
+                                <div class=\"form-group\">                                    
+                                    <div class=\"controls\">
+                                        <input placeholder=\"Search word\" type=\"text\" class=\"form-control input\" name='query'/>
+                                    </div>
+                                </div>
+
+                                <div class=\"form-group\">
+                                    <button class=\"btn btn-primary btn-block\">Search</button>
+                                </div>
+
+                            </form>
+
+                        </div>
+                 </div>";
+    }
+
+    static function displaySearchResult($queryString)
+    {
+
+        $items = Retrieval::getSearchResult($queryString);
+        $itemArray = array();
+        $displayPerPage = 10;
+        $pageIndex = 0;
+        $emptyItems = false;
+
+        //SQL into Array
+        if($items)
+        {
+            while($row = $items->fetch_array())
+            {
+                array_push($itemArray,$row);
+            }
+        }
+        else
+        {
+            $emptyItems = true;
+        }
+
+        //Calculations for separating items into pages
+        $itemCount = sizeof($itemArray);
+        $maxIndex = ceil($itemCount / $displayPerPage);
+        if (isset($_GET["index"]))
+        {
+            $pageIndex = $_GET["index"];
+        }
+        else
+        {
+            $pageIndex = 0;
+        }
+
+        //Determine Which Items to Display
+
+        $startIndex = ($pageIndex) * $displayPerPage;
+
+
+        $arrayDisplayStartItem = $startIndex;
+        $arrayDisplayEndItem = $startIndex + $displayPerPage;
+
+
+
+        //Display Content
+        if($items)
+        {
+            echo "
+                
+        
+                     
+                    <div class=\"container block md-margin-top\">
+        
+                        <!-- Offers/ START -->
+                        <div class=\"block text-center\">
+        
+                            <div class=\"title-big\">
+                                <h1>Search Result For: ".$queryString."</h1>
+                            </div>
+        
+                        </div><!-- Offers / END -->";
+
+
+
+
+                for($i = $arrayDisplayStartItem; $i < $arrayDisplayEndItem; $i++)
+                {
+
+
+                    if ($i < sizeof($itemArray))
+                    {
+
+                        $row = $itemArray[$i];
+                        $cat = "";
+                        if ($row["SubCategory"] != null)
+                        {
+                            $cat = $row["SubCategory"];
+                        }
+                        else
+                        {
+                            $cat = $row["Category"];
+                        }
+                        echo "
+                            <section>
+                                <div class=\"shop-grid-item col-sm-3 col-xs-6\">
+
+                                    <div class=\"image\">
+                                        <a href=\"detail.php?catId=" . $cat . "&itemId=" . $row["Item_No"] . "\">
+                                            <img src=\".." . $row["Large_Image"] . "\" alt=\"Alt text from database\"/>
+                                        </a>
+                                  </div>
+
+                                    <div class=\"title text-center\">
+                                        <h3><a href=\"detail.php?catId=" . $cat . "&itemId=" . $row["Item_No"] . "\">" . $row["Title_English"] . "</a></h3>
+                                    </div>
+                                  
+
+                                </div>
+                            </section><!-- Shop item / END -->
+                    ";
+                    }
+                }
+
+
+
+            if ($emptyItems)
+            {
+                echo "Nothing to Display";
+            }
+            self::pageSelector($maxIndex,$pageIndex,0);
+
+        }
+    }
+
+    static function pageSelectorSearch($maxIndex, $currentIndex,$query)
+    {
+
+        $goFirst = "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl(0,$query).">First </a></li>";
+
+        $goLast = "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl($maxIndex-1,$query).">Last </a></li>";
+        echo "<ul style='text-align:center' class=\"pagination rounded-pagination no-margin col-sm-12\">";
+        echo $goFirst;
+        if ($currentIndex > 0)
+        {
+            echo "<li class=\"paginate_button  \"><a class=\"paginate_button\" href=".self::paginationCraftUrl($currentIndex-1,$query).">Previous </a></li>";;
+        }
+
+        for ($x = 0; $x < $maxIndex; $x++)
+        {
+
+            echo "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl($x,$query).">".($x+1)." </a></li>";
+        }
+        if ($currentIndex < $maxIndex-1)
+        {
+
+            echo "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl($currentIndex+1,$query).">Next </a></li>";;
+        }
+        echo $goLast;
+        echo "</ul>";
+
+
+    }
+
+    static function paginationCraftUrlSearch($index,$query)
+    {
+        $currentURL = $_SERVER["SCRIPT_NAME"];
+        $currentURL .= "?query=".$query."&index=".$index;
         return $currentURL;
     }
 }

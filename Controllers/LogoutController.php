@@ -7,7 +7,7 @@
  */
 include_once "../Models/Security.php";
 include_once "../DBManager/DBManager.php";
-sec_session_start();
+session_start();
 
 // Unset all session values
 $_SESSION = array();

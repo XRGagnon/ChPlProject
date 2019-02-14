@@ -9,7 +9,7 @@
 include_once "../Models/Defaults.php";
 include_once "../Models/Partials.php";
 include_once "../Models/Security.php";
-sec_session_start();
+session_start();
 DefaultHead();
 ?>
 <h2>Login Page</h2><br>
