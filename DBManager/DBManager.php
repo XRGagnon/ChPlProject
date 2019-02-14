@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: xavie
- * Date: 13/12/2018
- * Time: 10:27 AM
- */
-
  
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Defaults.php";
@@ -153,7 +146,7 @@ class DBManager
     }
 	
 //////////////////////////////// Procedures section ////////////////////////////////////
-    // This includes Login, Register
+
     //Secure login
     /* Summary of Login function
   -Used for when user wants to log in
@@ -276,40 +269,55 @@ class DBManager
         }
     }
 
-    function Add_Item($Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
+	//This function will add an item to the database.
+		// -checks to see if the item already exists. 
+		// -adds a change entry into the changes table. 
+    static function Add_Item($Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
 					$Small_Image_Text, $Instructions, $Price)
     {
+		$User_ID = $_SESSION['USER_ID'];
+		
         $conn = ConnectionMaker::getConnection();
 
-        $sql = $conn->prepare("INSERT INTO TABLE ITEM 
+        $sql = $conn->prepare("INSERT INTO ITEM 
 		VALUES ( ? , ? , ? , ? , ? , ? , ? , ?	, ? , ? , ?
 		, ? , ? , ? , ? , ? , ? , ? );");
 		
-		$sql->bind_param("ssssisssssssbsbssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
+		$sql->bind_param("ssssssssssssbsbssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
 					$Small_Image_Text, $Instructions, $Price);
 		
-		$Check_For_ItemNo = "SELECT Item_No FROM ITEM
-							WHERE Item_No = ". $Item_No . ";";
+		$Check_For_ItemNo = $conn->prepare("SELECT Item_No FROM ITEM
+							WHERE Item_No = ?;");
+		$Check_For_ItemNo->bind_param($Item_No);			
 							
-		$Check_For_Title_English = "SELECT Title_English FROM ITEM
-							WHERE Title_English = ". $Title_English . ";";
+		$Check_For_Title_English = $conn->prepare("SELECT Title_English FROM ITEM
+							WHERE Title_English = ?;");
+		$Check_For_Title_English->bind_param($Title_English);					
 							
-		$Check_For_Title_French = "SELECT Title_French FROM ITEM
-							WHERE Title_French = ". $Title_French . ";";	
+		$Check_For_Title_French = $conn->prepare("SELECT Title_French FROM ITEM
+							WHERE Title_French = ?;");
+		$Check_For_Title_French->bind_param($Title_French);						
 
-		$result2 = $conn->query($Check_For_ItemNo);
-		$result3 = $conn->query($Check_For_Title_English);
-		$result4 = $conn->query($Check_For_Title_French);
+		$Change = $conn->prepare("INSERT INTO CHANGES VALUES (?, ?, ?, ? ,?);");
+		$Change->bind_param($Item_No,$User_ID,"Added Item: ". $Title_English , date("Y-m-d"));
 
-		if ($result2->num_rows == 0) {
-			if ($result3->num_rows == 0) {
-				if ($result4->num_rows == 0) {
+		if ($Check_For_ItemNo->execute()) {
+			if ($Check_For_Title_English->execute()) {
+				if ($Check_For_Title_French->execute()) {
 					if ($sql->execute()) {
 						echo "Item Added Successfully";
+						if($Change->execute())
+						{
+							echo "Change entry added successfully";
+						}
+						else
+						{
+							echo "Change entry was not added successfully";
+						}
 					}
 					else {
 						echo "Something went wrong, try again later";
@@ -329,15 +337,15 @@ class DBManager
 		}
     }
 
-    function Update_Item($Old_Item_No,$Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
+    static function Update_Item($Old_Item_No,$Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
 					$Small_Image_Text, $Instructions, $Price)
     {
         $conn = ConnectionMaker::getConnection();
 
-        $sql = "Update ITEM
-		Set Item_No = ? , Category = ? , SubCategory = ? 
+        $sql = $conn->prepare("UPDATE ITEM
+		SET Item_No = ? , Category = ? , SubCategory = ? 
 		, Availability = ? , New = ? , Colors = ? 
 		, Title_English = ? , Description_English = ? 
 		, Title_French = ? , Description_French = ? 
@@ -345,57 +353,99 @@ class DBManager
 		, Large_Image = ? , Large_Image_Text = ? 
 		, Small_Image = ? , Small_Image_Text = ?
 		, Instructions = ? , Price = ? 
-		Where Item_No =  " . $Old_Item_No ." ;";
+		Where Item_No =  '" . $Old_Item_No ."' ;");
 		
-		$sql->bind_param("ssssisssssssbsbssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
+		$sql->bind_param("ssssssssssssbsbssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
 					$Small_Image_Text, $Instructions, $Price);
 
-		$Check_For_ItemNo = "SELECT Item_No FROM ITEM
-							WHERE Item_No = ". $Item_No . ";";
+		$Check_For_ItemNo = $conn->prepare("SELECT Item_No FROM ITEM
+							WHERE Item_No = ? ;");
+		$Check_For_ItemNo->bind_param("s", $Item_No);	
+		$Check_For_ItemNo->execute();	
+		$Check_For_ItemNo->store_result();
 							
-		$Check_For_Title_English = "SELECT Title_English FROM ITEM
-							WHERE Title_English = ". $Title_English . ";";
+		$Check_For_Title_English = $conn->prepare("SELECT Title_English FROM ITEM
+							WHERE Title_English = ? ;");
+		$Check_For_Title_English->bind_param("s", $Title_English);
+		$Check_For_Title_English->execute();
+		$Check_For_Title_English->store_result();
 							
-		$Check_For_Title_French = "SELECT Title_French FROM ITEM
-							WHERE Title_French = ". $Title_French . ";";	
-
-		$result2 = $conn->query($Check_For_ItemNo);
-		$result3 = $conn->query($Check_For_Title_English);
-		$result4 = $conn->query($Check_For_Title_French);
-
-		if ($result2->num_rows == 0) {
-			if ($result3->num_rows == 0) {
-				if ($result4->num_rows == 0) {
+		$Check_For_Title_French = $conn->prepare("SELECT Title_French FROM ITEM
+							WHERE Title_French = ? ;");
+		$Check_For_Title_French->bind_param("s", $Title_French);
+		$Check_For_Title_French->execute();
+		$Check_For_Title_French->store_result();
+		
+		
+		
+		if ($Check_For_ItemNo->num_rows < 1) {
+			
+			if ($Check_For_Title_English->num_rows < 1) {
+				
+				if ($Check_For_Title_French->num_rows < 1) {
 					if ($sql->execute()) {
-						echo "Item Added Successfully";
+						echo "Item Updated Successfully";
+						?>
+							<form action="../Pages/ViewItems.php">
+								<input type="submit" value="Return to View Items Page">
+							<form>
+						<?php
+						/*if($Change->execute())
+						{
+							echo "Change entry added successfully";
+						}
+						else
+						{
+							echo "Change entry was not added successfully";
+						}*/
 					}
 					else {
 						echo "Something went wrong, try again later";
+						?>
+							<form action="../Pages/UpdateItemForm.php">
+								<input type="submit" value="Go back">
+							<form>
+						<?php
 					}					
 				}
 				else
 				{
 					echo "There is already an Item that has that French Title";
+					?>
+					<form action="../Pages/UpdateItemForm.php">
+						<input type="submit" value="Try again">
+					<form>
+					<?php
 				}
 			}
 			else{
 				echo "There is already an Item that has that English Title";
+				?>
+				<form action="../Pages/UpdateItemForm.php">
+					<input type="submit" value="Try Again">
+				<form>
+				<?php
 			}			
 		}
 		else{
 			echo "There is already an Item with that Item Number";
+				?>
+				<form action="../Pages/UpdateItemForm.php">
+					<input type="submit" value="Try Again">
+				<form>
+				<?php
 		}
     }
 
-    function Remove_Item($ItemIdVariable)
+	//Function simply removes an item from the database 
+    static function Remove_Item($ItemId)
     {
         $conn = ConnectionMaker::getConnection();
 
         $sql = "DELETE FROM ITEM
-		Where 
-		Item_No = " . $ItemIdVariable . ";";
+		WHERE Item_No = '" . $ItemId . "';";
 
         if ($conn->query($sql) === true) {
             echo "Item has been successfully updated";
@@ -454,7 +504,8 @@ class DBManager
 					echo "</td>";
 				}
 				$id = reset($row);
-				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a><td>'; 
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
+				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
 				echo "</tr>";
             }
 			echo "</table>";
@@ -465,16 +516,27 @@ class DBManager
         }
     }
 	
-	static function View_One_Item($Item_ID)
+	static function View_One_Item($SEARCH)
 	{
 		$conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT * FROM ITEM WHERE Item_No = '" . $Item_ID . "';";
+        $sql = "SELECT * FROM ITEM WHERE Item_No = '" . $SEARCH . "';";
+		$sql2 = "SELECT * FROM ITEM WHERE Title_English = '" . $SEARCH . "';";
+		$sql3 = "SELECT * FROM ITEM WHERE Title_French = '" . $SEARCH . "';";
+		$sql4 = "SELECT * FROM ITEM,CATEGORY 
+				WHERE ITEM.SubCategory = CATEGORY.Category
+				AND CATEGORY.EnglishCat = '" . $SEARCH . "';";
+		$sql5 = "SELECT * FROM ITEM,CATEGORY 
+				WHERE ITEM.SubCategory = CATEGORY.Category
+				AND CATEGORY.FrenchCat = '" . $SEARCH . "';";				
 
         $result = $conn->query($sql);
+		$result2 = $conn->query($sql2);
+		$result3 = $conn->query($sql3);
+		$result4 = $conn->query($sql4);
+		$result5 = $conn->query($sql5);		
 		
-        if ($result->num_rows > 0) {
-			echo "<div style='overflow-x:auto'>";
+		echo "<div style='overflow-x:auto'>";
 			echo "<table id='viewall'>";	
 			echo "<tr>";
 				echo "<th>Item_No</th>";
@@ -496,7 +558,9 @@ class DBManager
 				echo "<th>Instructions</th>";
 				echo "<th>Price</th>";
 				echo "<th>Remove Item</th><th>Edit Item</th>";
-			echo "</tr>";		
+			echo "</tr>";
+        if ($result->num_rows > 0) {
+		
             while ($row = $result->fetch_assoc()) {
 
 				echo "<tr>";
@@ -514,17 +578,203 @@ class DBManager
 					echo "</td>";
 				}
 				$id = reset($row);
-				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a><td>'; 
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
+				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
 				echo "</tr>";
             }
-			echo "</table>";
-			echo "</div>";
         } else 
-		{
-            echo "There are no items with that Item_No";
-        }
+		if ($result2->num_rows > 0) {
+		
+            while ($row = $result2->fetch_assoc()) {
+
+				echo "<tr>";
+				foreach($row as $val)
+				{
+					
+					echo "<td>";
+					if(!isset($val))
+					{
+						print_r('');
+					}
+					else
+					{
+						print_r($val);
+					}
+					echo "</td>";
+				}
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
+				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
+				echo "</tr>";
+            }
+
+        } else 
+		if ($result3->num_rows > 0) {
+		
+            while ($row = $result3->fetch_assoc()) {
+
+				echo "<tr>";
+				foreach($row as $val)
+				{
+					echo "<td>";
+					if(!isset($val))
+					{
+						print_r('');
+					}
+					else
+					{
+						print_r($val);
+					}
+					echo "</td>";
+				}
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
+				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
+				echo "</tr>";
+            }
+
+        } else
+		if ($result4->num_rows > 0) {
+		
+            while ($row = $result4->fetch_assoc()) {
+
+				echo "<tr>";
+				foreach($row as $val)
+				{
+					echo "<td>";
+					if(!isset($val))
+					{
+						print_r('');
+					}
+					else
+					{
+						print_r($val);
+					}
+					echo "</td>";
+				}
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
+				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
+				echo "</tr>";
+            }
+
+        } else
+		if ($result5->num_rows > 0) {
+		
+            while ($row = $result5->fetch_assoc()) {
+
+				echo "<tr>";
+				foreach($row as $val)
+				{
+					echo "<td>";
+					if(!isset($val))
+					{
+						print_r('');
+					}
+					else
+					{
+						print_r($val);
+					}
+					echo "</td>";
+				}
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
+				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
+				echo "</tr>";
+            }
+
+        } else	
+		{		
+            echo "There are no items with that description";
+        }			
+		echo "</table>";
+		echo "</div>";
 		unset($_SESSION['CAT']);
-		unset($_SESSION['Item']);
+		unset($_SESSION['Item']);	
+		
+
+	}
+	
+	static function UpdateItemViewItem($ID)
+	{
+		unset($_SESSION['query']);
+		$conn = ConnectionMaker::getConnection();
+
+		$sql = "SELECT * FROM ITEM WHERE Item_No = '" . $ID . "';";	
+		
+		$result = $conn->query($sql);	
+		
+		echo "<div style='overflow-x:auto'>";
+			echo "<table id='viewall'>";	
+			echo "<tr>";
+				echo "<th>Item_No</th>";
+				echo "<th>Category</th>";
+				echo "<th>Sub Category</th>";
+				echo "<th>Availability</th>";
+				echo "<th>New</th>";
+				echo "<th>Colors</th>";
+				echo "<th>Title_English</th>";
+				echo "<th>Description_English</th>";
+				echo "<th>Title French</th>";
+				echo "<th>Description French</th>";
+				echo "<th>Country Of Origin</th>";
+				echo "<th>Spare Parts</th>";
+				echo "<th>Large Image</th>";
+				echo "<th>Large Image Text</th>";
+				echo "<th>Small Image</th>";
+				echo "<th>Small Image Text</th>";
+				echo "<th>Instructions</th>";
+				echo "<th>Price</th>";
+				echo "<th>Remove Item</th><th>Edit Item</th>";
+			echo "</tr>";
+			
+			if ($result->num_rows > 0) {
+		
+				while ($row = $result->fetch_assoc()) {
+					
+					$_SESSION['Item_No'] = $row['Item_No'];
+					$_SESSION['Category'] = $row['Category'];
+					$_SESSION['SubCategory'] = $row['SubCategory'];
+					$_SESSION['Availability'] = $row['Availability'];
+					$_SESSION['New'] = $row['New'];
+					$_SESSION['Colors'] = $row['Colors'];
+					$_SESSION['Title_English'] = $row['Title_English'];
+					$_SESSION['Description_English'] = $row['Description_English'];
+					$_SESSION['Title_French'] = $row['Title_French'];
+					$_SESSION['Description_French'] = $row['Description_French'];
+					$_SESSION['Country_Of_Origin'] = $row['Country_Of_Origin'];
+					$_SESSION['Spare_Parts'] = $row['Spare_Parts'];
+					$_SESSION['Large_Image'] = $row['Large_Image'];
+					$_SESSION['Large_Image_Text'] = $row['Large_Image_Text'];
+					$_SESSION['Small_Image'] = $row['Small_Image'];
+					$_SESSION['Small_Image_Text'] = $row['Small_Image_Text'];
+					$_SESSION['Instructions'] = $row['Instructions'];
+					$_SESSION['Price'] = $row['Price'];
+					
+					echo "<tr>";
+					foreach($row as $val)
+					{
+						
+						echo "<td>";
+						if(!isset($val))
+						{
+							print_r('');
+						}
+						else
+						{
+							print_r($val);
+						}
+						echo "</td>";
+					}
+					$id = reset($row);
+					echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
+					echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
+					echo "</tr>";
+				}
+			}
+			
+			echo "</table>";
+		echo "</div>";
 	}
 	
 	static function Category($CAT)
@@ -588,6 +838,33 @@ class DBManager
         }
 		unset($_SESSION['CAT']);
 		unset($_SESSION['Item']);
+	}
+	
+	static function Get_SubCategories($Category)
+	{
+		$conn = ConnectionMaker::getConnection();
+		
+		$sql = "SELECT * FROM CATEGORY 
+		WHERE Parent_Category = '" . $Category . "';";
+				
+		$result = $conn->query($sql);
+	
+		if($result->num_rows > 0)
+		{
+			while ($row = $result->fetch_assoc()) {
+
+				$count = 0;
+				$variable = "";
+				$CatID = $row['Category'];
+				$CatName = $row['EnglishCat'];
+			
+				echo "<option value='" . $CatID . "'>" . $CatName . "</option>";		
+			}				
+		}else
+		{
+			echo "<option value='null'>N/A</option>";
+		}
+		
 	}
 
 

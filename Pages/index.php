@@ -21,6 +21,9 @@ DefaultHead();
                             <div class="page-subheader">
                            
                                 <h1>Olympic Tag line here <br/>
+
+									<a href="ViewItems.php">Admin Page</a><br/>
+
                                     <?php
                                     if (Login_Check())
                                     {echo("

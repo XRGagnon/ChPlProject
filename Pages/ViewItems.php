@@ -3,10 +3,17 @@ include_once "../Models/Defaults.php";
 include_once "../Models/Partials.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
+unset($_SESSION['id']);
 DefaultHead();
 ?>
 
-<h2>Remove Item</h2>
+<div style="Margin: 30px;">
+<h2>View All Items Page</h2>
+<p>If you want to add an item, click the link below</p>
+
+<form method="POST" action="../Pages/AddItemForm.php">
+	<input type="submit" value="Add an Item">
+</form><br>
 
 <p>Select a Category to narrow your search</p>
 
@@ -27,6 +34,7 @@ DefaultHead();
 	<input type="submit" value="Search Category" name="CategoryForm">
 </form>
 
+<p>Search for an Item by Item_No, sub Category or by title</p>
 <form method="post" action="../Controllers/ViewItemsController.php">
 
 	<input type="text" name="Item_No" id="Item_No">
@@ -35,12 +43,12 @@ DefaultHead();
 	
 </form>
 
+<p>Reset Changes </p>
 <form method="post" action="../Controllers/ViewItemsController.php">
 
 	<input type="submit" value="Reset" name="Reset">
 	
 </form>
-
 
 
 <?php
@@ -60,6 +68,7 @@ else
 	$ViewItems = DBManager::View_Items();
 }
 ?>
+</div>
 
 <?php
 DefaultFoot();
