@@ -1,5 +1,4 @@
 <?php
-session_start();
  
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Defaults.php";
@@ -867,6 +866,8 @@ class DBManager
 		}
 		
 	}
+
+
 
 
 }
