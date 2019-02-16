@@ -8,5 +8,10 @@
 
 class Utility
 {
-
+    public static function contact($destination,$subj, $message, $origin,$name )
+    {
+        $message .= "<br/> Message from: ".$origin;
+        $message .= "<br/> Sender Name: ".$name;
+        mail($destination,$subj,$message);
+    }
 }

@@ -2,43 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c6fa617-1f88-478c-b1e5-165afd4a9e27" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Controllers/searchController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/PurchaseComplete.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/PurchaseError.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/searchResult.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/lg/ACM171.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/lg/ACM842.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/lg/ACM843.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/lg/ACM845.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/lg/ACM983.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/lg/ACM984.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/lg/ACM985.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/thankyou.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DBManager/Utility.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/LogoutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/LogoutController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/UpdateController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UpdateController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBManager/Retrieval.php" beforeDir="false" afterPath="$PROJECT_DIR$/DBManager/Retrieval.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/searchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/contactController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBManager/DBManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/DBManager/DBManager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/Defaults.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Defaults.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/Display.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Display.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Security.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Security.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Register.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Storing html.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/TestHome.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/UpdateConfirm.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/UpdateConfirm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/UpdateItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/UpdateItem.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/UpdateItemForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/UpdateItemForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/ViewItems.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/ViewItems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/catGridView.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/catGridView.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/detail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/detail_plumbing.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/detail_poles.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/lg/ACM846.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/image/lg/ACM846.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/forms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/contact.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,10 +33,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pages/UpdateItem.php">
+        <entry file="file://$PROJECT_DIR$/Controllers/RegisterController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+            <state relative-caret-position="256">
+              <caret line="86" selection-start-line="86" selection-end-line="86" />
             </state>
           </provider>
         </entry>
@@ -74,76 +44,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controllers/LoginController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            <state relative-caret-position="170">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DBManager/DBManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="176" selection-start-line="176" selection-end-line="176" />
+            <state relative-caret-position="307">
+              <caret line="177" selection-start-line="177" selection-end-line="177" />
               <folding>
-                <element signature="n#Summary#0;n#DBManager#0;n#!!top" />
-                <element signature="n#Detail#0;n#DBManager#0;n#!!top" />
-                <element signature="n#Exception#0;n#DBManager#0;n#!!top" />
-                <element signature="n#Register#0;n#DBManager#0;n#!!top" />
-                <element signature="n#Cart#0;n#DBManager#0;n#!!top" />
-                <element signature="n#Add_Item#0;n#DBManager#0;n#!!top" />
-                <element signature="n#Update_Item#0;n#DBManager#0;n#!!top" />
-                <element signature="n#Remove_Item#0;n#DBManager#0;n#!!top" />
-                <element signature="n#View_Items#0;n#DBManager#0;n#!!top" />
-                <element signature="n#View_One_Item#0;n#DBManager#0;n#!!top" />
-                <element signature="n#Category#0;n#DBManager#0;n#!!top" />
-                <element signature="n#Get_SubCategories#0;n#DBManager#0;n#!!top" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Controllers/LogoutController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pages/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Controllers/RegisterController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="77" selection-start-line="77" selection-end-line="77" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/forms.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-625">
-              <caret line="25" column="75" selection-start-line="25" selection-start-column="75" selection-end-line="25" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Models/Security.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+            <state relative-caret-position="340">
+              <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -202,22 +128,18 @@
         <option value="$PROJECT_DIR$/error.php" />
         <option value="$PROJECT_DIR$/Pages/TestHome.php" />
         <option value="$PROJECT_DIR$/Pages/Storing html" />
-        <option value="$PROJECT_DIR$/DBManager/DBManager.php" />
         <option value="$PROJECT_DIR$/Pages/Storing html.php" />
         <option value="$PROJECT_DIR$/Pages/detail_plumbing.php" />
         <option value="$PROJECT_DIR$/en/detail_poles_Paginated.html" />
         <option value="$PROJECT_DIR$/../../../bin/apache/apache2.4.35/conf/httpd.conf" />
-        <option value="$PROJECT_DIR$/Models/Defaults.php" />
         <option value="$PROJECT_DIR$/CSS/main.css" />
         <option value="$PROJECT_DIR$/Controllers/searchController.php" />
         <option value="$PROJECT_DIR$/DBManager/Retrieval.php" />
-        <option value="$PROJECT_DIR$/Models/Display.php" />
         <option value="$PROJECT_DIR$/Pages/UpdateItemForm.php" />
         <option value="$PROJECT_DIR$/Pages/ViewItems.php" />
         <option value="$PROJECT_DIR$/Pages/Register.php" />
         <option value="$PROJECT_DIR$/Controllers/RegisterController.php" />
         <option value="$PROJECT_DIR$/Pages/searchResult.php" />
-        <option value="$PROJECT_DIR$/Pages/index.php" />
         <option value="$PROJECT_DIR$/Pages/UpdateConfirm.php" />
         <option value="$PROJECT_DIR$/Controllers/UpdateController.php" />
         <option value="$PROJECT_DIR$/Models/Security.php" />
@@ -230,6 +152,13 @@
         <option value="$PROJECT_DIR$/Controllers/LoginController.php" />
         <option value="$PROJECT_DIR$/Controllers/LogoutController.php" />
         <option value="$PROJECT_DIR$/js/forms.js" />
+        <option value="$PROJECT_DIR$/Models/Display.php" />
+        <option value="$PROJECT_DIR$/Models/Defaults.php" />
+        <option value="$PROJECT_DIR$/DBManager/Utility.php" />
+        <option value="$PROJECT_DIR$/Controllers/contactController.php" />
+        <option value="$PROJECT_DIR$/Pages/contact.php" />
+        <option value="$PROJECT_DIR$/DBManager/DBManager.php" />
+        <option value="$PROJECT_DIR$/Pages/index.php" />
       </list>
     </option>
   </component>
@@ -280,6 +209,11 @@
               <item name="ChPlProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChPlProject" type="462c0819:PsiDirectoryNode" />
               <item name="DBManager" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChPlProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChPlProject" type="462c0819:PsiDirectoryNode" />
+              <item name="en" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ChPlProject" type="b2602c69:ProjectViewProjectNode" />
@@ -447,11 +381,14 @@
       <workItem from="1550168071806" duration="3075000" />
       <workItem from="1550172438973" duration="2004000" />
       <workItem from="1550174513684" duration="356000" />
+      <workItem from="1550273508511" duration="2454000" />
+      <workItem from="1550284755783" duration="2975000" />
+      <workItem from="1550288814030" duration="454000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122857000" />
+    <option name="totallyTimeSpent" value="132193000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -464,9 +401,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.26066098" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2739872" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
@@ -476,7 +414,7 @@
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Run" order="7" weight="0.32936078" />
-      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.4978678" weight="0.33586133" />
+      <window_info anchor="bottom" id="Debug" order="8" sideWeight="0.4978678" visible="true" weight="0.33586133" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" weight="0.32936078" />
@@ -495,29 +433,29 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/DBManager/DBManager.php</url>
-          <line>81</line>
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/DBManager/DBManager.php</url>
-          <line>84</line>
-          <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/DBManager/DBManager.php</url>
-          <line>89</line>
-          <option name="timeStamp" value="65" />
+          <url>file://$PROJECT_DIR$/Controllers/RegisterController.php</url>
+          <line>86</line>
+          <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/Controllers/RegisterController.php</url>
-          <line>77</line>
-          <option name="timeStamp" value="82" />
+          <line>82</line>
+          <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/Pages/index.php</url>
-          <line>27</line>
-          <option name="timeStamp" value="83" />
+          <url>file://$PROJECT_DIR$/Controllers/LoginController.php</url>
+          <line>10</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/DBManager/DBManager.php</url>
+          <line>177</line>
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/js/forms.js</url>
+          <line>87</line>
+          <option name="timeStamp" value="85" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -569,13 +507,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/sha512.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/password/password.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="175" column="9" selection-start-line="175" selection-start-column="9" selection-end-line="175" selection-end-column="9" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/error.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -638,40 +569,10 @@
     <entry file="file://$PROJECT_DIR$/en/detail.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Controllers/searchController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DBManager/ConnectionMaker.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Models/Defaults.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1887">
-          <caret line="116" selection-start-line="116" selection-end-line="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Models/Display.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="462" selection-start-line="462" selection-end-line="462" />
-          <folding>
-            <element signature="n#displayCategories#0;n#Display#0;n#!!top" />
-            <element signature="n#displayCategoryGrid#0;n#Display#0;n#!!top" />
-            <element signature="n#displayItem#0;n#Display#0;n#!!top" />
-            <element signature="n#colorString#0;n#Display#0;n#!!top" />
-            <element signature="n#pageSelector#0;n#Display#0;n#!!top" />
-            <element signature="n#paginationCraftUrl#0;n#Display#0;n#!!top" />
-            <element signature="n#searchBar#0;n#Display#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -696,13 +597,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DBManager/Retrieval.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1653">
-          <caret line="133" column="26" selection-start-line="133" selection-start-column="26" selection-end-line="133" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pages/UpdateConfirm.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -721,13 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/catGridView.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -768,64 +655,125 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/LogoutController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="459">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Controllers/searchController.php" />
     <entry file="file://$PROJECT_DIR$/Models/Security.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        <state relative-caret-position="59">
+          <caret line="7" column="42" lean-forward="true" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Models/Utility.php" />
+    <entry file="file://$PROJECT_DIR$/Pages/catGridView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/contact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="97" column="42" selection-start-line="97" selection-start-column="42" selection-end-line="97" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controllers/contactController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DBManager/Utility.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Models/Defaults.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DBManager/Retrieval.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="133" column="26" selection-start-line="133" selection-start-column="26" selection-end-line="133" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Models/Display.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="537" column="44" selection-start-line="537" selection-start-column="44" selection-end-line="537" selection-end-column="44" />
+          <folding>
+            <element signature="n#displayCategories#0;n#Display#0;n#!!top" />
+            <element signature="n#displayCategoryGrid#0;n#Display#0;n#!!top" />
+            <element signature="n#displayItem#0;n#Display#0;n#!!top" />
+            <element signature="n#colorString#0;n#Display#0;n#!!top" />
+            <element signature="n#pageSelector#0;n#Display#0;n#!!top" />
+            <element signature="n#style#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#paginationCraftUrl#0;n#Display#0;n#!!top" />
+            <element signature="n#searchBar#0;n#Display#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/forms.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-625">
-          <caret line="25" column="75" selection-start-line="25" selection-start-column="75" selection-end-line="25" selection-end-column="75" />
+        <state relative-caret-position="429">
+          <caret line="87" column="9" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/RegisterController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        <state relative-caret-position="256">
+          <caret line="86" selection-start-line="86" selection-end-line="86" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/index.php">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/password/password.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="398">
+          <caret line="200" column="9" selection-start-line="200" selection-start-column="9" selection-end-line="200" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controllers/LoginController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DBManager/DBManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="176" selection-start-line="176" selection-end-line="176" />
+        <state relative-caret-position="307">
+          <caret line="177" selection-start-line="177" selection-end-line="177" />
           <folding>
-            <element signature="n#Summary#0;n#DBManager#0;n#!!top" />
-            <element signature="n#Detail#0;n#DBManager#0;n#!!top" />
-            <element signature="n#Exception#0;n#DBManager#0;n#!!top" />
-            <element signature="n#Register#0;n#DBManager#0;n#!!top" />
-            <element signature="n#Cart#0;n#DBManager#0;n#!!top" />
-            <element signature="n#Add_Item#0;n#DBManager#0;n#!!top" />
-            <element signature="n#Update_Item#0;n#DBManager#0;n#!!top" />
-            <element signature="n#Remove_Item#0;n#DBManager#0;n#!!top" />
-            <element signature="n#View_Items#0;n#DBManager#0;n#!!top" />
-            <element signature="n#View_One_Item#0;n#DBManager#0;n#!!top" />
-            <element signature="n#Category#0;n#DBManager#0;n#!!top" />
-            <element signature="n#Get_SubCategories#0;n#DBManager#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
         </state>
       </provider>
     </entry>

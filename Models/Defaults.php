@@ -116,10 +116,10 @@ function DefaultHead()
                         </li>-->
 
                         <li class="drop">
-                            <a href="#">
+                            <a href="../Pages/contact.php">
                                 Contact us
                             </a>
-                        </li>
+                        </li>-
 
                         <li class="drop">
                             <a href="../Pages/Login.php">
