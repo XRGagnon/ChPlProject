@@ -4,7 +4,7 @@
 include_once "../Models/Defaults.php";
 include_once "../Models/Partials.php";
 include_once "../Models/Security.php";
-session_start();
+sec_session_start();
 //call the default header 
 DefaultHead();
 ?>

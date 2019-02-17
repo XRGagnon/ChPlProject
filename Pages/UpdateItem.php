@@ -5,7 +5,7 @@ include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
 include_once "../DBManager/Retrieval.php";
-session_start();
+sec_session_start();
 DefaultHead();
 $_SESSION["asdf"] = "asdf";
 unset($_SESSION["UpdateItemError"]);

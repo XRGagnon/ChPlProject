@@ -4,7 +4,7 @@ include_once "../Models/Partials.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
-session_start();
+sec_session_start();
 unset($_SESSION['id']);
 DefaultHead();
 
