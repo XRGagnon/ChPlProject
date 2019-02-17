@@ -8,7 +8,8 @@ DefaultHead();
 
 ?>
 <!-- This is the form for the item-->
-<h2>Add Item Page</h2>
+<div style="Margin: 30px;">
+
 <form action="../Controllers/AddItemController.php" method="POST">
 	<table>
 		<tr>
@@ -18,8 +19,8 @@ DefaultHead();
 			<td>
 				<input type="text" name="Item_No" id="Item_No" required><br>
 			</td>
-		</tr>\
-		<input type="hidden" name="Category" value="<?php echo $_POST['Category']?>"
+		</tr>
+		<input type="hidden" name="Category" value="<?php echo $_POST['Category']?>">
 		<tr>
 			<td style="text-align: right; margin-left: 10px;">
 				<label for="SubCategory">Category: </label>
@@ -144,6 +145,7 @@ DefaultHead();
 		</tr>
 	<table>
 </form>
+</div>
 <?php
 DefaultFoot();
 ?>

@@ -3,19 +3,10 @@ include_once "../Models/Defaults.php";
 include_once "../Models/Partials.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
-session_start();
 unset($_SESSION["UpdateItemError"]);
 DefaultHead();
 ?>
-<style>
-table {
-  border-collapse: collapse;
-}
 
-table, th, td {
-  border: 1px solid black;
-}
-</style>
 <?php
 
 	if(!isset($_POST['Item_No']) || !isset($_POST['SubCategory']) 

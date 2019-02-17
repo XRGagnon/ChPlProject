@@ -129,6 +129,12 @@ unset($_SESSION["AddItemError"]);
 		$Add = DBManager::Add_Item($Item_No, $Category, $SubCategory, $Availability, $New, $Colors, 
 				$Title_English, $Description_English, $Title_French, $Description_French, $Country_Of_Origin, 
 				$Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image, $Small_Image_Text, $Instructions, $Price);
+				
+		?>
+			<form method="POST" action="../Pages/ViewItems.php">
+				<input type="submit" value="Return to main Page">
+			</form>
+		<?php
 		
 	}
 

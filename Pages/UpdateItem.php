@@ -5,7 +5,6 @@ include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
 include_once "../DBManager/Retrieval.php";
-session_start();
 DefaultHead();
 $_SESSION["asdf"] = "asdf";
 unset($_SESSION["UpdateItemError"]);
@@ -13,6 +12,8 @@ unset($_SESSION["UpdateItemError"]);
 $id = $_SESSION['id'];
 $item = Retrieval::getItem($id);
 ?>
+
+
 <div style="Margin: 30px;">
 <!-- This is the form for the update item-->
 <h2>Update Page</h2>
@@ -28,7 +29,7 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="Item_No">Item Number: </label>
 			</td>
 			<td>
-				<input type="text" name="Item_No" id="Item_No" required><br>
+				<input type="text" name="Item_No" id="Item_No" value="<?php echo $item["Item_No"] ?>" required><br>
 			</td>
 		</tr>
 		<input type="hidden" name="Category" value="<?php echo $_POST['Category']?>">
@@ -51,9 +52,9 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="Availability">Availability</label>
 			</td><br><br>
 			<td>
-				Both<input type="radio" name="Availability" id="Both" value="OP" checked><br>
-				Platinum<input type="radio" name="Availability" id="Platinum" value="P"><br>
-				Olympic<input type="radio" name="Availability" id="Olympic" value="O"><br>
+				Both<input type="radio" name="Availability" id="Both" value="OP" <?php if($_SESSION['Availability'] == 'OP'){ echo "checked"; };?>> <br>
+				Platinum<input type="radio" name="Availability" id="Platinum" value="P"  <?php if($_SESSION['Availability'] == 'p'){ echo "checked"; };?>><br>
+				Olympic<input type="radio" name="Availability" id="Olympic" value="O"  <?php if($_SESSION['Availability'] == 'O'){ echo "checked"; };?>><br>
 			</td>
 		</tr>
 		<tr>
@@ -61,8 +62,8 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="New">New</label>
 			</td><br><br>
 			<td>
-				Yes<input type="radio" name="New" Value="Yes" checked><br>
-				No<input type="radio" name="New" Value="No"><br>
+				Yes<input type="radio" name="New" Value="Yes"  <?php if($_SESSION['New'] == 'Yes'){ echo "checked";};?>><br>
+				No<input type="radio" name="New" Value="No"  <?php if($_SESSION['New'] == 'No'){ echo "checked";};?>><br>
 			</td>
 		</tr>	
 		<tr>
@@ -86,7 +87,7 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="Title_English">Title English</label>
 			</td>
 			<td> 
-				<input type="text" name="Title_English" id="Title_English" required><br>
+				<input type="text" name="Title_English" id="Title_English" required value="<?php echo $_SESSION['Title_English']?>"><br>
 			</td>
 		</tr>	
 		<tr>
@@ -94,7 +95,7 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="Description_English">Description English</label>
 			</td>
 			<td>
-				<input type="text" name="Description_English" id="Description_English" value="<?php echo $item["Description_English"] ?>"><br>
+				<input type="text" name="Description_English" id="Description_English" value="<?php echo $_SESSION["Description_English"] ?>"><br>
 			</td>
 		</tr>	
 		<tr>
@@ -102,7 +103,7 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="Title_French">Title French</label>
 			</td>
 			<td>
-				<input type="text" name="Title_French" id="Title_French" required><br>
+				<input type="text" name="Title_French" id="Title_French" required value="<?php echo $_SESSION['Title_French']?>"><br>
 			</td>
 		</tr>
 		<tr>
@@ -110,7 +111,7 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="Description_French">Description French</label>
 			</td>
 			<td>
-				<input type="text" name="Description_French" id="Description_French"><br>
+				<input type="text" name="Description_French" id="Description_French" value="<?php echo $_SESSION['Description_French']?>"><br>
 			</td>
 		</tr>	
 		<tr>
@@ -118,7 +119,7 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="Country_Of_Origin">Country of Origin</label>
 			</td>
 			<td>
-				<input type="text" name="Country_Of_Origin" id="Country_Of_Origin"><br>
+				<input type="text" name="Country_Of_Origin" id="Country_Of_Origin" value="<?php echo $_SESSION['Country_Of_Origin']?>"><br>
 			</td>
 		</tr>
 		<tr>
@@ -126,8 +127,8 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="Spare_Parts">Spare Parts</label>
 			</td><br><br>
 			<td>
-				yes<input type="radio" name="Spare_Parts" id="Spare_Yes" value="Yes"><br>
-				no<input type="radio" name="Spare_Parts" id="Spare_No" value="No"><br>
+				yes<input type="radio" name="Spare_Parts" id="Spare_Yes" value="Yes"  <?php if($_SESSION['Spare_Parts'] == 'Yes'){ echo "checked";};?>><br>
+				no<input type="radio" name="Spare_Parts" id="Spare_No" value="No"  <?php if($_SESSION['Spare_Parts'] == 'No'){ echo "checked";};?>><br>
 			</td>
 		</tr>
 		<tr>
@@ -135,7 +136,7 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="Instructions">Instructions</label>
 			</td>
 			<td>
-				<input type="text" name="Instructions" id="Instructions"><br>
+				<input type="text" name="Instructions" id="Instructions" value="<?php echo $_SESSION['Instructions'] ?>"><br>
 			</td>
 		</tr>	
 		<tr>
@@ -143,7 +144,7 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="Price">Price:</label>
 			</td>
 			<td>
-				<input type="number" name="Price" id="Price" min=0 step=0.01><br>
+				<input type="number" name="Price" id="Price" min=0 step=0.01 value="<?php echo $_SESSION['Price'] ?>"><br>
 			</td>
 		</tr>		
 		<tr>

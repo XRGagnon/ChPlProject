@@ -2,6 +2,7 @@
  
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Defaults.php";
+session_start();
 class DBManager
 {
 
@@ -277,7 +278,8 @@ class DBManager
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
 					$Small_Image_Text, $Instructions, $Price)
     {
-		$User_ID = $_SESSION['USER_ID'];
+		//$User_ID = $_SESSION['USER_ID'];
+		$User_ID = "2";
 		
         $conn = ConnectionMaker::getConnection();
 
@@ -292,31 +294,40 @@ class DBManager
 		
 		$Check_For_ItemNo = $conn->prepare("SELECT Item_No FROM ITEM
 							WHERE Item_No = ?;");
-		$Check_For_ItemNo->bind_param($Item_No);			
+		$Check_For_ItemNo->bind_param('s', $Item_No);
+		$Check_For_ItemNo->execute();
+		$Check_For_ItemNo->store_result();		
 							
 		$Check_For_Title_English = $conn->prepare("SELECT Title_English FROM ITEM
 							WHERE Title_English = ?;");
-		$Check_For_Title_English->bind_param($Title_English);					
+		$Check_For_Title_English->bind_param('s', $Title_English);
+		$Check_For_Title_English->execute();
+		$Check_For_Title_English->store_result();		
 							
 		$Check_For_Title_French = $conn->prepare("SELECT Title_French FROM ITEM
 							WHERE Title_French = ?;");
-		$Check_For_Title_French->bind_param($Title_French);						
+		$Check_For_Title_French->bind_param('s', $Title_French);	
+		$Check_For_Title_French->execute();
+		$Check_For_Title_French->store_result();			
+		
+		$Change = $conn->prepare("INSERT INTO CHANGES (Item_ID, User_ID, Change_Info, Change_Date) VALUES (?, ?, ? ,?)");
+		
+		$Desc = "Added Item: ". $Title_English;
+		$Date = date("Y-m-d");
+		$Change->bind_param('siss', $Item_No, $User_ID, $Desc , $Date);
 
-		$Change = $conn->prepare("INSERT INTO CHANGES VALUES (?, ?, ?, ? ,?);");
-		$Change->bind_param($Item_No,$User_ID,"Added Item: ". $Title_English , date("Y-m-d"));
-
-		if ($Check_For_ItemNo->execute()) {
-			if ($Check_For_Title_English->execute()) {
-				if ($Check_For_Title_French->execute()) {
+		if ($Check_For_ItemNo->num_rows < 1) {
+			if ($Check_For_Title_English->num_rows < 1) {
+				if ($Check_For_Title_French->num_rows < 1) {
 					if ($sql->execute()) {
-						echo "Item Added Successfully";
+						echo "Item Added Successfully <br>";
 						if($Change->execute())
 						{
-							echo "Change entry added successfully";
+							echo "Change Record was added successfully";
 						}
 						else
 						{
-							echo "Change entry was not added successfully";
+							echo "Change record was not added, an error occurred";
 						}
 					}
 					else {
@@ -377,7 +388,6 @@ class DBManager
 		$Check_For_Title_French->bind_param("s", $Title_French);
 		$Check_For_Title_French->execute();
 		$Check_For_Title_French->store_result();
-		
 		
 		
 		if ($Check_For_ItemNo->num_rows < 1) {
@@ -466,7 +476,8 @@ class DBManager
         if ($result->num_rows > 0) {
 			echo "<div style='overflow-x:auto'>";
 			echo "<table id='viewall'>";	
-			echo "<tr>";
+			echo "<tr>";				
+				echo "<th>Remove Item</th><th>Edit Item</th>";
 				echo "<th>Item_No</th>";
 				echo "<th>Category</th>";
 				echo "<th>Sub Category</th>";
@@ -485,13 +496,17 @@ class DBManager
 				echo "<th>Small Image Text</th>";
 				echo "<th>Instructions</th>";
 				echo "<th>Price</th>";
-				echo "<th>Remove Item</th><th>Edit Item</th>";
+
 			echo "</tr>";		
             while ($row = $result->fetch_assoc()) {
 
-				echo "<tr>";
+				echo "<tr>";				
+					$id = reset($row);		
+					echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
+					echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
 				foreach($row as $val)
-				{
+				{		
+
 					echo "<td>";
 					if(!isset($val))
 					{
@@ -503,9 +518,8 @@ class DBManager
 					}
 					echo "</td>";
 				}
-				$id = reset($row);
-				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
-				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
+				
+
 				echo "</tr>";
             }
 			echo "</table>";
@@ -520,25 +534,14 @@ class DBManager
 	{
 		$conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT * FROM ITEM WHERE Item_No = '" . $SEARCH . "';";
-		$sql2 = "SELECT * FROM ITEM WHERE Title_English = '" . $SEARCH . "';";
-		$sql3 = "SELECT * FROM ITEM WHERE Title_French = '" . $SEARCH . "';";
-		$sql4 = "SELECT * FROM ITEM,CATEGORY 
-				WHERE ITEM.SubCategory = CATEGORY.Category
-				AND CATEGORY.EnglishCat = '" . $SEARCH . "';";
-		$sql5 = "SELECT * FROM ITEM,CATEGORY 
-				WHERE ITEM.SubCategory = CATEGORY.Category
-				AND CATEGORY.FrenchCat = '" . $SEARCH . "';";				
+        $sql = "SELECT * FROM ITEM WHERE Item_No LIKE '%" . $SEARCH . "%' OR Title_English LIKE '%" . $SEARCH ."%' OR Title_French LIKE '%" . $SEARCH . "%';";	
 
         $result = $conn->query($sql);
-		$result2 = $conn->query($sql2);
-		$result3 = $conn->query($sql3);
-		$result4 = $conn->query($sql4);
-		$result5 = $conn->query($sql5);		
 		
 		echo "<div style='overflow-x:auto'>";
 			echo "<table id='viewall'>";	
-			echo "<tr>";
+			echo "<tr>";				
+				echo "<th>Remove Item</th><th>Edit Item</th>";
 				echo "<th>Item_No</th>";
 				echo "<th>Category</th>";
 				echo "<th>Sub Category</th>";
@@ -557,13 +560,16 @@ class DBManager
 				echo "<th>Small Image Text</th>";
 				echo "<th>Instructions</th>";
 				echo "<th>Price</th>";
-				echo "<th>Remove Item</th><th>Edit Item</th>";
+
 			echo "</tr>";
         if ($result->num_rows > 0) {
 		
             while ($row = $result->fetch_assoc()) {
 
-				echo "<tr>";
+				echo "<tr>";				
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
+				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
 				foreach($row as $val)
 				{
 					echo "<td>";
@@ -577,122 +583,17 @@ class DBManager
 					}
 					echo "</td>";
 				}
-				$id = reset($row);
-				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
-				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
 				echo "</tr>";
             }
-        } else 
-		if ($result2->num_rows > 0) {
-		
-            while ($row = $result2->fetch_assoc()) {
-
-				echo "<tr>";
-				foreach($row as $val)
-				{
-					
-					echo "<td>";
-					if(!isset($val))
-					{
-						print_r('');
-					}
-					else
-					{
-						print_r($val);
-					}
-					echo "</td>";
-				}
-				$id = reset($row);
-				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
-				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
-				echo "</tr>";
-            }
-
-        } else 
-		if ($result3->num_rows > 0) {
-		
-            while ($row = $result3->fetch_assoc()) {
-
-				echo "<tr>";
-				foreach($row as $val)
-				{
-					echo "<td>";
-					if(!isset($val))
-					{
-						print_r('');
-					}
-					else
-					{
-						print_r($val);
-					}
-					echo "</td>";
-				}
-				$id = reset($row);
-				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
-				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
-				echo "</tr>";
-            }
-
-        } else
-		if ($result4->num_rows > 0) {
-		
-            while ($row = $result4->fetch_assoc()) {
-
-				echo "<tr>";
-				foreach($row as $val)
-				{
-					echo "<td>";
-					if(!isset($val))
-					{
-						print_r('');
-					}
-					else
-					{
-						print_r($val);
-					}
-					echo "</td>";
-				}
-				$id = reset($row);
-				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
-				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
-				echo "</tr>";
-            }
-
-        } else
-		if ($result5->num_rows > 0) {
-		
-            while ($row = $result5->fetch_assoc()) {
-
-				echo "<tr>";
-				foreach($row as $val)
-				{
-					echo "<td>";
-					if(!isset($val))
-					{
-						print_r('');
-					}
-					else
-					{
-						print_r($val);
-					}
-					echo "</td>";
-				}
-				$id = reset($row);
-				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
-				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
-				echo "</tr>";
-            }
-
-        } else	
+        } 
+		else	
 		{		
-            echo "There are no items with that description";
+            echo "There are no items that match that search";
         }			
 		echo "</table>";
 		echo "</div>";
 		unset($_SESSION['CAT']);
 		unset($_SESSION['Item']);	
-		
-
 	}
 	
 	static function UpdateItemViewItem($ID)
@@ -706,7 +607,8 @@ class DBManager
 		
 		echo "<div style='overflow-x:auto'>";
 			echo "<table id='viewall'>";	
-			echo "<tr>";
+			echo "<tr>";				
+				echo "<th>Remove Item</th><th>Edit Item</th>";
 				echo "<th>Item_No</th>";
 				echo "<th>Category</th>";
 				echo "<th>Sub Category</th>";
@@ -725,7 +627,7 @@ class DBManager
 				echo "<th>Small Image Text</th>";
 				echo "<th>Instructions</th>";
 				echo "<th>Price</th>";
-				echo "<th>Remove Item</th><th>Edit Item</th>";
+
 			echo "</tr>";
 			
 			if ($result->num_rows > 0) {
@@ -751,7 +653,10 @@ class DBManager
 					$_SESSION['Instructions'] = $row['Instructions'];
 					$_SESSION['Price'] = $row['Price'];
 					
-					echo "<tr>";
+					echo "<tr>";				
+					$id = reset($row);
+					echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
+					echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
 					foreach($row as $val)
 					{
 						
@@ -766,9 +671,7 @@ class DBManager
 						}
 						echo "</td>";
 					}
-					$id = reset($row);
-					echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
-					echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
+
 					echo "</tr>";
 				}
 			}
@@ -789,7 +692,8 @@ class DBManager
         if ($result->num_rows > 0) {
 			echo "<div style='overflow-x:auto'>";
 			echo "<table id='viewall'>";	
-			echo "<tr>";
+			echo "<tr>";			
+				echo "<th>Remove Item</th><th>Edit Item</th>";
 				echo "<th>Item_No</th>";
 				echo "<th>Category</th>";
 				echo "<th>Sub Category</th>";
@@ -808,11 +712,15 @@ class DBManager
 				echo "<th>Small Image Text</th>";
 				echo "<th>Instructions</th>";
 				echo "<th>Price</th>";
-				echo "<th>Remove Item</th><th>Edit Item</th>";
+
 			echo "</tr>";		
             while ($row = $result->fetch_assoc()) {
 
-				echo "<tr>";
+				echo "<tr>";			
+				$id = reset($row);
+				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a></td>'; 
+				echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
+
 				foreach($row as $val)
 				{
 					echo "<td>";
@@ -826,8 +734,7 @@ class DBManager
 					}
 					echo "</td>";
 				}
-				$id = reset($row);
-				echo '<td><a href="RemoveItem.php?id=' . $id . '">Remove Item</a><td>'; 
+
 				echo "</tr>";
             }
 			echo "</table>";
@@ -866,12 +773,4 @@ class DBManager
 		}
 		
 	}
-
-
-
-
 }
-
-    
-
-
