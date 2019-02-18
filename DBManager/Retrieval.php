@@ -139,5 +139,24 @@ class Retrieval
         }
     }
 
+    static function getUser($userId)
+    {
+        $conn = ConnectionMaker::getConnection();
+
+        $sql = "SELECT * FROM USER WHERE USER_ID = '".$userId."' LIMIT 1;";
+
+        $result = $conn->query($sql);
+
+        if ($result)
+        {
+
+            return $result->fetch_assoc();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
 }

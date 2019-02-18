@@ -7,7 +7,7 @@
  */
 include_once "../DBManager/DBManager.php";
 
-define("SECURE", TRUE);    // FOR DEVELOPMENT ONLY!!!!
+define("SECURE", false);    // FOR DEVELOPMENT ONLY!!!!
 
 function sec_session_start() {
     $session_name = 'sec_session_id';   // Set a custom session name
@@ -27,6 +27,7 @@ function sec_session_start() {
 
     session_start();            // Start the PHP session
     session_regenerate_id();    // regenerated the session, delete the old one.
+    $_SESSION["open"] = true;
 }
 
 //Check Login Status

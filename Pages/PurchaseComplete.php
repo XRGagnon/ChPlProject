@@ -2,8 +2,19 @@
 include_once "../Models/Defaults.php";
 include_once "../Models/Security.php";
 include_once "../Models/Display.php";
+include_once "../DBManager/Utility.php";
 sec_session_start();
 DefaultHead();
+if (isset($_POST["ROMANCARTXML"]))
+{
+    $transactionData = simplexml_load_string($_POST["ROMANCARTXML"]);
+    if (Login_Check())
+    {
+        Utility::manageOrder($transactionData,$_SESSION["user_id"]);
+    }
+
+}
+
 
 ?>
 
