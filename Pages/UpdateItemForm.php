@@ -24,6 +24,7 @@ unset($_SESSION['Small_Image']);
 unset($_SESSION['Small_Image_Text']);
 unset($_SESSION['Instructions']);
 unset($_SESSION['Price']);
+unset($_SESSION['changes']);
 ?>
 
 <h2>This is your current item</h2><br>

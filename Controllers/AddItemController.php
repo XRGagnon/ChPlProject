@@ -27,39 +27,39 @@ unset($_SESSION["AddItemError"]);
 		$Colors = '';
 		if(isset($_POST['Green']))
 		{
-			$Colors = $Colors . ", " . $_POST['Green'];
+			$Colors = $Colors . $_POST['Green'] . ", ";
 		}
 		if(isset($_POST['Blue']))
 		{
-			$Colors = $Colors . ", " . $_POST['Blue'];
+			$Colors = $Colors . $_POST['Blue'] . ", ";
 		}
 		if(isset($_POST['Gold']))
 		{
-			$Colors = $Colors . ", " . $_POST['Gold'];
+			$Colors = $Colors . $_POST['Gold'] . ", ";
 		}
 		if(isset($_POST['Grey']))
 		{
-			$Colors = $Colors . ", " . $_POST['Grey'];
+			$Colors = $Colors . $_POST['Grey'] . ", ";
 		}
 		if(isset($_POST['White']))
 		{
-			$Colors = $Colors . ", " . $_POST['White'];
+			$Colors = $Colors . $_POST['White'] . ", ";
 		}
 		if(isset($_POST['Mocha']))
 		{
-			$Colors = $Colors . ", " . $_POST['Mocha'];
+			$Colors = $Colors . $_POST['Mocha'] . ", ";
 		}
 		if(isset($_POST['Light_Grey']))
 		{
-			$Colors = $Colors . ", " . $_POST['Light_Grey'];
+			$Colors = $Colors . $_POST['Light_Grey'] . ", ";
 		}
 		if(isset($_POST['Black']))
 		{
-			$Colors = $Colors . ", " . $_POST['Black'];
+			$Colors = $Colors. $_POST['Black'] . ", " ;
 		}
 		if(isset($_POST['Red_Grey']))
 		{
-			$Colors = $Colors . ", " . $_POST['Red_Grey'];
+			$Colors = $Colors . $_POST['Red_Grey'] . ", ";
 		}
 
 		//end of colors

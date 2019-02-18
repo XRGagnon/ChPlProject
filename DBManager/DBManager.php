@@ -287,7 +287,7 @@ class DBManager
 		VALUES ( ? , ? , ? , ? , ? , ? , ? , ?	, ? , ? , ?
 		, ? , ? , ? , ? , ? , ? , ? );");
 		
-		$sql->bind_param("ssssssssssssbsbssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
+		$sql->bind_param("sssssssssssssssssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
 					$Small_Image_Text, $Instructions, $Price);
@@ -348,7 +348,7 @@ class DBManager
 		}
     }
 
-    static function Update_Item($Old_Item_No,$Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
+    static function Update_Item($Old_Item_No,$Old_English_Title,$Old_French_Title, $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
 					$Small_Image_Text, $Instructions, $Price)
@@ -366,29 +366,34 @@ class DBManager
 		, Instructions = ? , Price = ? 
 		Where Item_No =  '" . $Old_Item_No ."' ;");
 		
-		$sql->bind_param("ssssssssssssbsbssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
+		$sql->bind_param("sssssssssssssssssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
 					$Small_Image_Text, $Instructions, $Price);
 
 		$Check_For_ItemNo = $conn->prepare("SELECT Item_No FROM ITEM
-							WHERE Item_No = ? ;");
+							WHERE Item_No = ? AND Item_No NOT IN ('".$Old_Item_No."');");
 		$Check_For_ItemNo->bind_param("s", $Item_No);	
 		$Check_For_ItemNo->execute();	
 		$Check_For_ItemNo->store_result();
 							
 		$Check_For_Title_English = $conn->prepare("SELECT Title_English FROM ITEM
-							WHERE Title_English = ? ;");
+							WHERE Title_English = ? AND Title_English NOT IN ('".$Old_English_Title."');");
 		$Check_For_Title_English->bind_param("s", $Title_English);
 		$Check_For_Title_English->execute();
 		$Check_For_Title_English->store_result();
 							
 		$Check_For_Title_French = $conn->prepare("SELECT Title_French FROM ITEM
-							WHERE Title_French = ? ;");
+							WHERE Title_French = ? AND Title_French NOT IN ('".$Old_French_Title."');");
 		$Check_For_Title_French->bind_param("s", $Title_French);
 		$Check_For_Title_French->execute();
 		$Check_For_Title_French->store_result();
 		
+		$Change = $conn->prepare("INSERT INTO CHANGES (Item_ID, User_ID, Change_Info, Change_Date) VALUES (?, ?, ? ,?)");
+		
+		$Desc = $_SESSION['changes'];
+		$Date = date("Y-m-d");
+		$Change->bind_param('siss', $Item_No, $User_ID, $Desc , $Date);
 		
 		if ($Check_For_ItemNo->num_rows < 1) {
 			
@@ -396,20 +401,21 @@ class DBManager
 				
 				if ($Check_For_Title_French->num_rows < 1) {
 					if ($sql->execute()) {
-						echo "Item Updated Successfully";
-						?>
-							<form action="../Pages/ViewItems.php">
-								<input type="submit" value="Return to View Items Page">
-							<form>
-						<?php
-						/*if($Change->execute())
+						echo "Item Updated Successfully<br>";
+						
+						if($Change->execute())
 						{
 							echo "Change entry added successfully";
 						}
 						else
 						{
 							echo "Change entry was not added successfully";
-						}*/
+						}
+						?>
+							<form action="../Pages/ViewItems.php">
+								<input type="submit" value="Return to View Items Page">
+							<form>
+						<?php
 					}
 					else {
 						echo "Something went wrong, try again later";

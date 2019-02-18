@@ -135,7 +135,38 @@ DefaultHead();
 				<input type="number" name="Price" id="Price" min=0 step=0.01><br>
 			</td>
 		</tr>		
+				<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="Large_Image">Large_Image</label>
+			</td>
+			<td>
+				<input type="text" name="Large_Image" id="Large_Image" min=0 step=0.01><br>
+			</td>
+		</tr>	
 		<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="Large_Image_Text">Large_Image_Text</label>
+			</td>
+			<td>
+				<input type="text" name="Large_Image_Text" id="Large_Image_Text" min=0 step=0.01><br>
+			</td>
+		</tr>	
+		<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="Small_Image">Small_Image</label>
+			</td>
+			<td>
+				<input type="text" name="Small_Image" id="Small_Image" min=0 step=0.01><br>
+			</td>
+		</tr>	
+		<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="Small_Image_Text">Small_Image_Text</label>
+			</td>
+			<td>
+				<input type="text" name="Small_Image_Text" id="Small_Image_Text" min=0 step=0.01><br>
+			</td>
+		</tr>
 		<tr>
 			<td>
 			</td>

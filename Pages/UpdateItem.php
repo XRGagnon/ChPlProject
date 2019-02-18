@@ -71,15 +71,18 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<label for="Colors">Colors:</label>
 			</td><br><br>
 			<td>
-				Green<input type="Checkbox" name="Green" id="Green" value="1"><br>
-				Blue<input type="Checkbox" name="Blue" id="Blue" value="2"><br>
-				Grey<input type="Checkbox" name="Grey" id="Grey" value="3"><br>
-				White<input type="Checkbox" name="White" id="White" value="4"><br>
-				Gold<input type="Checkbox" name="Gold" id="Gold" value="5"><br>
-				Mocha<input type="Checkbox" name="Mocha" id="Mocha" value="6"><br>
-				Light Grey<input type="Checkbox" name="Light_Grey" id="Light_Grey" value="7"><br>
-				Black<input type="Checkbox" name="Black" id="Black" value="8"><br>
-				Red/Grey<input type="Checkbox" name="Red_Grey" id="Red_Grey" value="9"><br>
+			<?php 
+				$colors = explode("," , $_SESSION['Colors']);
+			?>
+				Green<input type="Checkbox" name="Green" id="Green" value="1" <?php foreach($colors as $c) { if($c == 1) {echo "checked";}}?>><br>
+				Blue<input type="Checkbox" name="Blue" id="Blue" value="2" <?php foreach($colors as $c) { if($c == 2) {echo "checked";}}?>><br>
+				Grey<input type="Checkbox" name="Grey" id="Grey" value="3" <?php foreach($colors as $c) { if($c == 3) {echo "checked";}}?>><br>
+				White<input type="Checkbox" name="White" id="White" value="4" <?php foreach($colors as $c) { if($c == 4) {echo "checked";}}?>><br>
+				Gold<input type="Checkbox" name="Gold" id="Gold" value="5" <?php foreach($colors as $c) { if($c == 5) {echo "checked";}}?>><br>
+				Mocha<input type="Checkbox" name="Mocha" id="Mocha" value="6" <?php foreach($colors as $c) { if($c == 6) {echo "checked";}}?>><br>
+				Light Grey<input type="Checkbox" name="Light_Grey" id="Light_Grey" value="7" <?php foreach($colors as $c) { if($c == 7) {echo "checked";}}?>><br>
+				Black<input type="Checkbox" name="Black" id="Black" value="8" <?php foreach($colors as $c) { if($c == 8) {echo "checked";}}?>><br>
+				Red/Grey<input type="Checkbox" name="Red_Grey" id="Red_Grey" value="9" <?php foreach($colors as $c) { if($c == 9) {echo "checked";}}?>><br>
 			</td>
 		</tr>
 		<tr>
@@ -146,8 +149,39 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 			<td>
 				<input type="number" name="Price" id="Price" min=0 step=0.01 value="<?php echo $_SESSION['Price'] ?>"><br>
 			</td>
-		</tr>		
+		</tr>	
 		<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="Large_Image">Large_Image</label>
+			</td>
+			<td>
+				<input type="text" name="Large_Image" id="Large_Image" min=0 step=0.01 value="<?php echo $_SESSION['Large_Image'] ?>"><br>
+			</td>
+		</tr>	
+		<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="Large_Image_Text">Large_Image_Text</label>
+			</td>
+			<td>
+				<input type="text" name="Large_Image_Text" id="Large_Image_Text" min=0 step=0.01 value="<?php echo $_SESSION['Large_Image_Text'] ?>"><br>
+			</td>
+		</tr>	
+		<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="Small_Image">Small_Image</label>
+			</td>
+			<td>
+				<input type="text" name="Small_Image" id="Small_Image" min=0 step=0.01 value="<?php echo $_SESSION['Small_Image'] ?>"><br>
+			</td>
+		</tr>	
+		<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="Small_Image_Text">Small_Image_Text</label>
+			</td>
+			<td>
+				<input type="text" name="Small_Image_Text" id="Small_Image_Text" min=0 step=0.01 value="<?php echo $_SESSION['Small_Image_Text'] ?>"><br>
+			</td>
+		</tr>			
 		<tr>
 			<td>
 			</td>

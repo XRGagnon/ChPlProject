@@ -120,10 +120,41 @@ DefaultHead();
 			$Price = null;
 		}
 		
-		$Large_Image = null;
-		$Large_Image_Text = null;
-		$Small_Image = null;
-		$Small_Image_Text = null; 
+		if(isset($_POST['Large_Image']))
+		{
+			$Large_Image = $_POST['Large_Image'];
+		}
+		else
+		{
+			$Large_Image = null;
+		} 
+		
+		if(isset($_POST['Large_Image_Text']))
+		{
+			$Large_Image_Text = $_POST['Large_Image_Text'];
+		}
+		else
+		{
+			$Large_Image_Text = null;
+		} 
+		
+		if(isset($_POST['Small_Image']))
+		{
+			$Small_Image = $_POST['Small_Image'];
+		}
+		else
+		{
+			$Small_Image = null;
+		}  
+		
+		if(isset($_POST['Small_Image_Text']))
+		{
+			$Small_Image_Text = $_POST['Small_Image_Text'];
+		}
+		else
+		{
+			$Small_Image_Text = null;
+		}
 	}
 ?>
 
@@ -201,15 +232,136 @@ DefaultHead();
 		<td><?php echo $Instructions; ?></td>
 		<td><?php echo $_SESSION['Instructions']; ?></td>
 	</tr>
-		<tr>
+	<tr>
 		<td>Price</td>
 		<td><?php echo $Price; ?></td>
 		<td><?php echo $_SESSION['Price']; ?></td>
 	</tr>
+	</tr>
+		<tr>
+		<td>Large Image</td>
+		<td><?php echo $Large_Image; ?></td>
+		<td><?php echo $_SESSION['Large_Image']; ?></td>
+	</tr>
+	</tr>
+		<tr>
+		<td>Large_Image_Text</td>
+		<td><?php echo $Large_Image_Text; ?></td>
+		<td><?php echo $_SESSION['Large_Image_Text']; ?></td>
+	</tr>
+	</tr>
+		<tr>
+		<td>Small_Image</td>
+		<td><?php echo $Small_Image; ?></td>
+		<td><?php echo $_SESSION['Small_Image']; ?></td>
+	</tr>
+		</tr>
+		<tr>
+		<td>Small_Image_Text</td>
+		<td><?php echo $Small_Image_Text; ?></td>
+		<td><?php echo $_SESSION['Small_Image_Text']; ?></td>
+	</tr>
 </table>
+
+<?php 
+
+$_SESSION['changes'] = "";
+
+if($Item_No != $_SESSION['Item_No'])
+{
+	$_SESSION['changes'] .= "Changed Item_No: ". $_SESSION['Item_No'] ." to " . $Item_No . ",";
+}
+
+if($Category != $_SESSION['Category'])
+{
+	$_SESSION['changes'] .= "Changed Category: ". $_SESSION['Category'] ." to " . $Category . ",";
+}
+
+if($SubCategory != $_SESSION['SubCategory'])
+{
+	$_SESSION['changes'] .= "Changed SubCategory: ". $_SESSION['SubCategory'] ." to " . $SubCategory . ",";
+} 
+
+if($Availability != $_SESSION['Availability'])
+{
+	$_SESSION['changes'] .= "Changed Availability: ". $_SESSION['Availability'] ." to " . $Availability . ",";
+}
+
+if($New != $_SESSION['New'])
+{
+	$_SESSION['changes'] .= "Changed New: ". $_SESSION['New'] ." to " . $New . ",";
+}
+
+if($Colors != $_SESSION['Colors'])
+{
+	$_SESSION['changes'] .= "Changed Colors: ". $_SESSION['Colors'] ." to " . $Colors . ",";
+}
+
+if($Title_English != $_SESSION['Title_English'])
+{
+	$_SESSION['changes'] .= "Changed Title_English: ". $_SESSION['Title_English'] ." to " . $Title_English . ",";
+}
+
+if($Description_English != $_SESSION['Description_English'])
+{
+	$_SESSION['changes'] .= "Changed Description_English: ". $_SESSION['Description_English'] ." to " . $Description_English . ",";
+}
+
+if($Title_French != $_SESSION['Title_French'])
+{
+	$_SESSION['changes'] .= "Changed Title_French: ". $_SESSION['Title_French'] ." to " . $Title_French . ",";
+}
+
+if($Description_French != $_SESSION['Description_French'])
+{
+	$_SESSION['changes'] .= "Changed Description_French: ". $_SESSION['Description_French'] ." to " . $Description_French . ",";
+}
+
+if($Country_Of_Origin != $_SESSION['Country_Of_Origin'])
+{
+	$_SESSION['changes'] .= "Changed Country_Of_Origin: ". $_SESSION['Country_Of_Origin'] ." to " . $Country_Of_Origin . ",";
+}
+
+if($Spare_Parts != $_SESSION['Spare_Parts'])
+{
+	$_SESSION['changes'] .= "Changed Spare_Parts: ". $_SESSION['Spare_Parts'] ." to " . $Spare_Parts . ",";
+}
+
+if($Instructions != $_SESSION['Instructions'])
+{
+	$_SESSION['changes'] .= "Changed Instructions: ". $_SESSION['Instructions'] ." to " . $Instructions . ",";
+}
+
+if($Price != $_SESSION['Price'])
+{
+	$_SESSION['changes'] .= "Changed Price: ". $_SESSION['Price'] ." to " . $Price . ",";
+}
+
+if($Large_Image != $_SESSION['Large_Image'])
+{
+	$_SESSION['changes'] .= "Changed Large_Image: ". $_SESSION['Large_Image'] ." to " . $Large_Image . ",";
+}
+
+if($Large_Image_Text != $_SESSION['Large_Image_Text'])
+{
+	$_SESSION['changes'] .= "Changed Large_Image_Text: ". $_SESSION['Large_Image_Text'] ." to " . $Large_Image_Text . ",";
+}
+
+if($Small_Image != $_SESSION['Small_Image'])
+{
+	$_SESSION['changes'] .= "Changed Small_Image: ". $_SESSION['Small_Image'] ." to " . $Small_Image . ",";
+}
+
+if($Small_Image_Text != $_SESSION['Small_Image_Text'])
+{
+	$_SESSION['changes'] .= "Changed Small_Image_Text: ". $_SESSION['Small_Image_Text'] ." to " . $Small_Image_Text . ",";
+}
+?>
 
 <h3>Are you sure you want this change?</h3>
 <form method="POST" action="../Controllers/UpdateController.php">
+	<input type="hidden" name="Old_English" value="<?php echo $_SESSION['Title_English']?>">
+	<input type="hidden" name="Old_French" value="<?php echo $_SESSION['Title_French'] ?>">
 	<input type="hidden" name="Item_No" value="<?php echo $Item_No ?>">
 	<input type="hidden" name="Category" value="<?php echo $Category ?>">
 	<input type="hidden" name="SubCategory" value="<?php echo $SubCategory ?>">

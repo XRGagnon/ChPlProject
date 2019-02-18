@@ -42,7 +42,7 @@ DefaultHead();
 	<input type="submit" value="Search Category" name="CategoryForm">
 </form>
 
-<p>Search for an Item by Item_No, sub Category or by title</p>
+<p>Search for an Item</p>
 <form method="post" action="../Controllers/ViewItemsController.php">
 
 	<input type="text" name="Item_No" id="Item_No">
