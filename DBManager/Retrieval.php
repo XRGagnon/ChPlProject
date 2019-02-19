@@ -52,9 +52,17 @@ class Retrieval
     //This method returns all items contained in the parent category
     static function getCatItems($parentCat)
     {
+        $sql = "";
+        if (!strpos("sc",$parentCat))
+        {
+            $sql = "SELECT * FROM ITEM WHERE SUBCATEGORY = '".$parentCat."';";
+        }
+        else
+        {
+            $sql = "SELECT * FROM ITEM WHERE CATEGORY = '".$parentCat."' AND SUBCATEGORY = NULL;";
+        }
         $conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT * FROM ITEM WHERE CATEGORY = '".$parentCat."' OR SUBCATEGORY = '".$parentCat."';";
 
         $result = $conn->query($sql);
 
@@ -68,6 +76,7 @@ class Retrieval
         }
     }
 
+    //This method returns ONE category from the DB
     static function getCategory($cat)
     {
         $conn = ConnectionMaker::getConnection();
@@ -87,6 +96,7 @@ class Retrieval
         }
     }
 
+    //This method returns ONE item from the DB
     static function getItem($item)
     {
         $conn = ConnectionMaker::getConnection();
@@ -106,6 +116,7 @@ class Retrieval
         }
     }
 
+    //This method returns all items corresponding to the search query
     static function getSearchResult($searchString)
     {
         $conn = ConnectionMaker::getConnection();
@@ -114,6 +125,7 @@ class Retrieval
 
         $count = 0;
         $sql = "SELECT * FROM ITEM WHERE";
+        //Add each search variable to the query
         foreach ($queryString as $searchVar)
         {
             if ($count != 0)
@@ -125,6 +137,66 @@ class Retrieval
             $count++;
         }
         $sql .= ";";
+
+        $result = $conn->query($sql);
+
+        if ($result)
+        {
+
+            return $result;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //This method returns ONE user from the DB
+    static function getUser($userId)
+    {
+        $conn = ConnectionMaker::getConnection();
+
+        $sql = "SELECT * FROM USER WHERE USER_ID = '".$userId."' LIMIT 1;";
+
+        $result = $conn->query($sql);
+
+        if ($result)
+        {
+
+            return $result->fetch_assoc();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //This method returns the main transactions performed by one user
+    static function getUserTransaction($userId)
+    {
+        $conn = ConnectionMaker::getConnection();
+
+        $sql = "SELECT * FROM TRANSACTION WHERE USER_ID = '".$userId."';";
+
+        $result = $conn->query($sql);
+
+        if ($result)
+        {
+
+            return $result;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //This method returns all transaction items from one transaction
+    static function getUserTransactionItems($transId)
+    {
+        $conn = ConnectionMaker::getConnection();
+
+        $sql = "SELECT * FROM Transaction_Item WHERE Transaction_Id = '".$transId."';";
 
         $result = $conn->query($sql);
 

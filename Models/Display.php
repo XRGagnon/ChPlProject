@@ -26,6 +26,7 @@ class Display
 
                         
         ";
+            //For each category
             while($cat = $cats->fetch_assoc())
             {
                 $id = $cat["Category"];
@@ -130,17 +131,20 @@ class Display
         $arrayDisplayEndItem = sizeof($itemArray);
         $arrayDisplayStartSub = 0;
         $arrayDisplayEndSub = sizeof($catArray);
+        //If all items to be displayed are sub categories...
         if ($startIndex + $displayPerPage <= sizeof($catArray))
         {
             $arrayDisplayStartSub = $startIndex;
             $arrayDisplayEndSub = $startIndex + $displayPerPage;
             $displaySub = true;
         }
+        //if all items to be displayed are shop items...
         else if ($startIndex >= sizeof($catArray))
         {
             $arrayDisplayStartItem = $startIndex - sizeof($catArray);
             $displayItem = true;
         }
+        //If the items to be displayed are a mix of both
         else if ($startIndex < sizeof($catArray) && ($startIndex + $displayPerPage) > sizeof($catArray))
         {
             $arrayDisplayStartSub = $startIndex;
@@ -240,13 +244,16 @@ class Display
             {
                 echo "Nothing to Display";
             }
+            //Display the pagination widget
             self::pageSelector($maxIndex,$pageIndex,$parentCategory);
 
         }
     }
 
+    //Display a single item for the detailed view page
     static function displayItem($itemNo)
     {
+        //Get the item and set all vars
         $item = Retrieval::getItem($itemNo);
         if ($item) {
         $code = $item["Item_No"];
@@ -256,6 +263,7 @@ class Display
         $desc = $item["Description_English"];
         $spareAvail = $item["Spare_Parts"];
         $spareMsg = "";
+        //Translate the color string to real colors
         $colors =  self::colorString($item["Colors"]);
         if ($spareAvail)
         {
@@ -338,7 +346,7 @@ class Display
             echo "Nothing to Display";
         }
     }
-
+    //Display the translated color string
     static function colorString($colors)
     {
         $chart = array("Green ", "Blue", "Grey ","White ","Gold ","Mocha ","Light Grey", "Black ","Red/Grey ");
@@ -353,8 +361,8 @@ class Display
         }
         return $cstring;
     }
-    //TODO: Add page select for item grid << < 1 2 3 > >>
 
+    //Display Pagination Widget
     static function pageSelector($maxIndex, $currentIndex,$catId)
     {
 
@@ -362,6 +370,7 @@ class Display
 
         $goLast = "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl($maxIndex-1,$catId).">Last </a></li>";
             echo "<ul style='text-align:center' class=\"pagination rounded-pagination no-margin col-sm-12\">";
+            //Determine which nav buttons to display
             echo $goFirst;
             if ($currentIndex > 0)
             {
@@ -383,7 +392,7 @@ class Display
 
 
     }
-
+    //Create a url specific to the navigation button
     static function paginationCraftUrl($index,$catId)
     {
         $currentURL = $_SERVER["SCRIPT_NAME"];
@@ -391,6 +400,7 @@ class Display
         return $currentURL;
     }
 
+    //display ssearch bar
     static function searchBar()
     {
         echo "<div class=\"col-xs-12  sidebar sm-margin-top\">
@@ -415,9 +425,10 @@ class Display
                  </div>";
     }
 
+    //Display Search Results
     static function displaySearchResult($queryString)
     {
-
+        //get Items according to Query String
         $items = Retrieval::getSearchResult($queryString);
         $itemArray = array();
         $displayPerPage = 10;
@@ -524,40 +535,41 @@ class Display
             {
                 echo "Nothing to Display";
             }
-            self::pageSelector($maxIndex,$pageIndex,0);
+            //Display Pagination Widget
+            self::pageSelectorSearch($maxIndex,$pageIndex,$queryString);
 
         }
     }
-
+    //Pagination Widget but for Search Page
     static function pageSelectorSearch($maxIndex, $currentIndex,$query)
     {
 
-        $goFirst = "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl(0,$query).">First </a></li>";
+        $goFirst = "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrlSearch(0,$query).">First </a></li>";
 
-        $goLast = "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl($maxIndex-1,$query).">Last </a></li>";
+        $goLast = "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrlSearch($maxIndex-1,$query).">Last </a></li>";
         echo "<div style='text-align:center'><ul  class=\"pagination rounded-pagination no-margin col-sm-12\">";
         echo $goFirst;
         if ($currentIndex > 0)
         {
-            echo "<li class=\"paginate_button  \"><a class=\"paginate_button\" href=".self::paginationCraftUrl($currentIndex-1,$query).">Previous </a></li>";;
+            echo "<li class=\"paginate_button  \"><a class=\"paginate_button\" href=".self::paginationCraftUrlSearch($currentIndex-1,$query).">Previous </a></li>";;
         }
 
         for ($x = 0; $x < $maxIndex; $x++)
         {
 
-            echo "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl($x,$query).">".($x+1)." </a></li>";
+            echo "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrlSearch($x,$query).">".($x+1)." </a></li>";
         }
         if ($currentIndex < $maxIndex-1)
         {
 
-            echo "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl($currentIndex+1,$query).">Next </a></li>";;
+            echo "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrlSearch($currentIndex+1,$query).">Next </a></li>";;
         }
         echo $goLast;
         echo "</ul></div>";
 
 
     }
-
+    //Pagination Widget but for Search page
     static function paginationCraftUrlSearch($index,$query)
     {
         $currentURL = $_SERVER["SCRIPT_NAME"];

@@ -2,7 +2,7 @@
 include_once "../Models/Defaults.php";
 include_once "../Models/Security.php";
 include_once "../Models/Display.php";
-session_start();
+sec_session_start();
 DefaultHead();
 
 $cat = "";
@@ -11,7 +11,7 @@ if (isset($_GET["catId"])) {
 }
 
 
-
+//If Category ID is set
 if ($cat)
 {
 echo "<div id=\"content\">
@@ -23,14 +23,20 @@ echo "<div id=\"content\">
                               <div class=\"col-xs-12 col-md-12 path-tree\">
                                     <a href=\"index.php\">Home</a> / 
                                     <a href=\"index.php\">Categories</a> /
-                                    <a href=\"catGridView.php?catId=".$cat."\">".Retrieval::getCategory($cat)["EnglishCat"]."</a>
+                                    ";
+                        if (strpos($cat,"sc") !== false)
+    {
+        $parentCat = Retrieval::getCategory($cat)["Parent_Category"];
+        echo "<a href=\"catGridView.php?catId=".$parentCat."\">".Retrieval::getCategory($parentCat)["EnglishCat"]."</a> /";
+    }
+               echo "                     <a href=\"catGridView.php?catId=".$cat."\">".Retrieval::getCategory($cat)["EnglishCat"]."</a>
                                 </div>
                             </div>
         
                         </div><!-- Container / END -->
                     </div><!-- Page header / END -->";
 
-
+    //Display the Categories Grid
     Display::displayCategoryGrid($cat);
 }
 else
@@ -51,6 +57,7 @@ else
                     </div><!-- Page header / END -->";
     echo "Database Error: Empty Category";
 }
+//Display the Search Bar
 Display::searchBar();
 echo "</div><!-- Container / END -->";
 

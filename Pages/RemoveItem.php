@@ -1,8 +1,9 @@
 <?php
 include_once "../Models/Defaults.php";
-include_once "../Models/Partials.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
+include_once "../Models/Security.php";
+sec_session_start();
 DefaultHead();
 //unset the previously used id 
 unset($_SESSION['id']);
@@ -19,7 +20,7 @@ $_SESSION['id'] = $_GET['id'];
 <!-- if the user selects yes, the item will be removed-->
 <form method="POST" action="../Controllers/RemoveItemController.php">
 	<input type="submit" value="YES" name="YES">
-</for>
+</form>
 <!-- if the user selects no, the item will not be removed-->
 <form method="POST" action="../Controllers/RemoveItemController.php">
 	<input type="submit" value="NO" name="NO">

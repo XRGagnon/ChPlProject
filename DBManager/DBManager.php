@@ -1,8 +1,15 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: xavie
+ * Date: 13/12/2018
+ * Time: 10:27 AM
+ */
+
  
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Defaults.php";
-session_start();
+
 class DBManager
 {
 
@@ -147,7 +154,7 @@ class DBManager
     }
 	
 //////////////////////////////// Procedures section ////////////////////////////////////
-
+    // This includes Login, Register
     //Secure login
     /* Summary of Login function
   -Used for when user wants to log in
@@ -248,27 +255,6 @@ class DBManager
         }
     }
 
-
-    function Cart($USERVARIABLE)
-    {
-        $conn = ConnectionMaker::getConnection();
-
-        $sql = "SELECT Item_No, Title_English, Title_French, Item_Qty, Item_Price * Item_Qty AS Cost FROM CART_ITEM, CART, ITEM, USER
-		WHERE USER.User_ID = CART.User_ID
-		And CART.Cart_ID = CART_ITEM.Cart_ID
-		And CART_ITEM.Item_ID = ITEM.Item_ID
-		And USER.User_ID = " . $USERVARIABLE . ";";
-
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "$row";
-            }
-        } else {
-            echo "you do not have anything in your cart";
-        }
-    }
 
 	//This function will add an item to the database.
 		// -checks to see if the item already exists (checks Item_No, Title_English and Title_French). 
@@ -442,51 +428,31 @@ class DBManager
 					}
 					else {
 						echo "Something went wrong, try again later";
-						?>
-							<form action="../Pages/UpdateItemForm.php">
-								<input type="submit" value="Go back">
-							<form>
-						<?php
 					}					
 				}
 				else
 				{
 					echo "There is already an Item that has that French Title";
-					?>
-					<form action="../Pages/UpdateItemForm.php">
-						<input type="submit" value="Try again">
-					<form>
-					<?php
 				}
 			}
 			else{
 				echo "There is already an Item that has that English Title";
-				?>
-				<form action="../Pages/UpdateItemForm.php">
-					<input type="submit" value="Try Again">
-				<form>
-				<?php
 			}			
 		}
 		else{
 			echo "There is already an Item with that Item Number";
-				?>
-				<form action="../Pages/UpdateItemForm.php">
-					<input type="submit" value="Try Again">
-				<form>
-				<?php
 		}
     }
 
-	//Function simply removes an item from the database 
-    static function Remove_Item($ItemId)
+    function Remove_Item($ItemIdVariable)
     {
 		//establish a connection with the database
         $conn = ConnectionMaker::getConnection();
 
 		//prepare the sql query
         $sql = "DELETE FROM ITEM
-		WHERE Item_No = '" . $ItemId . "';";
+		Where 
+		Item_No = " . $ItemIdVariable . ";";
 
 		//perform sql query, if successful the item will be removed
         if ($conn->query($sql) === true) {

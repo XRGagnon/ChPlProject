@@ -1,10 +1,10 @@
 <?php
 include_once "../Models/Defaults.php";
-include_once "../Models/Partials.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
 include_once "../DBManager/Retrieval.php";
+sec_session_start();
 DefaultHead();
 //unset previously used function
 unset($_SESSION["UpdateItemError"]);
@@ -32,18 +32,23 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<input type="text" name="Item_No" id="Item_No" value="<?php echo $item["Item_No"] ?>" required><br>
 			</td>
 		</tr>
-		<input type="hidden" name="Category" value="<?php echo $_POST['Category']?>">
 		<tr>
 			<td style="text-align: right; margin-left: 10px;">
-				<label for="SubCategory">Category: </label>
+				<label for="category">Category: </label>
 			</td>
-			
 			<td>
-				<select name="SubCategory">
-					
-					<?php
-						$ViewCats = DBManager::Get_SubCategories($_POST['Category']);
-					?>
+				<select name="category">
+				  <option value="1">New Products</option>
+				  <option value="2">Maintenance</option>
+				  <option value="3">Vacuum Hoses</option>
+				  <option value="4">Accessories</option>
+				  <option value="5">Backwash Hoses</option>
+				  <option value="6">Skimmers & Drains</option>
+				  <option value="7">Plumbing</option>
+				  <option value="8">Ladders & Steps</option>
+				  <option value="9">Lights</option>
+				  <option value="10">Cover Reels & Solar Rollers</option>
+				  <option value="11">Games, Chairs & More</option>
 				</select>
 			</td>
 		</tr>
@@ -186,13 +191,11 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 			<td>
 			</td>
 			<td align="right">
-				<input type="submit" value="Update Item">
+				<input type="submit" value="Add Item">
 			</td>
 		</tr>
 	<table>
 </form>
-
-</div>
 <?php
 DefaultFoot();
 ?>

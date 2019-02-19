@@ -2,7 +2,7 @@
 include_once "../Models/Defaults.php";
 include_once "../Models/Security.php";
 include_once "../Models/Display.php";
-session_start();
+sec_session_start();
 DefaultHead();
 
 $data = false;
@@ -39,7 +39,9 @@ echo "<div id=\"content\">
                 </div><!-- Container / END -->
             </div><!-- Page header / END -->
              <div class=\"container block md-margin-top\">";?>
-            <?php Display::displayItem($itemId) ?>
+            <?php
+        //Display Item Info
+        Display::displayItem($itemId) ?>
          </div>
          </div>
 <?php
