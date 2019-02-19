@@ -1,13 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b62b30dc-c543-4b48-a980-b3ab6a00e2c6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Models/Security.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Security.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Models/Security.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Models/Security.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="localhost" id="6a8c674d-bd6b-4732-b7d8-f589636bb794" name="WAMP" />
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ChPlProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChPlProject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChPlProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChPlProject" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChPlProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChPlProject" type="462c0819:PsiDirectoryNode" />
+              <item name="Pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="WAMP" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="WAMP" start_url="/Root/ChPlProject/Pages/index.php">
@@ -16,5 +104,195 @@
     <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="WAMP" start_url="/Root/ChPlProject/Pages/index.php">
       <method v="2" />
     </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3c6fa617-1f88-478c-b1e5-165afd4a9e27" name="Default Changelist" comment="" />
+      <created>1544716951421</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1544716951421</updated>
+      <workItem from="1544716952725" duration="3829000" />
+      <workItem from="1544795156276" duration="1219000" />
+      <workItem from="1546740138257" duration="1219000" />
+      <workItem from="1547155969852" duration="340000" />
+      <workItem from="1547156352982" duration="3301000" />
+      <workItem from="1547160129142" duration="6414000" />
+      <workItem from="1547328271306" duration="2026000" />
+      <workItem from="1547473876073" duration="1203000" />
+      <workItem from="1547475223989" duration="893000" />
+      <workItem from="1547476488035" duration="100000" />
+      <workItem from="1547476665400" duration="4375000" />
+      <workItem from="1547481369338" duration="1393000" />
+      <workItem from="1547577271510" duration="4793000" />
+      <workItem from="1547583307910" duration="1538000" />
+      <workItem from="1547585446412" duration="771000" />
+      <workItem from="1547650848970" duration="1376000" />
+      <workItem from="1547652306992" duration="1459000" />
+      <workItem from="1547655899513" duration="233000" />
+      <workItem from="1547656161033" duration="574000" />
+      <workItem from="1547734304471" duration="2847000" />
+      <workItem from="1547737262630" duration="3000" />
+      <workItem from="1547737387580" duration="88000" />
+      <workItem from="1547737555590" duration="4121000" />
+      <workItem from="1547825976404" duration="1628000" />
+      <workItem from="1547829496222" duration="601000" />
+      <workItem from="1548078759903" duration="608000" />
+      <workItem from="1548117406575" duration="1386000" />
+      <workItem from="1548187610005" duration="311000" />
+      <workItem from="1548356085908" duration="1600000" />
+      <workItem from="1548439054476" duration="743000" />
+      <workItem from="1548439847259" duration="862000" />
+      <workItem from="1548444144237" duration="1420000" />
+      <workItem from="1548446990245" duration="112000" />
+      <workItem from="1548447123583" duration="660000" />
+      <workItem from="1548447841252" duration="421000" />
+      <workItem from="1548448530653" duration="1872000" />
+      <workItem from="1548452880539" duration="228000" />
+      <workItem from="1548789571289" duration="453000" />
+      <workItem from="1548790820377" duration="50000" />
+      <workItem from="1548791120400" duration="141000" />
+      <workItem from="1548791534911" duration="242000" />
+      <workItem from="1548792017850" duration="121000" />
+      <workItem from="1548792416219" duration="333000" />
+      <workItem from="1548792823203" duration="1984000" />
+      <workItem from="1548796538019" duration="1677000" />
+      <workItem from="1548966659704" duration="450000" />
+      <workItem from="1548967138549" duration="2251000" />
+      <workItem from="1548969598628" duration="147000" />
+      <workItem from="1548969875562" duration="36000" />
+      <workItem from="1548969974802" duration="56000" />
+      <workItem from="1548988061147" duration="939000" />
+      <workItem from="1549393471384" duration="7240000" />
+      <workItem from="1549679730821" duration="470000" />
+      <workItem from="1549827723196" duration="598000" />
+      <workItem from="1549926577622" duration="7129000" />
+      <workItem from="1549937596659" duration="3508000" />
+      <workItem from="1549987277154" duration="2320000" />
+      <workItem from="1549998411147" duration="1905000" />
+      <workItem from="1550003456922" duration="41000" />
+      <workItem from="1550097417338" duration="383000" />
+      <workItem from="1550097832710" duration="632000" />
+      <workItem from="1550099790431" duration="1312000" />
+      <workItem from="1550101158628" duration="184000" />
+      <workItem from="1550101380100" duration="4000" />
+      <workItem from="1550101425847" duration="7409000" />
+      <workItem from="1550116828346" duration="280000" />
+      <workItem from="1550162135090" duration="103000" />
+      <workItem from="1550162300313" duration="1658000" />
+      <workItem from="1550165921128" duration="2126000" />
+      <workItem from="1550168071806" duration="3075000" />
+      <workItem from="1550172438973" duration="2004000" />
+      <workItem from="1550174513684" duration="356000" />
+      <workItem from="1550273508511" duration="2454000" />
+      <workItem from="1550284755783" duration="2975000" />
+      <workItem from="1550288814030" duration="454000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="118000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.25" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.32936078" />
+      <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5021322" side_tool="true" weight="0.42470205" />
+      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32936078" />
+      <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Debug" order="8" sideWeight="0.4978678" visible="true" weight="0.33586133" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="11" weight="0.32936078" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="12" weight="0.32936078" />
+      <window_info anchor="bottom" id="PHP-CGI Server" order="13" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+    </layout>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Controllers/RegisterController.php</url>
+          <line>86</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Controllers/RegisterController.php</url>
+          <line>82</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Controllers/LoginController.php</url>
+          <line>10</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/DBManager/DBManager.php</url>
+          <line>185</line>
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Pages/index.php</url>
+          <line>4</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Models/Security.php</url>
+          <line>13</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Models/Security.php</url>
+          <line>24</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Models/Security.php</url>
+          <line>18</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/js/forms.js</url>
+          <line>87</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" log-message="true" type="javascript-exception">
+          <properties />
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Pages/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Models/Security.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

@@ -9,7 +9,7 @@
  
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Defaults.php";
-session_start();
+
 class DBManager
 {
 
