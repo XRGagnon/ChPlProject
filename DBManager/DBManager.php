@@ -256,27 +256,6 @@ class DBManager
     }
 
 
-    function Cart($USERVARIABLE)
-    {
-        $conn = ConnectionMaker::getConnection();
-
-        $sql = "SELECT Item_No, Title_English, Title_French, Item_Qty, Item_Price * Item_Qty AS Cost FROM CART_ITEM, CART, ITEM, USER
-		WHERE USER.User_ID = CART.User_ID
-		And CART.Cart_ID = CART_ITEM.Cart_ID
-		And CART_ITEM.Item_ID = ITEM.Item_ID
-		And USER.User_ID = " . $USERVARIABLE . ";";
-
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "$row";
-            }
-        } else {
-            echo "you do not have anything in your cart";
-        }
-    }
-
 	//This function will add an item to the database.
 		// -checks to see if the item already exists (checks Item_No, Title_English and Title_French). 
 		// -adds a change entry into the changes table. 

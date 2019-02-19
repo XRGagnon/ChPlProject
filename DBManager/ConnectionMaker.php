@@ -11,11 +11,12 @@ class ConnectionMaker
 
     static function getConnection()
     {
+        //Database Info
         $serverName = "localhost";
         $username = "root";
         $password = "";
         $database = "champlainplasticsdb";
-
+        //Create and Return DB connection
         $conn = new mysqli($serverName, $username, $password, $database);
 
         if ($conn->connect_error) {

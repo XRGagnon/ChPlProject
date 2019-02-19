@@ -53,7 +53,7 @@ class Retrieval
     static function getCatItems($parentCat)
     {
         $sql = "";
-        if (strpos("sc",$parentCat))
+        if (!strpos("sc",$parentCat))
         {
             $sql = "SELECT * FROM ITEM WHERE SUBCATEGORY = '".$parentCat."';";
         }
@@ -76,6 +76,7 @@ class Retrieval
         }
     }
 
+    //This method returns ONE category from the DB
     static function getCategory($cat)
     {
         $conn = ConnectionMaker::getConnection();
@@ -95,6 +96,7 @@ class Retrieval
         }
     }
 
+    //This method returns ONE item from the DB
     static function getItem($item)
     {
         $conn = ConnectionMaker::getConnection();
@@ -114,6 +116,7 @@ class Retrieval
         }
     }
 
+    //This method returns all items corresponding to the search query
     static function getSearchResult($searchString)
     {
         $conn = ConnectionMaker::getConnection();
@@ -122,6 +125,7 @@ class Retrieval
 
         $count = 0;
         $sql = "SELECT * FROM ITEM WHERE";
+        //Add each search variable to the query
         foreach ($queryString as $searchVar)
         {
             if ($count != 0)
@@ -147,6 +151,7 @@ class Retrieval
         }
     }
 
+    //This method returns ONE user from the DB
     static function getUser($userId)
     {
         $conn = ConnectionMaker::getConnection();
@@ -166,6 +171,7 @@ class Retrieval
         }
     }
 
+    //This method returns the main transactions performed by one user
     static function getUserTransaction($userId)
     {
         $conn = ConnectionMaker::getConnection();
@@ -184,6 +190,8 @@ class Retrieval
             return false;
         }
     }
+
+    //This method returns all transaction items from one transaction
     static function getUserTransactionItems($transId)
     {
         $conn = ConnectionMaker::getConnection();

@@ -17,8 +17,8 @@ function sec_session_start() {
     // Forces sessions to only use cookies.
     $sec = ini_set('session.use_only_cookies', 1);
     if ($sec === FALSE) {
-        //header("Location: ../error.php?err=Could not initiate a safe session (ini_set)");
-        //exit();
+        header("Location: ../error.php?err=Could not initiate a safe session (ini_set)");
+        exit();
     }
     // Gets current cookies params.
     $cookieParams = session_get_cookie_params();
@@ -79,7 +79,7 @@ function Login_Check() {
         return false;
     }
 }
-
+//IS Login Check but specifically for Admin users
 function Admin_Check()
 {
     $conn = ConnectionMaker::getConnection();
@@ -137,5 +137,18 @@ function Admin_Check()
         // Not logged in
         return false;
     }
+
+
 }
+
+//Boot to index someone if he is not logged in as an Admin
+function AdminGuard()
+{
+    if (!Admin_Check())
+    {
+        header("Location: ../Pages/index.php");
+        exit();
+    }
+}
+
 
