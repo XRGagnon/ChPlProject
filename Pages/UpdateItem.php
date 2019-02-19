@@ -5,6 +5,7 @@ include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
 include_once "../DBManager/Retrieval.php";
+sec_session_start();
 DefaultHead();
 //unset previously used function
 unset($_SESSION["UpdateItemError"]);

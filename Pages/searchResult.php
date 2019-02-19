@@ -2,7 +2,7 @@
 include_once "../Models/Defaults.php";
 include_once "../Models/Security.php";
 include_once "../Models/Display.php";
-session_start();
+sec_session_start();
 DefaultHead();
 
 $query = "";

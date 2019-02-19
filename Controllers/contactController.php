@@ -9,7 +9,7 @@
 include_once "../Models/Security.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/Utility.php";
-session_start();
+sec_session_start();
 
 $sender = "";
 $destinator = "olympicplatinummail@gmail.com";

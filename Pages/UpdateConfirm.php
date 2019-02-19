@@ -3,6 +3,7 @@ include_once "../Models/Defaults.php";
 include_once "../Models/Partials.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
+sec_session_start();
 unset($_SESSION["UpdateItemError"]);
 DefaultHead();
 ?>

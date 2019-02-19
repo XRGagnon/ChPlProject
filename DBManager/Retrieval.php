@@ -139,5 +139,61 @@ class Retrieval
         }
     }
 
+    static function getUser($userId)
+    {
+        $conn = ConnectionMaker::getConnection();
+
+        $sql = "SELECT * FROM USER WHERE USER_ID = '".$userId."' LIMIT 1;";
+
+        $result = $conn->query($sql);
+
+        if ($result)
+        {
+
+            return $result->fetch_assoc();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    static function getUserTransaction($userId)
+    {
+        $conn = ConnectionMaker::getConnection();
+
+        $sql = "SELECT * FROM TRANSACTION WHERE USER_ID = '".$userId."';";
+
+        $result = $conn->query($sql);
+
+        if ($result)
+        {
+
+            return $result;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    static function getUserTransactionItems($transId)
+    {
+        $conn = ConnectionMaker::getConnection();
+
+        $sql = "SELECT * FROM Transaction_Item WHERE Transaction_Id = '".$transId."';";
+
+        $result = $conn->query($sql);
+
+        if ($result)
+        {
+
+            return $result;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
 }
