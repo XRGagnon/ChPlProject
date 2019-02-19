@@ -30,7 +30,7 @@ echo "<div id=\"content\">
                         </div><!-- Container / END -->
                     </div><!-- Page header / END -->";
 
-
+                    //Display Search Result Items
                     Display::displaySearchResult($query);
 }
 else

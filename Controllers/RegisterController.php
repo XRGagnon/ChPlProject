@@ -7,6 +7,7 @@
  */
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
+//Start Secure Session
 sec_session_start();
 $error_msg = "";
 $conn = ConnectionMaker::getConnection();

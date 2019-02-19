@@ -84,7 +84,7 @@ DefaultHead();
                                     </div>
                                     <div>
                                         <?php
-
+                                        //Print success or error message
                                         if (isset($_GET["error"]))
                                         {
                                             echo "<p class='alert-danger'> ".$_GET['error']." </p>";

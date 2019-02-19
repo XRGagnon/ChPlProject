@@ -21,14 +21,7 @@ DefaultHead();
                             <div class="page-subheader">
                            
                                 <h1>Olympic Tag line here <br/>
-                                    <?php
-                                    if (Login_Check())
-                                    {echo("
-                                        <a href=\"../Controllers/LogoutController.php\">Logout</a>
-                                        <div>Welcome, ".$_SESSION["username"]."</div>");
-                                    }
-                                    ?>
-                               
+
                             </div>
 
                             <div class="description logo">
@@ -65,9 +58,13 @@ DefaultHead();
 
                 <!--Categories go Here -->
 
-                <?php Display::displayCategories(); ?>
+                <?php
+                //Display Main Categories
+                Display::displayCategories(); ?>
 
-          <?php Display::searchBar(); ?>
+          <?php
+          //Display Search Bar
+          Display::searchBar(); ?>
 
 
             </div><!-- Container / END -->

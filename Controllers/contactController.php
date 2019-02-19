@@ -9,8 +9,10 @@
 include_once "../Models/Security.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/Utility.php";
+//Start Secure Session
 sec_session_start();
 
+//Define Variables
 $sender = "";
 $destinator = "olympicplatinummail@gmail.com";
 $subject = "";
@@ -21,17 +23,20 @@ $success = true;
 $successMsg = "";
 
 
-
+//Check if all fields are filled
 if (isset($_POST["sender"]) && isset($_POST["subject"]) && isset($_POST["msg"]) && isset($_POST["name"]))
 {
+    //Grab sender
     $sender = $_POST["sender"];
     $subject = $_POST["subject"];
     $msg = $_POST["msg"];
     $name = $_POST["name"];
+    //Validate Email Address
     $sender = filter_var($sender, FILTER_SANITIZE_EMAIL);
     if (filter_var($sender, FILTER_VALIDATE_EMAIL))
     {
-        Utility::contact($sender,$subject,$msg,$sender,$name);
+        //Send Email
+        Utility::contact($destinator,$subject,$msg,$sender,$name);
         $successMsg = "Thank you for contacting us";
     }
     else
@@ -45,7 +50,7 @@ else
     $errorMsg = "Please fill out all fields";
     $success = false;
 }
-
+//If email was successful
 if (!$success)
 {
     header("Location: ../Pages/Contact.php?error=".$errorMsg);

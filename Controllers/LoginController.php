@@ -4,6 +4,7 @@ include_once "../DBManager/DBManager.php";
 
 sec_session_start(); // Our custom secure way of starting a PHP session.
 
+//If all fields are entered
 if (isset($_POST['username'], $_POST['p'])) {
     $username = $_POST['username'];
     $password = $_POST['p']; // The hashed password.

@@ -91,6 +91,7 @@ DefaultHead();
                                    this.form.email,
                                    this.form.password,
                                    this.form.ConfirmPass);" />
+                <!-- On click, activate the register Javascript Password Hasher -->
             </td>
 		</tr>
 	</table>
