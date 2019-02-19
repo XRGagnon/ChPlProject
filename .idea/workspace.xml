@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="WAMP" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="WAMP" start_url="/Root/ChPlProject/Pages/index.php">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="WAMP" start_url="/Root/ChPlProject/Pages/index.php">
+      <method v="2" />
+    </configuration>
+  </component>
+</project>
