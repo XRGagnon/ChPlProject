@@ -7,14 +7,14 @@
  * Time: 10:21 AM
  */
 include_once "../Models/Defaults.php";
-include_once "../Models/Partials.php";
 include_once "../Models/Security.php";
-session_start();
+sec_session_start();
 DefaultHead();
 ?>
 <h2>Login Page</h2><br>
 
 <?php
+//Message if already logged in
 if (Login_Check())
 {
     echo("You are logged in, ".$_SESSION["username"]);
@@ -33,7 +33,9 @@ if (isset($_GET['error'])) {
                      id="password"/><br/>
     <input type="button"
            value="Login"
+
            onclick="formhash(this.form, this.form.password);" />
+            <!-- Activate Javascript Password Hasher on click -->
 </form>
 
 

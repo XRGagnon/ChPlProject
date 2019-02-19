@@ -2,7 +2,7 @@
 include_once "../Models/Defaults.php";
 include_once "../Models/Security.php";
 include_once "../Models/Display.php";
-session_start();
+sec_session_start();
 DefaultHead();
 
 ?>
@@ -22,16 +22,6 @@ DefaultHead();
                            
                                 <h1>Olympic Tag line here <br/>
 
-									<a href="ViewItems.php">Admin Page</a><br/>
-
-                                    <?php
-                                    if (Login_Check())
-                                    {echo("
-                                        <a href=\"../Controllers/LogoutController.php\">Logout</a>
-                                        <div>Welcome, ".$_SESSION["username"]."</div>");
-                                    }
-                                    ?>
-                               
                             </div>
 
                             <div class="description logo">
@@ -68,9 +58,13 @@ DefaultHead();
 
                 <!--Categories go Here -->
 
-                <?php Display::displayCategories(); ?>
+                <?php
+                //Display Main Categories
+                Display::displayCategories(); ?>
 
-          <?php Display::searchBar(); ?>
+          <?php
+          //Display Search Bar
+          Display::searchBar(); ?>
 
 
             </div><!-- Container / END -->

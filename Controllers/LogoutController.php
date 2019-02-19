@@ -7,7 +7,8 @@
  */
 include_once "../Models/Security.php";
 include_once "../DBManager/DBManager.php";
-session_start();
+//Start Secure Session
+sec_session_start();
 
 // Unset all session values
 $_SESSION = array();
@@ -26,3 +27,4 @@ setcookie(session_name(),
 // Destroy session
 session_destroy();
 header('Location: ../Pages/index.php');
+exit();

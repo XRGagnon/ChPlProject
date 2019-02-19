@@ -1,10 +1,9 @@
 <?php
 include_once "../Models/Defaults.php";
-include_once "../Models/Partials.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
-//unset previously used session
-unset($_SESSION["UpdateItemError"]);
+sec_session_start();
+unset($_SESSION["AddItemError"]);
 
 //is the users clicks on yes, the update fuction will be performed 
     if(isset($_POST['Yes'])) {

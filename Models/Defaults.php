@@ -6,6 +6,7 @@
  * Time: 10:14 AM
  */
 
+//The default page header/nav
 function DefaultHead()
 {
     ?>
@@ -59,13 +60,24 @@ function DefaultHead()
 
                     <ul class="nav navbar-nav">
                     
-                        <li class="drop active">
+                        <li class="drop">
 
                             <a href="../Pages/index.php">
                                 Home
                             </a>
                         </li>
-
+                        <?php
+                        //If the user is an admin, show the link to the admin pannel
+                        if (Admin_Check())
+                        {
+                            echo
+                            "<li class=\"drop\">
+                                <a href=\"../Pages/ViewItems.php\">
+                                    Admin Pannel
+                                </a>
+                            </li>";
+                        }
+                        ?>
                         <li class="drop">
                             <a href="index.php">
                                 Products
@@ -119,7 +131,13 @@ function DefaultHead()
                             <a href="../Pages/contact.php">
                                 Contact us
                             </a>
-                        </li>-
+                        </li>
+
+                        <li class="drop">
+                            <a href="../Pages/accountInfo.php">
+                                Account Info
+                            </a>
+                        </li>
 
                         <li class="drop">
                             <a href="../Pages/Login.php">
@@ -132,6 +150,18 @@ function DefaultHead()
                                 Dealer Register
                             </a>
                         </li>
+                        <?php
+                        if (Login_Check())
+                        {
+                            echo "<li class=\"drop\">
+                            <a href=\"../Controllers/LogoutController.php\">
+                                Logout
+                            </a>
+                        </li>";
+                        }
+
+                        ?>
+
                     </ul>
 
                 </div>
@@ -142,7 +172,7 @@ function DefaultHead()
 
 <?php
 }
-
+//The default footer
 function DefaultFoot()
 {
     ?>

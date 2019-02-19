@@ -2,7 +2,7 @@
 include_once "../Models/Defaults.php";
 include_once "../Models/Security.php";
 include_once "../Models/Display.php";
-session_start();
+sec_session_start();
 DefaultHead();
 
 $query = "";
@@ -30,7 +30,7 @@ echo "<div id=\"content\">
                         </div><!-- Container / END -->
                     </div><!-- Page header / END -->";
 
-
+                    //Display Search Result Items
                     Display::displaySearchResult($query);
 }
 else
