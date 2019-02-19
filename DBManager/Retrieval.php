@@ -52,9 +52,17 @@ class Retrieval
     //This method returns all items contained in the parent category
     static function getCatItems($parentCat)
     {
+        $sql = "";
+        if (strpos("sc",$parentCat))
+        {
+            $sql = "SELECT * FROM ITEM WHERE SUBCATEGORY = '".$parentCat."';";
+        }
+        else
+        {
+            $sql = "SELECT * FROM ITEM WHERE CATEGORY = '".$parentCat."' AND SUBCATEGORY = NULL;";
+        }
         $conn = ConnectionMaker::getConnection();
 
-        $sql = "SELECT * FROM ITEM WHERE CATEGORY = '".$parentCat."' OR SUBCATEGORY = '".$parentCat."';";
 
         $result = $conn->query($sql);
 
