@@ -271,8 +271,9 @@ class DBManager
     }
 
 	//This function will add an item to the database.
-		// -checks to see if the item already exists. 
+		// -checks to see if the item already exists (checks Item_No, Title_English and Title_French). 
 		// -adds a change entry into the changes table. 
+		// -Adds an item to the database
     static function Add_Item($Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
@@ -281,41 +282,50 @@ class DBManager
 		//$User_ID = $_SESSION['USER_ID'];
 		$User_ID = "2";
 		
+		//Make Cnnection to database
         $conn = ConnectionMaker::getConnection();
 
+		//make the sql statement with prepared statements
         $sql = $conn->prepare("INSERT INTO ITEM 
 		VALUES ( ? , ? , ? , ? , ? , ? , ? , ?	, ? , ? , ?
 		, ? , ? , ? , ? , ? , ? , ? );");
 		
+		//bind the values you want to use to the prepared statement
 		$sql->bind_param("sssssssssssssssssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
 					$Small_Image_Text, $Instructions, $Price);
 		
+		//make the sql statement and execute it, this is for checking the item no
 		$Check_For_ItemNo = $conn->prepare("SELECT Item_No FROM ITEM
 							WHERE Item_No = ?;");
 		$Check_For_ItemNo->bind_param('s', $Item_No);
 		$Check_For_ItemNo->execute();
 		$Check_For_ItemNo->store_result();		
-							
+			
+		//make the sql statement and execute it, this is for checking the english title			
 		$Check_For_Title_English = $conn->prepare("SELECT Title_English FROM ITEM
 							WHERE Title_English = ?;");
 		$Check_For_Title_English->bind_param('s', $Title_English);
 		$Check_For_Title_English->execute();
 		$Check_For_Title_English->store_result();		
 							
+		//make the sql statement and execute it, this is for checking the french title			
 		$Check_For_Title_French = $conn->prepare("SELECT Title_French FROM ITEM
 							WHERE Title_French = ?;");
 		$Check_For_Title_French->bind_param('s', $Title_French);	
 		$Check_For_Title_French->execute();
 		$Check_For_Title_French->store_result();			
 		
+		//Prepare the sql statement, this is for adding the change record to the database
 		$Change = $conn->prepare("INSERT INTO CHANGES (Item_ID, User_ID, Change_Info, Change_Date) VALUES (?, ?, ? ,?)");
 		
+		//get the variable ready and bind them
 		$Desc = "Added Item: ". $Title_English;
 		$Date = date("Y-m-d");
 		$Change->bind_param('siss', $Item_No, $User_ID, $Desc , $Date);
 
+		//perform the various checks and if everything is good perform the sql code. 
 		if ($Check_For_ItemNo->num_rows < 1) {
 			if ($Check_For_Title_English->num_rows < 1) {
 				if ($Check_For_Title_French->num_rows < 1) {
@@ -348,13 +358,22 @@ class DBManager
 		}
     }
 
+	//This fucntion will update an item 
+		//- checks to see if the new Item_No, Title_English or Title_French already exists
+		//- Adds a change record to the database
+		//- updates the item with the new variables
     static function Update_Item($Old_Item_No,$Old_English_Title,$Old_French_Title, $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
 					$Small_Image_Text, $Instructions, $Price)
     {
+		//$User_ID = $_SESSION['USER_ID'];
+		$User_ID = "2";
+		
+		//Establish a connection
         $conn = ConnectionMaker::getConnection();
 
+		//prepared the sql query
         $sql = $conn->prepare("UPDATE ITEM
 		SET Item_No = ? , Category = ? , SubCategory = ? 
 		, Availability = ? , New = ? , Colors = ? 
@@ -365,45 +384,49 @@ class DBManager
 		, Small_Image = ? , Small_Image_Text = ?
 		, Instructions = ? , Price = ? 
 		Where Item_No =  '" . $Old_Item_No ."' ;");
-		
+
+		//bind parameters to the previous sql query
 		$sql->bind_param("sssssssssssssssssd", $Item_No, $Cat_ID, $Sub_Cat_ID, $Availability, $New, $Colors, 
 					$Title_English, $Description_English, $Title_French, $Description_French, 
 					$Country_Of_Origin, $Spare_Parts, $Large_Image, $Large_Image_Text, $Small_Image,
 					$Small_Image_Text, $Instructions, $Price);
 
+		//Prepare sql query and execute it
 		$Check_For_ItemNo = $conn->prepare("SELECT Item_No FROM ITEM
 							WHERE Item_No = ? AND Item_No NOT IN ('".$Old_Item_No."');");
 		$Check_For_ItemNo->bind_param("s", $Item_No);	
 		$Check_For_ItemNo->execute();	
 		$Check_For_ItemNo->store_result();
-							
+						
+		//Prepare sql query and execute it
 		$Check_For_Title_English = $conn->prepare("SELECT Title_English FROM ITEM
 							WHERE Title_English = ? AND Title_English NOT IN ('".$Old_English_Title."');");
 		$Check_For_Title_English->bind_param("s", $Title_English);
 		$Check_For_Title_English->execute();
 		$Check_For_Title_English->store_result();
-							
+		
+		//Prepare sql query and execute it
 		$Check_For_Title_French = $conn->prepare("SELECT Title_French FROM ITEM
 							WHERE Title_French = ? AND Title_French NOT IN ('".$Old_French_Title."');");
 		$Check_For_Title_French->bind_param("s", $Title_French);
 		$Check_For_Title_French->execute();
 		$Check_For_Title_French->store_result();
 		
-		$Change = $conn->prepare("INSERT INTO CHANGES (Item_ID, User_ID, Change_Info, Change_Date) VALUES (?, ?, ? ,?)");
+		//prepare and bind parameters for the change query, this will add a change record to the database
+		$ChangeAdd = $conn->prepare("INSERT INTO CHANGES (Item_ID, User_ID, Change_Info, Change_Date) VALUES (?, ?, ? ,?)");
 		
 		$Desc = $_SESSION['changes'];
 		$Date = date("Y-m-d");
-		$Change->bind_param('siss', $Item_No, $User_ID, $Desc , $Date);
+		$ChangeAdd->bind_param('siss', $Item_No, $User_ID, $Desc , $Date);
 		
-		if ($Check_For_ItemNo->num_rows < 1) {
-			
-			if ($Check_For_Title_English->num_rows < 1) {
-				
+		
+		//perform the various checks, if all is good, perform the update
+		if ($Check_For_ItemNo->num_rows < 1) {		
+			if ($Check_For_Title_English->num_rows < 1) {	
 				if ($Check_For_Title_French->num_rows < 1) {
 					if ($sql->execute()) {
-						echo "Item Updated Successfully<br>";
-						
-						if($Change->execute())
+						echo "Item Updated Successfully<br>";	
+						if($ChangeAdd->execute())
 						{
 							echo "Change entry added successfully";
 						}
@@ -458,11 +481,14 @@ class DBManager
 	//Function simply removes an item from the database 
     static function Remove_Item($ItemId)
     {
+		//establish a connection with the database
         $conn = ConnectionMaker::getConnection();
 
+		//prepare the sql query
         $sql = "DELETE FROM ITEM
 		WHERE Item_No = '" . $ItemId . "';";
 
+		//perform sql query, if successful the item will be removed
         if ($conn->query($sql) === true) {
             echo "Item has been successfully updated";
         } else {
@@ -470,16 +496,21 @@ class DBManager
         }
     }
 
-    // This Function needs a little review, not sure in what context this is used
+    //This function will view all items from the database 
     static function View_Items()
     {
+		//establish connection to the database
         $conn = ConnectionMaker::getConnection();
 
+		//prepare the sql query
         $sql = "SELECT * FROM ITEM;";
 
+		//get the result from the executed query
         $result = $conn->query($sql);
 
+		//checks to see if any rows were returned 
         if ($result->num_rows > 0) {
+			//format the items to be displayed in a table format 
 			echo "<div style='overflow-x:auto'>";
 			echo "<table id='viewall'>";	
 			echo "<tr>";				
@@ -504,6 +535,7 @@ class DBManager
 				echo "<th>Price</th>";
 
 			echo "</tr>";		
+			//get each row 
             while ($row = $result->fetch_assoc()) {
 
 				echo "<tr>";				
@@ -512,7 +544,7 @@ class DBManager
 					echo '<td><a href="UpdateItemForm.php?id=' . $id . '">Update Item</a></td>';
 				foreach($row as $val)
 				{		
-
+					//gets each variable in each row
 					echo "<td>";
 					if(!isset($val))
 					{
@@ -524,26 +556,30 @@ class DBManager
 					}
 					echo "</td>";
 				}
-				
-
 				echo "</tr>";
             }
 			echo "</table>";
 			echo "</div>";
         } else 
 		{
+			//if no rows were returned 
             echo "Nothing could be displayed at this time, try again later";
         }
     }
 	
+	//this function is used for viewing items in the search method of the database. 
 	static function View_One_Item($SEARCH)
 	{
+		//establishes connection 
 		$conn = ConnectionMaker::getConnection();
 
+		//prepare the sql query
         $sql = "SELECT * FROM ITEM WHERE Item_No LIKE '%" . $SEARCH . "%' OR Title_English LIKE '%" . $SEARCH ."%' OR Title_French LIKE '%" . $SEARCH . "%';";	
 
+		//get the result from the query
         $result = $conn->query($sql);
 		
+		//format the item(s) in a table format
 		echo "<div style='overflow-x:auto'>";
 			echo "<table id='viewall'>";	
 			echo "<tr>";				
@@ -568,6 +604,7 @@ class DBManager
 				echo "<th>Price</th>";
 
 			echo "</tr>";
+			//checks to see if any rows were returned 
         if ($result->num_rows > 0) {
 		
             while ($row = $result->fetch_assoc()) {
@@ -602,15 +639,19 @@ class DBManager
 		unset($_SESSION['Item']);	
 	}
 	
+	// this is to view the item being used for the update item
 	static function UpdateItemViewItem($ID)
 	{
+		//unset the session that was previously used
 		unset($_SESSION['query']);
+		//make connection to database
 		$conn = ConnectionMaker::getConnection();
-
+		//prepare the sql query 
 		$sql = "SELECT * FROM ITEM WHERE Item_No = '" . $ID . "';";	
-		
+		//get the result from the query 
 		$result = $conn->query($sql);	
 		
+		//format the item in a table format
 		echo "<div style='overflow-x:auto'>";
 			echo "<table id='viewall'>";	
 			echo "<tr>";				
@@ -639,7 +680,7 @@ class DBManager
 			if ($result->num_rows > 0) {
 		
 				while ($row = $result->fetch_assoc()) {
-					
+					//put all the variables into sessions for future use 
 					$_SESSION['Item_No'] = $row['Item_No'];
 					$_SESSION['Category'] = $row['Category'];
 					$_SESSION['SubCategory'] = $row['SubCategory'];
@@ -686,15 +727,20 @@ class DBManager
 		echo "</div>";
 	}
 	
+	//This function is used when searching by a category
 	static function Category($CAT)
 	{
+		//establish connection
 		$conn = ConnectionMaker::getConnection();
 
+		//prepare sql qeury
         $sql = "SELECT * FROM ITEM
 		WHERE Category = " . $CAT . ";";
 
+		//get the result of the query
         $result = $conn->query($sql);
 		
+		//format in a table format
         if ($result->num_rows > 0) {
 			echo "<div style='overflow-x:auto'>";
 			echo "<table id='viewall'>";	
@@ -753,19 +799,24 @@ class DBManager
 		unset($_SESSION['Item']);
 	}
 	
+	//this fucntion is used to display the subcategries depending on which main category was selected
 	static function Get_SubCategories($Category)
 	{
+		//establish connection to database
 		$conn = ConnectionMaker::getConnection();
 		
+		//prepare sql statement 
 		$sql = "SELECT * FROM CATEGORY 
 		WHERE Parent_Category = '" . $Category . "';";
 				
+		//get the result of the query 
 		$result = $conn->query($sql);
 	
+	//checks to see if more than one row was selected
 		if($result->num_rows > 0)
 		{
 			while ($row = $result->fetch_assoc()) {
-
+				//get every row
 				$count = 0;
 				$variable = "";
 				$CatID = $row['Category'];

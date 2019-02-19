@@ -6,7 +6,7 @@ include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
 include_once "../DBManager/Retrieval.php";
 DefaultHead();
-$_SESSION["test"] = "Big Morgan";
+//unset previously used sessions 
 unset($_SESSION['Item_No']);
 unset($_SESSION['Category']);
 unset($_SESSION['SubCategory']);
@@ -30,11 +30,14 @@ unset($_SESSION['changes']);
 <h2>This is your current item</h2><br>
 <div style="Margin: 30px;">
 
-<?php 
+<?php
+
+//checks if the session is set or not.  
 if(!isset($_SESSION['id']))
 {
 	$_SESSION['id'] = $_GET['id'];
 }
+//call the function to view all the items
 $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 	if(isset($_SESSION['UpdateItemError']))
 	{
@@ -43,7 +46,7 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 ?>
 
 </br><h2>Select the new Sub-Category</h2></br>
-
+<!-- form to choose the new category -->
 <form method="POST" action="../Pages/UpdateItem.php">
 	<label for="Category">Category: </label>
 

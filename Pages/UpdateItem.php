@@ -6,7 +6,7 @@ include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
 include_once "../DBManager/Retrieval.php";
 DefaultHead();
-$_SESSION["asdf"] = "asdf";
+//unset previously used function
 unset($_SESSION["UpdateItemError"]);
 
 $id = $_SESSION['id'];
@@ -15,7 +15,7 @@ $item = Retrieval::getItem($id);
 
 
 <div style="Margin: 30px;">
-<!-- This is the form for the update item-->
+<!-- This is the form for the update item, the form is made sticky so any fields that was not null is put back on the form for the user to see. -->
 <h2>Update Page</h2>
 <?php
 $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);

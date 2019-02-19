@@ -4,10 +4,9 @@ include_once "../Models/Partials.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
 DefaultHead();
-?>
+//this is the beginning of the add item chain, here the user selects which category he wants to be added. 
 
-<?php 
-
+//checks to see if there was an error set, if there was the error is displayed. 
 	if(isset($_SESSION['AddItemError']))
 	{
 		echo $_SESSION['AddItemError'];

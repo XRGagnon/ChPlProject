@@ -8,7 +8,7 @@ DefaultHead();
 ?>
 
 <?php
-
+	//checks to see if the various items were entered in the previous page. 
 	if(!isset($_POST['Item_No']) || !isset($_POST['SubCategory']) 
 		|| !isset($_POST['Availability']) || !isset($_POST['New'])
 		|| !isset($_POST['Title_English']) || !isset($_POST['Title_French']))
@@ -19,6 +19,7 @@ DefaultHead();
 	}
 	else
 	{
+		//if the user did enter the values, the rest are retrieved 
 		$Item_No = $_POST['Item_No'];
 		$Category = $_POST['Category'];
 		$SubCategory = $_POST['SubCategory'];
@@ -26,43 +27,109 @@ DefaultHead();
 		$New = $_POST['New'];
 		$Colors = '';
 		
+		//This paryt is for adding the colors to a string for proper implentation into the database 
 			if(isset($_POST['Green']))
 			{
-				$Colors = $Colors . ", " . $_POST['Green'];
+				if($Colors == '')
+				{
+					$Colors = $_POST['Green'];
+				}
+				else
+				{
+					$Colors = $Colors . ", " . $_POST['Blue'];
+				}
+				
 			}
 			if(isset($_POST['Blue']))
 			{
-				$Colors = $Colors . ", " . $_POST['Blue'];
+				if($Colors == '')
+				{
+					$Colors = $_POST['Blue'];
+				}
+				else
+				{
+					$Colors = $Colors . ", " . $_POST['Blue'];
+				}
 			}
 			if(isset($_POST['Gold']))
 			{
-				$Colors = $Colors . ", " . $_POST['Gold'];
+				if($Colors == '')
+				{
+					$Colors = $_POST['Gold'];
+				}
+				else
+				{
+					$Colors = $Colors . ", " . $_POST['Gold'];
+				}	
 			}
 			if(isset($_POST['Grey']))
 			{
-				$Colors = $Colors . ", " . $_POST['Grey'];
+				if($Colors == '')
+				{
+					$Colors = $_POST['Grey'];
+				}
+				else
+				{
+					$Colors = $Colors . ", " . $_POST['Grey'];
+				}
 			}
 			if(isset($_POST['White']))
 			{
-				$Colors = $Colors . ", " . $_POST['White'];
+				if($Colors == '')
+				{
+					$Colors = $_POST['White'];
+				}
+				else
+				{
+					$Colors = $Colors . ", " . $_POST['White'];
+				}			
 			}
 			if(isset($_POST['Mocha']))
 			{
-				$Colors = $Colors . ", " . $_POST['Mocha'];
+				if($Colors == '')
+				{
+					$Colors = $_POST['Mocha'];
+				}
+				else
+				{
+					$Colors = $Colors . ", " . $_POST['Mocha'];
+				}			
 			}
 			if(isset($_POST['Light_Grey']))
 			{
-				$Colors = $Colors . ", " . $_POST['Light_Grey'];
+				if($Colors == '')
+				{
+					$Colors = $_POST['Light_Grey'];
+				}
+				else
+				{
+					$Colors = $Colors . ", " . $_POST['Light_Grey'];
+				}				
 			}
 			if(isset($_POST['Black']))
 			{
-				$Colors = $Colors . ", " . $_POST['Black'];
+				if($Colors == '')
+				{
+					$Colors = $_POST['Black'];
+				}
+				else
+				{
+					$Colors = $Colors . ", " . $_POST['Black'];
+				}			
 			}
 			if(isset($_POST['Red_Grey']))
 			{
-				$Colors = $Colors . ", " . $_POST['Red_Grey'];
+				if($Colors == '')
+				{
+					$Colors = $_POST['Red_Grey'];
+				}
+				else
+				{
+					$Colors = $Colors . ", " . $_POST['Red_Grey'];
+				}
 			}
 		
+		//checks each variable if it was entered or not, if not entered the field will be NULL
 		$Title_English = $_POST['Title_English'];
 		if(isset($_POST['Description_English']))
 		{
@@ -163,6 +230,7 @@ DefaultHead();
 <div style='Margin: 30px;'>
 <table >
 	<tr>
+	<!-- Format the old and new results into a table format -->
 		<th>Field Name</th>
 		<th>New Item</th>
 		<th>Old Item</th>
@@ -265,6 +333,7 @@ DefaultHead();
 
 <?php 
 
+//checks to see if there were any changes from the old value to the new value. 
 $_SESSION['changes'] = "";
 
 if($Item_No != $_SESSION['Item_No'])
@@ -356,8 +425,9 @@ if($Small_Image_Text != $_SESSION['Small_Image_Text'])
 {
 	$_SESSION['changes'] .= "Changed Small_Image_Text: ". $_SESSION['Small_Image_Text'] ." to " . $Small_Image_Text . ",";
 }
-?>
 
+?>
+<!-- confirmation of the update with hidden values containng the new values.-->
 <h3>Are you sure you want this change?</h3>
 <form method="POST" action="../Controllers/UpdateController.php">
 	<input type="hidden" name="Old_English" value="<?php echo $_SESSION['Title_English']?>">

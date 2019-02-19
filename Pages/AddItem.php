@@ -7,7 +7,8 @@ unset($_SESSION["AddItemError"]);
 DefaultHead();
 
 ?>
-<!-- This is the form for the item-->
+<!-- This is the form for the item
+	This includes all the various columns in the database-->
 <div style="Margin: 30px;">
 
 <form action="../Controllers/AddItemController.php" method="POST">

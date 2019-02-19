@@ -19,6 +19,7 @@ DefaultHead();
 <h2>View All Items Page</h2>
 <p>If you want to add an item, click the link below</p>
 
+<!-- The form for the various search methods-->
 <form method="POST" action="../Pages/AddItemForm.php">
 	<input type="submit" value="Add an Item">
 </form><br>
@@ -62,7 +63,7 @@ DefaultHead();
 <?php
 
 $conn = ConnectionMaker::getConnection();
-
+// depending if there is a session or not, various uotputs will be displayed 
 if(isset($_SESSION['CAT']))
 {
 	$ViewItems = DBManager::Category($_SESSION['CAT']);
