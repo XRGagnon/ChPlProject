@@ -1,5 +1,5 @@
 <?php
-sec_session_start();
+session_start();
 unset($_SESSION['CAT']);
 unset($_SESSION['Item']);
 
