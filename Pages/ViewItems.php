@@ -4,13 +4,25 @@ include_once "../Models/Partials.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
-session_start();
 unset($_SESSION['id']);
 DefaultHead();
 
 ?>
 
-<h2>Remove Item</h2>
+<style>
+#viewall {
+  height: 500px;
+}
+</style>
+
+<div style="Margin: 30px;">
+<h2>View All Items Page</h2>
+<p>If you want to add an item, click the link below</p>
+
+<!-- The form for the various search methods-->
+<form method="POST" action="../Pages/AddItemForm.php">
+	<input type="submit" value="Add an Item">
+</form><br>
 
 <p>Select a Category to narrow your search</p>
 
@@ -31,6 +43,7 @@ DefaultHead();
 	<input type="submit" value="Search Category" name="CategoryForm">
 </form>
 
+<p>Search for an Item</p>
 <form method="post" action="../Controllers/ViewItemsController.php">
 
 	<input type="text" name="Item_No" id="Item_No">
@@ -50,7 +63,7 @@ DefaultHead();
 <?php
 
 $conn = ConnectionMaker::getConnection();
-
+// depending if there is a session or not, various uotputs will be displayed 
 if(isset($_SESSION['CAT']))
 {
 	$ViewItems = DBManager::Category($_SESSION['CAT']);

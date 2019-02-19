@@ -28,12 +28,6 @@ DefaultHead();
                                         <div>Welcome, ".$_SESSION["username"]."</div>");
                                     }
                                     ?>
-
-                                    <?php
-                                    if (Login_Check())
-                                    {
-                                        echo "Welcome, ".$_SESSION["username"];
-                                    }?>
                                
                             </div>
 

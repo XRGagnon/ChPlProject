@@ -535,7 +535,7 @@ class Display
         $goFirst = "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl(0,$query).">First </a></li>";
 
         $goLast = "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl($maxIndex-1,$query).">Last </a></li>";
-        echo "<ul style='text-align:center' class=\"pagination rounded-pagination no-margin col-sm-12\">";
+        echo "<div style='text-align:center'><ul  class=\"pagination rounded-pagination no-margin col-sm-12\">";
         echo $goFirst;
         if ($currentIndex > 0)
         {
@@ -553,7 +553,7 @@ class Display
             echo "<li class=\"paginate_button  \"><a class=\"paginate_button \" href=".self::paginationCraftUrl($currentIndex+1,$query).">Next </a></li>";;
         }
         echo $goLast;
-        echo "</ul>";
+        echo "</ul></div>";
 
 
     }

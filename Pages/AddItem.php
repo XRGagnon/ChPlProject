@@ -3,8 +3,11 @@ include "../Models/Defaults.php";
 include "../Models/Partials.php";
 DefaultHead();
 ?>
-<h2>Add Item Page</h2>
-<form action="../Controllers/RegisterController.php" method="POST">
+<!-- This is the form for the item
+	This includes all the various columns in the database-->
+<div style="Margin: 30px;">
+
+<form action="../Controllers/AddItemController.php" method="POST">
 	<table>
 		<tr>
 			<td style="text-align: right; margin-left: 10px;">
@@ -14,6 +17,7 @@ DefaultHead();
 				<input type="text" name="Item_No" id="Item_No"><br>
 			</td>
 		</tr>
+		<input type="hidden" name="Category" value="<?php echo $_POST['Category']?>">
 		<tr>
 			<td style="text-align: right; margin-left: 10px;">
 				<label for="category">Category: </label>
@@ -134,7 +138,38 @@ DefaultHead();
 				<input type="number" name="Price" id="Price" min=0 step=0.01><br>
 			</td>
 		</tr>		
+				<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="Large_Image">Large_Image</label>
+			</td>
+			<td>
+				<input type="text" name="Large_Image" id="Large_Image" min=0 step=0.01><br>
+			</td>
+		</tr>	
 		<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="Large_Image_Text">Large_Image_Text</label>
+			</td>
+			<td>
+				<input type="text" name="Large_Image_Text" id="Large_Image_Text" min=0 step=0.01><br>
+			</td>
+		</tr>	
+		<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="Small_Image">Small_Image</label>
+			</td>
+			<td>
+				<input type="text" name="Small_Image" id="Small_Image" min=0 step=0.01><br>
+			</td>
+		</tr>	
+		<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="Small_Image_Text">Small_Image_Text</label>
+			</td>
+			<td>
+				<input type="text" name="Small_Image_Text" id="Small_Image_Text" min=0 step=0.01><br>
+			</td>
+		</tr>
 		<tr>
 			<td>
 			</td>
@@ -144,6 +179,7 @@ DefaultHead();
 		</tr>
 	<table>
 </form>
+</div>
 <?php
 DefaultFoot();
 ?>
