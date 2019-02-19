@@ -59,13 +59,23 @@ function DefaultHead()
 
                     <ul class="nav navbar-nav">
                     
-                        <li class="drop active">
+                        <li class="drop">
 
                             <a href="../Pages/index.php">
                                 Home
                             </a>
                         </li>
-
+                        <?php
+                        if (Admin_Check())
+                        {
+                            echo
+                            "<li class=\"drop\">
+                                <a href=\"../Pages/ViewItems.php\">
+                                    Admin Pannel
+                                </a>
+                            </li>";
+                        }
+                        ?>
                         <li class="drop">
                             <a href="index.php">
                                 Products
@@ -119,7 +129,13 @@ function DefaultHead()
                             <a href="../Pages/contact.php">
                                 Contact us
                             </a>
-                        </li>-
+                        </li>
+
+                        <li class="drop">
+                            <a href="../Pages/accountInfo.php">
+                                Account Info
+                            </a>
+                        </li>
 
                         <li class="drop">
                             <a href="../Pages/Login.php">

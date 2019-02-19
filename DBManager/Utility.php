@@ -28,22 +28,56 @@ class Utility
             {
                 foreach ($child->children() as $item)
                 {
-                    array_push($orderItems,$item);
-                    $qty = end($orderItems)[0]["quantity"];
-                    $price = end($orderItems)[0]["price"];
-                    $total = (int)$qty*(double)$price;
-                    $totalPrice += $total;
-                    //TODO RESUME FROM HERE FIX XML
+
+                    $code = $item->children()[0][0]->__toString();
+                    $qty = $item->quantity[0]->__toString();
+                    $price = $item->price[0]->__toString();
+                    $itemTotal = $qty * $price;
+                    $totalPrice += $itemTotal;
+                    $newItem = array($code, $qty);
+                    array_push($orderItems,$newItem);
+
                 }
             }
         }
-        $itemCode = (string)$orderItems[0][0]->child;
-    self::createTransaction($userId);
+    self::createTransaction($userId,$orderItems,$totalPrice);
     }
 
-    public static function createTransaction($user_id)
+    public static function createTransaction($user_id,$itemArray,$totalPrice)
     {
+        $success = true;
         $conn = ConnectionMaker::getConnection();
-        $conn->insert_id;
+        $error = "";
+        $insertTransactionSQL = "INSERT INTO TRANSACTION(USER_ID, DATE, TOTAL) VALUES (?,?,?);";
+        $transactionStatement = $conn->prepare($insertTransactionSQL);
+        $date = date("Y-m-d");
+        $id = (int)$user_id;
+        $transactionStatement->bind_param("isd",$id,$date,$totalPrice);
+
+        if ($transactionStatement->execute())
+        {
+            $transactionId = $conn->insert_id;
+            for ($i = 0; $i < sizeof($itemArray); $i++)
+            {
+
+                $insertItemsSQL = "INSERT INTO TRANSACTION_ITEM VALUES (?,?,?)";
+                $itemStatement = $conn->prepare($insertItemsSQL);
+                $itemStatement->bind_param("isi",$transactionId,$itemArray[$i][0], $itemArray[$i][1]);
+                if (!$itemStatement->execute())
+                {
+                    $success = false;
+                    $error = $itemStatement->error;
+                }
+            }
+        }
+        else
+            {
+            $success = false;
+            $error = $transactionStatement->error;
+        }
+        if (!$success)
+        {
+            echo $error;
+        }
     }
 }

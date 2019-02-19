@@ -15,8 +15,8 @@ DefaultHead();
                     
                     <div class="row">
                       <div class="col-xs-12 col-md-12 path-tree">
-                            <a href="#">Home</a> / 
-                            <a href="#">Path</a>
+                            <a href="index.php">Home</a> /
+                            <a href="contact.php">Contact Us</a>
                         </div>
                     </div>
 

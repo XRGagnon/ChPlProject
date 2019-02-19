@@ -8,34 +8,54 @@ sec_session_start();
 //call the default header 
 DefaultHead();
 ?>
+<div class="content ">
+    <div class="container md-margin-top block">
 <h2>Register Page</h2><br>
 <!-- form collection-->
 <form action="../Controllers/RegisterController.php" method="POST">
 	<table>
+        <!--First Name Form Group -->
+        <div class="form-group">
 		<tr>
-			<td style="text-align: right; margin-left: 10px;">
+			<td class="control-label">
 				<label for="firstname">First Name: </label>
 			</td>
-			<td>
-				<input type="text" name="firstname" id="firstname"><br>
+        </tr>
+        <tr>
+			<td class="controls">
+				<input class="form-control input" type="text" name="firstname" id="firstname"><br>
 			</td>
 		</tr>
-		<tr>
-			<td style="text-align: right; margin-left: 10px;">
-				<label for="lastname">Last Name: </label>
-			</td>
-			<td>
-				<input type="text" name="lastname" id="lastname"><br><br>
-			</td>
-		</tr>
-		<tr>
-			<td style="text-align: right; margin-left: 10px;">
-				<label for="username">username: </label>
-			</td>
-			<td>
-				<input type="text" name="username" id="username"><br>
-			</td>
-		</tr>
+        </div>
+
+        <!--Last Name Form Group -->
+        <div class="form-group">
+            <tr>
+                <td class="control-label">
+                    <label for="lastname">Last Name: </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="controls">
+                    <input class="form-control input" type="text" name="lastname" id="lastname"><br>
+                </td>
+            </tr>
+        </div>
+
+        <!--Username Form Group -->
+        <div class="form-group">
+            <tr>
+                <td class="control-label">
+                    <label for="username">Username: </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="controls">
+                    <input class="form-control input" type="text" name="username" id="username"><br>
+                </td>
+            </tr>
+        </div>
+
 		<tr>
 			<td style="text-align: right;">
 				<label for="email">E-mail: </label>
@@ -73,16 +93,19 @@ DefaultHead();
                                    this.form.ConfirmPass);" />
             </td>
 		</tr>
-	<table>
-	
+	</table>
 </form>
-<!-- End of form collection -->
-<?php
+        <?php
 if (isset($_SESSION["errorMsg"]))
 {
     echo $_SESSION["errorMsg"];
     $_SESSION["errorMsg"] = null;
-}
+}?>
+<!-- End of form collection -->
+</div>
+</div>
+
+<?php
 //calling the default footer
 DefaultFoot();
 ?>
