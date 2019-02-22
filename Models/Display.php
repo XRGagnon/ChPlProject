@@ -325,10 +325,12 @@ class Display
                                   <h3> ".$spareMsg."</h3>
                                     
                                 <div class=\"btn btn-primary btn-circle sm-margin-top\"><a href=\"#\">Download Instruction Manual</a></div>
-                                
-                                <div class=\"btn btn-primary btn-circle sm-margin-top\"><a href='https://www.romancart.com/cart.asp?storeid=66654&itemcode=$code'>Add to Cart</a></div>
-                               
-  
+                                ";
+
+        if (Login_Check()) {
+            echo "               <div class=\"btn btn-primary btn-circle sm-margin-top\"><a href='https://www.romancart.com/cart.asp?storeid=66654&itemcode=$code'>Add to Cart</a></div>";
+        }
+  echo "
                                 <div class=\"panel panel-light panel-default sm-margin-top\">
                        
                                 <div class=\"panel-body\">Colours available: ".$colors."</div>

@@ -1,9 +1,11 @@
 <?php
 include_once "../Models/Defaults.php";
+include_once "../Models/Security.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
 sec_session_start();
-unset($_SESSION["AddItemError"]);
+//unset previously used session
+unset($_SESSION["UpdateItemError"]);
 
 //is the users clicks on yes, the update fuction will be performed 
     if(isset($_POST['Yes'])) {
@@ -17,6 +19,7 @@ unset($_SESSION["AddItemError"]);
     }
     else if (isset($_POST['No'])) {
         header('Location: ../Pages/UpdateItemForm.php');
+        exit();
     }
 
 ?>

@@ -1,11 +1,12 @@
 <?php
 include_once "../Models/Defaults.php";
+
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
 include_once "../DBManager/Retrieval.php";
-include_once "../Models/Security.php";
 sec_session_start();
+AdminGuard();
 DefaultHead();
 //unset previously used sessions 
 unset($_SESSION['Item_No']);
@@ -48,7 +49,7 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 
 </br><h2>Select the new Sub-Category</h2></br>
 <!-- form to choose the new category -->
-<form method="POST" action="../Pages/UpdateItem.php">
+<form method="POST" action="UpdateItem.php">
 	<label for="Category">Category: </label>
 
 	<select name="Category" id="Category">
@@ -67,7 +68,7 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 	
 	<input type="submit" value="Choose Category">
 </form>
-<form method="POST"  action="../Pages/ViewItems.php">
+<form method="POST"  action="ViewItems.php">
 	<input type="submit" value="Return">
 </form>
 

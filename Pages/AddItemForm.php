@@ -1,9 +1,10 @@
 <?php
 include_once "../Models/Defaults.php";
-
+include_once "../Models/Security.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
-include_once "../Models/Security.php";
+sec_session_start();
+AdminGuard();
 DefaultHead();
 //this is the beginning of the add item chain, here the user selects which category he wants to be added. 
 

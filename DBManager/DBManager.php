@@ -428,35 +428,53 @@ class DBManager
 					}
 					else {
 						echo "Something went wrong, try again later";
+                        ?>
+                        <form action="../Pages/UpdateItemForm.php">
+                            <input type="submit" value="Return to Item Form">
+                            <form>
+                        <?php
 					}					
 				}
 				else
 				{
 					echo "There is already an Item that has that French Title";
+                    ?>
+                    <form action="../Pages/UpdateItemForm.php">
+                        <input type="submit" value="Return to item Form">
+                        <form>
+                    <?php
 				}
 			}
 			else{
 				echo "There is already an Item that has that English Title";
+                ?>
+                <form action="../Pages/UpdateItemForm.php">
+                    <input type="submit" value="Return to Item Form">
+                    <form>
+                <?php
 			}			
 		}
 		else{
 			echo "There is already an Item with that Item Number";
+            ?>
+            <form action="../Pages/UpdateItemForm.php">
+                <input type="submit" value="Return to Item form">
+                <form>
+            <?php
 		}
     }
 
-    function Remove_Item($ItemIdVariable)
+    static function Remove_Item($ItemIdVariable)
     {
 		//establish a connection with the database
         $conn = ConnectionMaker::getConnection();
 
 		//prepare the sql query
-        $sql = "DELETE FROM ITEM
-		Where 
-		Item_No = " . $ItemIdVariable . ";";
+        $sql = "DELETE FROM ITEM Where Item_No = '" . $ItemIdVariable . "';";
 
 		//perform sql query, if successful the item will be removed
         if ($conn->query($sql) === true) {
-            echo "Item has been successfully updated";
+            echo "Item has been successfully removed";
         } else {
             echo "Something went wrong, please try again another time";
         }

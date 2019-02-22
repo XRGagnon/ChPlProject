@@ -1,9 +1,10 @@
 <?php
 include_once "../Models/Defaults.php";
+include_once "../Models/Security.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
-include_once "../Models/Security.php";
 sec_session_start();
+AdminGuard();
 DefaultHead();
 //unset the previously used id 
 unset($_SESSION['id']);

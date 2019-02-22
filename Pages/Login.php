@@ -11,6 +11,8 @@ include_once "../Models/Security.php";
 sec_session_start();
 DefaultHead();
 ?>
+<div class="content ">
+<div class="container md-margin-top block">
 <h2>Login Page</h2><br>
 
 <?php
@@ -27,22 +29,35 @@ if (isset($_GET['error'])) {
 }
 ?>
 <form action="../Controllers/LoginController.php" method="post" name="login_form">
-    Username: <input type="text" name="username" /><br/>
-    Password: <input type="password"
-                     name="password"
-                     id="password"/><br/>
-    <input type="button"
-           value="Login"
-
+    <div class="control-group">
+    <div class="control-label">
+        <label for="username">Username: </label>
+    </div>
+    <div class="controls">
+        <input type="text" name="username" /><br/>
+    </div>
+    </div>
+    <div>
+        <div class="control-group">
+            <div class="control-label">
+                <label for="password">Password: </label>
+            </div>
+            <div class="controls">
+                <input type="password" name="password" id="password" /><br/>
+            </div>
+    </div>
+    </div>
+            <br/>
+            <div class="form-group">
+            <input type="button"
+            value="Login" class="btn btn-primary"
            onclick="formhash(this.form, this.form.password);" />
+            </div>
             <!-- Activate Javascript Password Hasher on click -->
 </form>
 
-
-
-
-
-</form>
+</div>
+</div>
 <?php
 DefaultFoot();
 ?>

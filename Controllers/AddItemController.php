@@ -1,7 +1,9 @@
 <?php
 include_once "../Models/Defaults.php";
+include_once "../Models/Security.php";
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
+sec_session_start();
 unset($_SESSION["AddItemError"]);
 // this is the controller to get the data from the item form and then add it to the database
 
@@ -13,6 +15,7 @@ unset($_SESSION["AddItemError"]);
 		//if the user did not enter the required data they are sent back to the beginning 
 		$_SESSION["UpdateItemError"] = "You did not fill in all required data, please start";
 		header('Location: ../Pages/UpdateItemForm.php');
+		exit();
 	}
 	else
 	{

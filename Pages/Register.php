@@ -98,6 +98,7 @@ DefaultHead();
             </tr>
         </div>
 
+        <div class="form-group">
 		<tr>
 			<td>
 			</td>
@@ -108,10 +109,12 @@ DefaultHead();
                                    this.form.username,
                                    this.form.email,
                                    this.form.password,
-                                   this.form.ConfirmPass);" />
+                                   this.form.ConfirmPass);"
+                                    class="btn btn-primary"/>
                 <!-- On click, activate the register Javascript Password Hasher -->
             </td>
 		</tr>
+        </div>
 	</table>
 </form>
         <?php

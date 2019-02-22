@@ -1,9 +1,11 @@
 <?php
 include_once "../Models/Defaults.php";
+
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
 sec_session_start();
+AdminGuard();
 unset($_SESSION['id']);
 DefaultHead();
 
@@ -20,7 +22,7 @@ DefaultHead();
 <p>If you want to add an item, click the link below</p>
 
 <!-- The form for the various search methods-->
-<form method="POST" action="../Pages/AddItemForm.php">
+<form method="POST" action="AddItemForm.php">
 	<input type="submit" value="Add an Item">
 </form><br>
 
@@ -52,12 +54,12 @@ DefaultHead();
 	
 </form>
 
+<p>Reset Changes </p>
 <form method="post" action="../Controllers/ViewItemsController.php">
 
 	<input type="submit" value="Reset" name="Reset">
 	
 </form>
-
 
 
 <?php
@@ -77,6 +79,7 @@ else
 	$ViewItems = DBManager::View_Items();
 }
 ?>
+</div>
 
 <?php
 DefaultFoot();

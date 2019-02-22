@@ -1,10 +1,12 @@
 <?php
 include_once "../Models/Defaults.php";
+
 include_once "../DBManager/DBManager.php";
 include_once "../DBManager/ConnectionMaker.php";
 include_once "../Models/Security.php";
 include_once "../DBManager/Retrieval.php";
 sec_session_start();
+AdminGuard();
 DefaultHead();
 //unset previously used function
 unset($_SESSION["UpdateItemError"]);
@@ -32,21 +34,21 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 				<input type="text" name="Item_No" id="Item_No" value="<?php echo $item["Item_No"] ?>" required><br>
 			</td>
 		</tr>
-        <input type="hidden" name="Category" value="<?php echo $_POST['Category']?>">
-        <tr>
-            <td style="text-align: right; margin-left: 10px;">
-                <label for="SubCategory">Category: </label>
-            </td>
-
-            <td>
-                <select name="SubCategory">
-
-                    <?php
-                    $ViewCats = DBManager::Get_SubCategories($_POST['Category']);
-                    ?>
-                </select>
-            </td>
-        </tr>
+		<input type="hidden" name="Category" value="<?php echo $_POST['Category']?>">
+		<tr>
+			<td style="text-align: right; margin-left: 10px;">
+				<label for="SubCategory">Category: </label>
+			</td>
+			
+			<td>
+				<select name="SubCategory">
+					
+					<?php
+						$ViewCats = DBManager::Get_SubCategories($_POST['Category']);
+					?>
+				</select>
+			</td>
+		</tr>
 		<tr>
 			<td style="text-align: right; margin-left: 10px;">
 				<label for="Availability">Availability</label>
@@ -186,11 +188,13 @@ $ViewItems = DBManager::UpdateItemViewItem($_SESSION['id']);
 			<td>
 			</td>
 			<td align="right">
-				<input type="submit" value="Add Item">
+				<input type="submit" value="Update Item">
 			</td>
 		</tr>
 	<table>
 </form>
+
+</div>
 <?php
 DefaultFoot();
 ?>
